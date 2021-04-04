@@ -17,5 +17,6 @@
     "description": "description",
     "count": "Count",
     "until": "until",
-    "filter": "Filter"
+    "filter": "Filter",
+    "user_agent": "Browser"
 }
