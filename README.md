@@ -5,13 +5,13 @@
 ### Use Locally
 
 ```
-npm i -D ../bedrock-vue-components
+npm i -D ../bedrock-core-vue
 ```
 
 ### Use Npm version
 
 ```
-npm i -D yormy-bedrock-vue-components
+npm i -D yormy-bedrock-core-vue
 ```
 
 # Using components

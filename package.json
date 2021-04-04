@@ -1,5 +1,5 @@
 {
-    "name": "bedrock-vue-components",
+    "name": "bedrock-core-vue",
     "version": "1.0.1",
     "description": "Vue component library for bedrock",
     "keywords": [
@@ -9,12 +9,12 @@
     "license": "",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/yormy/bedrock-vue-components.git"
+        "url": "git+https://github.com/yormy/bedrock-core-vue.git"
     },
     "bugs": {
-        "url": "https://github.com/yormy/bedrock-vue-components/issues"
+        "url": "https://github.com/yormy/bedrock-core-vue/issues"
     },
-    "homepage": "https://github.com/yormy/bedrock-vue-components#readme",
+    "homepage": "https://github.com/yormy/bedrock-core-vue#readme",
     "main": "lib/index.js",
     "module": "lib/index.esm.js",
     "scripts": {
