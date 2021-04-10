@@ -81,7 +81,7 @@ export default {
       this.clearformResult();
       this.form.state.isSubmittingRemove = true;
 
-      const url = this.route('api.v1.admin.users.terms.delete', item.xid);
+      const url = this.route('api.v1.admin.membiue.terms.delete', item.xid);
 
       this.$http
         .delete(url)
