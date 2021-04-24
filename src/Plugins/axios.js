@@ -93,6 +93,15 @@ function redirectIfNeeded(error) {
   }
 }
 
+function createChecksum(encryption, postedData) {
+  if (postedData) {
+    let checksum = JSON.stringify(postedData);
+    checksum = checksum.replace(/[^0-5a-uF-Z]/g, '');
+    return encryption.buildPostValue(checksum);
+  }
+  return '';
+}
+
 axiosApi.interceptors.request.use((config) => {
   const accessToken = getAccessToken(config);
   axiosApi.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
@@ -127,6 +136,8 @@ axiosApi.interceptors.request.use((config) => {
     }
 
     authorizedConfig.data.locale = localStorage.getItem('locale');
+
+    authorizedConfig.headers.common['X-Checksum'] = createChecksum(encryption, authorizedConfig.data);
   }
 
   // if (authorizedConfig.data && authorizedConfig.data.xid) {
