@@ -96,7 +96,7 @@ function redirectIfNeeded(error) {
 function createChecksum(encryption, postedData) {
   if (postedData) {
     let checksum = JSON.stringify(postedData);
-    checksum = checksum.replace(/[^0-5a-uF-Z]/g, '');
+    checksum = checksum.replace(/[^a-z]/g, '');
     return encryption.buildPostValue(checksum);
   }
   return '';
