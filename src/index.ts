@@ -37,6 +37,10 @@ import SlowPages from "./Performance/SlowPages.vue";
 import TopPages from "./Performance/TopPages.vue";
 import WeightedPages from "./Performance/WeightedPages.vue";
 
+import ButtonAjax from "./Buttons/ButtonAjax.vue";
+import LoadingOverlay from "./Misc/LoadingOverlay.vue";
+import RbacLink from "./Misc/RbacLink.vue";
+
 
 // @ts-ignore
 import {
@@ -95,4 +99,7 @@ export {
   SlowPages,
   TopPages,
   WeightedPages,
+  ButtonAjax,
+  LoadingOverlay,
+  RbacLink,
 };
