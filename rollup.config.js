@@ -21,6 +21,10 @@ export default {
       sourcemap: true,
     },
   ],
-  external: ['@config/auth', '@config/localization'],
+  external: [
+    '@config/auth',
+    '@config/localization',
+    'vue2-dropzone/dist/vue2Dropzone.min.css'
+  ],
   plugins: [peerDepsExternal(), resolve(), commonjs(), typescript(), vue(), json()],
 };

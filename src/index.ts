@@ -42,6 +42,15 @@ import LoadingOverlay from "./Misc/LoadingOverlay.vue";
 import RbacLink from "./Misc/RbacLink.vue";
 
 
+import TopbarDropdownItem from "./Misc/TopbarDropdownItem.vue";
+import FileDropzoneUpload from "./Misc/FileDropzoneUpload.vue";
+
+import ServerLogAccess from "./Logs/ServerLogAccess.vue";
+import ServerLogErrors from "./Logs/ServerLogErrors.vue";
+
+import 'vue2-dropzone/dist/vue2Dropzone.min.css';
+
+
 // @ts-ignore
 import {
   doLogout,
@@ -102,4 +111,8 @@ export {
   ButtonAjax,
   LoadingOverlay,
   RbacLink,
+  TopbarDropdownItem,
+  FileDropzoneUpload,
+  ServerLogAccess,
+  ServerLogErrors
 };
