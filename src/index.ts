@@ -1,5 +1,3 @@
-import SampleComponent from "./SampleComponent/SampleComponent.vue";
-import HelloComponent from "./SampleComponent/HelloComponent.vue";
 import Datatable from "./Datatable/Datatable.vue";
 import DatatableHeader from "./Datatable/DatatableHeader.vue";
 import DatatableFooter from "./Datatable/DatatableFooter.vue";
@@ -33,6 +31,13 @@ import PerformancePage from "./Pages/PerformancePage.vue";
 import BlacklistedIps from "./Security/BlacklistedIps.vue";
 import ActionTarpits from "./Security/ActionTarpits.vue";
 
+import LoadGraph from "./Performance/LoadGraph.vue";
+import PerformanceCard from "./Performance/PerformanceCard.vue";
+import SlowPages from "./Performance/SlowPages.vue";
+import TopPages from "./Performance/TopPages.vue";
+import WeightedPages from "./Performance/WeightedPages.vue";
+
+
 // @ts-ignore
 import {
   doLogout,
@@ -55,8 +60,6 @@ import {getFirstValidationError, mergeErrors} from "./Helpers/formhelper.js";
 import translations from '../lang/translations';
 
 export {
-  SampleComponent,
-  HelloComponent,
   Datatable,
   DatatableHeader,
   DatatableFooter,
@@ -87,4 +90,9 @@ export {
   DatePopup,
   BlacklistedIps,
   ActionTarpits,
+  LoadGraph,
+  PerformanceCard,
+  SlowPages,
+  TopPages,
+  WeightedPages,
 };
