@@ -48,6 +48,10 @@ import FileDropzoneUpload from "./Misc/FileDropzoneUpload.vue";
 import ServerLogAccess from "./Logs/ServerLogAccess.vue";
 import ServerLogErrors from "./Logs/ServerLogErrors.vue";
 
+import ErrorMessage from "./Alerts/ErrorMessage.vue";
+import SuccessMessage from "./Alerts/SuccessMessage.vue";
+import WarningMessage from "./Alerts/WarningMessage.vue";
+
 import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 
 
@@ -114,5 +118,8 @@ export {
   TopbarDropdownItem,
   FileDropzoneUpload,
   ServerLogAccess,
-  ServerLogErrors
+  ServerLogErrors,
+  ErrorMessage,
+  SuccessMessage,
+  WarningMessage
 };
