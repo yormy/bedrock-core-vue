@@ -91,12 +91,14 @@ function redirectIfNeeded(error) {
 
     window.location.href = redirectUrl;
   }
+
 }
 
 function createChecksum(encryption, postedData) {
   if (postedData) {
-    let checksum = JSON.stringify(postedData);
-    checksum = checksum.replace(/[^a-z0-9]/g, '');
+    const data = JSON.stringify(postedData);
+    const checksum = data.replace(/[^a-z0-9]/g, '');
+
     return encryption.buildPostValue(checksum);
   }
   return '';
