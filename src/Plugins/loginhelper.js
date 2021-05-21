@@ -1,4 +1,4 @@
-import AUTH from '@config/auth';
+//import AUTH from '@config/auth';
 import TunnelEncryption from './tunnel_encryption';
 
 const ADMIN_POSTFIX = '_';

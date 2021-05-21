@@ -1,5 +1,5 @@
 <script>
-import APICODES from '@consts/apiCodes';
+//import APICODES from '@consts/apiCodes';
 import CodeInput from './CodeInput.vue';
 import {mergeErrors} from "../Helpers/formhelper.js";
 
