@@ -4,8 +4,7 @@
 
 ```
 npm install -g npm@latest
-npm uninstall -g vue-cli
-npm install -g @vue/cli
+npm install -g npm-check-updates
 ```
 
 # Create new project
@@ -19,3 +18,6 @@ Package.json the name of the project needs to be in the
 
 ```npm run build```
 
+# check for updates
+
+ncu
