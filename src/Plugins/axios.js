@@ -1,5 +1,5 @@
 import axios from 'axios';
-//import AUTH from '@config/auth';
+import AUTH from '@config/auth';
 import {
   getAccessTokenAdmin,
   getAccessTokenUser,

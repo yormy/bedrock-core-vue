@@ -1,4 +1,4 @@
-//import LOCALIZATION from '@config/localization';
+import LOCALIZATION from '@config/localization';
 
 function getParameterByName(nameParam, urlParam) {
   let url = urlParam;
