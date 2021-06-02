@@ -4,7 +4,7 @@
       'vue-code-input-container': true,
       [className]: !!className,
     }"
-    v-bind:style="{ width: `${fields * fieldWidth + fieldSpace}px` }"
+    v-bind:style="{ width: `${fields * fieldWidthCalc + fieldSpace}px` }"
   >
     <p v-if="title" class="title">{{ title }}</p>
     <div class="vue-code-input">
@@ -19,7 +19,7 @@
           :pattern="pattern"
           :required="required"
           :style="{
-            width: `${fieldWidth}px`,
+            width: `${fieldWidthCalc}px`,
             height: `${fieldHeight}px`,
           }"
           :type="type === 'number' ? 'tel' : type"
@@ -139,6 +139,16 @@ export default {
   },
 
   computed: {
+    fieldWidthCalc() {
+      console.log('screenwidth', screen.width);
+      if (screen
+        .width < 700) {
+        return 30;
+      }
+      return this.fieldWidth;
+    },
+
+
     pattern() {
       let pattern = '[0-9a-zA-Z]';
       if (this.type === 'number') {
@@ -313,6 +323,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+
 .vue-code-input-container {
   position: relative;
 }
