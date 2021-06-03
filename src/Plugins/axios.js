@@ -10,9 +10,6 @@ import {
 
 import TunnelEncryption from './tunnel_encryption';
 
-console.log("URLIE" + data.app.url);
-console.log("encrypt" + data.auth.tunnel_encryption_secret);
-
 const axiosApi = axios.create({
   baseURL: '',
 });
