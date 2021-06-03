@@ -1,4 +1,4 @@
-import AUTH from '@config/auth';
+import {data} from '@config/config_js.json';
 import TunnelEncryption from './tunnel_encryption';
 
 const ADMIN_POSTFIX = '_';
@@ -20,7 +20,7 @@ function getTokenReferenceEncryptionKey() {
 }
 
 function spamLocalStorage() {
-  if (AUTH.TOKEN_SPAM_LOCALSTORAGE) {
+  if (data.auth.token_spam_localstorage) {
     for (let i = 0; i < 10; i += 1) {
       const tokenId = makeId(10);
       const encryptionTokenStorage = new TunnelEncryption(true, '3450835fadlkjfdlkfa093042');
@@ -34,7 +34,7 @@ function storeToken(tokenKeyName, content) {
   const tokenId = makeId(10);
 
   let tokenReference = tokenId;
-  if (AUTH.TOKEN_REFERENCE_ENCRYPTION) {
+  if (data.auth.token_reference_encryption) {
     const encryptionTokenStorage = new TunnelEncryption(true, getTokenReferenceEncryptionKey());
     tokenReference = encryptionTokenStorage.encrypt(tokenId);
   }
@@ -45,7 +45,7 @@ function storeToken(tokenKeyName, content) {
 function getRealToken(tokenNameId, postfix) {
   let accessId = localStorage.getItem(`${tokenNameId}${postfix}`);
 
-  if (AUTH.TOKEN_REFERENCE_ENCRYPTION) {
+  if (data.auth.token_reference_encryption) {
     const encryptionTokenStorage = new TunnelEncryption(true, getTokenReferenceEncryptionKey());
     accessId = encryptionTokenStorage.decrypt(accessId);
   }
@@ -92,7 +92,7 @@ export function getRefreshTokenAdmin() {
 function removeToken(key) {
   let accessId = localStorage.getItem(key);
 
-  if (AUTH.TOKEN_REFERENCE_ENCRYPTION && accessId) {
+  if (data.auth.token_reference_encryption && accessId) {
     const encryptionTokenStorage = new TunnelEncryption(true, getTokenReferenceEncryptionKey());
     accessId = encryptionTokenStorage.decrypt(accessId);
   }
@@ -121,7 +121,7 @@ export function doLogout(loggedInAs, axios, currentUrl = null) {
   let routePrefix = '';
   if (loggedInAs === 'ADMIN') {
     removeTokensAdmin();
-    routePrefix = `/admin${AUTH.ADMIN_ROUTE_POSTFIX}`;
+    routePrefix = `/admin${data.auth.admin_route_postfix}`;
   } else {
     removeTokensUser();
   }
@@ -159,7 +159,7 @@ export function isLoggedIn(loggedInAs) {
 }
 
 export function storeTokens(responseData, loginas) {
-  const encryption = new TunnelEncryption(AUTH.TUNNEL_ENCRYPTION, AUTH.TUNNEL_ENCRYPTION_SECRET);
+  const encryption = new TunnelEncryption(data.auth.tunnel_encryption, data.auth.tunnel_encryption_secret);
 
   const accessToken = encryption.buildPostValue(responseData.access_token);
   const refreshToken = encryption.buildPostValue(responseData.refresh_token);

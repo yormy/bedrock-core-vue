@@ -1,5 +1,5 @@
 import axios from 'axios';
-import AUTH from '@config/auth';
+import {data} from '@config/config_js.json';
 import {
   getAccessTokenAdmin,
   getAccessTokenUser,
@@ -10,6 +10,9 @@ import {
 
 import TunnelEncryption from './tunnel_encryption';
 
+console.log("URLIE" + data.app.url);
+console.log("encrypt" + data.auth.tunnel_encryption_secret);
+
 const axiosApi = axios.create({
   baseURL: '',
 });
@@ -18,20 +21,21 @@ function getRefreshTokenUrl(error) {
   const PROVIDER_ADMINS = 101;
   // const PROVIDER_USERS = 102;
 
+
   const responseData = error.response.data;
   if (PROVIDER_ADMINS === responseData.code) {
-    const defaultUrl = AUTH.TOKEN_REFRESH_ENDPOINT_ADMINS;
-    const newUrl = defaultUrl.replace('/admin/', `/admin${AUTH.ADMIN_ROUTE_POSTFIX}/`);
+    const defaultUrl = data.auth.TOKEN_REFRESH_ENDPOINT_ADMINS;
+    const newUrl = defaultUrl.replace('/admin/', `/admin${data.auth.admin_route_postfix}/`);
     return newUrl;
   }
-  return AUTH.TOKEN_REFRESH_ENDPOINT_USERS;
+  return data.auth.TOKEN_REFRESH_ENDPOINT_USERS;
 }
 
 function isAdminRoute(config) {
   const {url} = config;
 
   let find = '/api/v[0-9]/admin';
-  find += AUTH.ADMIN_ROUTE_POSTFIX;
+  find += data.auth.admin_route_postfix;
   let regex = new RegExp(find, 'g');
 
   //  const regex = /\/api\/v[0-9]\/admin\//g;
@@ -40,7 +44,7 @@ function isAdminRoute(config) {
   }
 
   find = '/admin';
-  find += AUTH.ADMIN_ROUTE_POSTFIX;
+  find += data.auth.admin_route_postfix;
   regex = new RegExp(find, 'g');
 
   //  const regex = /\/api\/v[0-9]\/admin\//g;
@@ -109,7 +113,7 @@ axiosApi.interceptors.request.use((config) => {
 
   const authorizedConfig = {...config};
 
-  const encryption = new TunnelEncryption(AUTH.tunnelEncryption, AUTH.TUNNEL_ENCRYPTION_SECRET);
+  const encryption = new TunnelEncryption(data.auth.tunnel_encryption, data.auth.tunnel_encryption_secret);
 
   if (authorizedConfig.data) {
     if (authorizedConfig.data.loginname) {
@@ -184,8 +188,8 @@ axiosApi.interceptors.response.use(
     //     .then((response) => {
     //       if (response.status === 200) {
     //         // const encryption = new TunnelEncryption(
-    //         //   AUTH.TUNNEL_ENCRYPTION,
-    //         //   AUTH.TUNNEL_ENCRYPTION_SECRET,
+    //         //   data.auth.TUNNEL_ENCRYPTION,
+    //         //   data.auth.TUNNEL_ENCRYPTION_SECRET,
     //         // );
     //
     //         doStoreTokens(originalRequest, response.data.data);
