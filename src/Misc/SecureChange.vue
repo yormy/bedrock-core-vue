@@ -134,6 +134,10 @@ export default {
         });
     },
 
+    cancel() {
+      this.$emit('cancelled');
+    },
+
     clearResponses() {
       this.apiErrors = {};
       this.successMessage = '';
