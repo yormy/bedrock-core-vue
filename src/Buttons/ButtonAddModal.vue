@@ -26,7 +26,7 @@
       </v-card>
     </v-dialog>
 
-    <button-submit :btn-class="btnClass" :is-loading="isLoading" @clicked="showForm">
+    <button-submit :btn-class="btnClass" :is-loading="isLoading" @click="showForm">
       <slot name="button-content">
         <span class="fal fa-plus"></span>
         <span v-if="withText">
