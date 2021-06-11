@@ -54,6 +54,8 @@ import ErrorMessage from "./Alerts/ErrorMessage.vue";
 import SuccessMessage from "./Alerts/SuccessMessage.vue";
 import WarningMessage from "./Alerts/WarningMessage.vue";
 
+import MessageModal from "./Modals/MessageModal.vue";
+
 import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 
 
@@ -125,5 +127,6 @@ export {
   SuccessMessage,
   WarningMessage,
   BTextField,
-  BTextArea
+  BTextArea,
+  MessageModal
 };
