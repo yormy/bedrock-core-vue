@@ -1,35 +1,28 @@
 <template>
   <div>
-    <v-dialog v-model="deleteModal" max-width="290">
-      <v-card>
-        <slot name="modal">
-          <v-card-title :class="colorFormType()" class="headline">
-            <div class="text-white">
-              {{ headerText }}
-            </div>
-          </v-card-title>
+    <message-modal
+      :show="deleteModal"
+      :type="actionType"
+      max-width="290"
+    >
+      <template v-slot:title>
+        {{ headerText }}
+      </template>
+      <template v-slot:description>
+        <h3>{{ title }} </h3>
+        <p>{{ description }}</p>
+        <slot name="message"></slot>
+      </template>
+      <template v-slot:actions>
+        <button class="btn btn-link" @click="doCancelled">
+          {{ $t('bedrock-core.general.cancel') }}
+        </button>
 
-          <v-card-text>
-            <h3>{{ title }} </h3>
-            <p>{{ description }}</p>
-            <slot name="message"></slot>
-
-          </v-card-text>
-        </slot>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn text @click="doCancelled">
-            {{ $t('bedrock-core.general.cancel') }}
-          </v-btn>
-
-          <v-btn :color="colorFormType()" text @click="doConfirmed">
-            {{ confirmButtonText }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+        <button :class="'btn btn-primary'" @click="doConfirmed">
+          {{ confirmButtonText }}
+        </button>
+      </template>
+    </message-modal>
 
     <button-submit :btnClass="btnClass" :is-loading="isLoading" @click="askConfirmation">
       <slot name="button-content">
@@ -41,10 +34,12 @@
 
 <script>
 import ButtonSubmit from './ButtonSubmit.vue';
+import MessageModal from '../Modals/MessageModal.vue';
 
 export default {
   components: {
     ButtonSubmit,
+    MessageModal
   },
 
   props: {
@@ -105,26 +100,12 @@ export default {
     return {
       deleteModal: false,
 
-      colorName: this.colorFormType(),
-
       headerText: this.header ? this.header : this.$t('bedrock-core.general.delete'),
       confirmButtonText: this.confirmButton ? this.confirmButton : this.$t('bedrock-core.general.delete'),
     };
   },
 
   methods: {
-    colorFormType() {
-      if (this.actionType === 'success') {
-        return 'success';
-      }
-      if (this.actionType === 'danger') {
-        return 'red';
-      }
-      if (this.actionType === 'info') {
-        return 'primary';
-      }
-    },
-
     askConfirmation() {
       this.deleteModal = true;
     },

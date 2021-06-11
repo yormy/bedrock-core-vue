@@ -1,30 +1,29 @@
 <template>
   <div>
-    <v-dialog v-model="deleteModal" max-width="290">
-      <v-card>
-        <slot name="modal">
-          <v-card-title class="red headline">{{ headerText }}</v-card-title>
+    <message-modal
+      :show="deleteModal"
+      max-width="290"
+      type="warning"
+    >
+      <template v-slot:title>
+        {{ headerText }}
+      </template>
+      <template v-slot:description>
+        <h3>{{ title }} </h3>
+        <p>{{ description }}</p>
+        <slot name="delete-preview"></slot>
+      </template>
+      <template v-slot:actions>
+        <v-btn color="green darken-1" text @click="doCancelled">
+          {{ $t('bedrock-core.general.cancel') }}
+        </v-btn>
 
-          <v-card-text>
-            <h3>{{ title }} </h3>
-            <p>{{ description }}</p>
-            <slot name="delete-preview"></slot>
-          </v-card-text>
-        </slot>
+        <v-btn color="red darken-1" text @click="doAgreed">
+          {{ confirmButtonText }}
+        </v-btn>
+      </template>
+    </message-modal>
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn color="green darken-1" text @click="doCancelled">
-            {{ $t('bedrock-core.general.cancel') }}
-          </v-btn>
-
-          <v-btn color="red darken-1" text @click="doAgreed">
-            {{ confirmButtonText }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
 
     <button-submit :btnClass="btnClass" :is-loading="isLoading" @click="askConfirmation">
       <slot name="button-content">
@@ -37,10 +36,12 @@
 
 <script>
 import ButtonSubmit from './ButtonSubmit.vue';
+import MessageModal from '../Modals/MessageModal.vue';
 
 export default {
   components: {
     ButtonSubmit,
+    MessageModal,
   },
 
   props: {
