@@ -28,7 +28,7 @@ export default {
 
   methods: {
     clicked() {
-      this.$emit('clicked');
+      this.$emit('click');
     },
   },
 };

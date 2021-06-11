@@ -26,7 +26,7 @@
       </v-card>
     </v-dialog>
 
-    <button-submit :btnClass="btnClass" :is-loading="isLoading" @clicked="askConfirmation">
+    <button-submit :btnClass="btnClass" :is-loading="isLoading" @click="askConfirmation">
       <slot name="button-content">
         <span class="fal fa-fw fa-trash"></span>
         <span v-if="showText">{{ $t('bedrock-core.general.delete') }}</span>

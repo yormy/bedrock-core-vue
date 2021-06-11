@@ -31,7 +31,7 @@
       </v-card>
     </v-dialog>
 
-    <button-submit :btnClass="btnClass" :is-loading="isLoading" @clicked="askConfirmation">
+    <button-submit :btnClass="btnClass" :is-loading="isLoading" @click="askConfirmation">
       <slot name="button-content">
         [specify the text on the button]
       </slot>

@@ -60,7 +60,7 @@ export default {
 
     clicked() {
       if (!this.isDisabled()) {
-        this.$emit('clicked');
+        this.$emit('click');
       }
     },
   },
