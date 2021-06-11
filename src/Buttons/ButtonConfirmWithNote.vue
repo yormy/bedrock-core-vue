@@ -1,32 +1,28 @@
 <template>
   <div>
-    <v-dialog v-model="confirmModal" max-width="290">
-      <v-card>
-        <slot name="modal">
-          <v-card-title class="red headline">
-            <slot name="title">Confirm</slot>
-          </v-card-title>
 
-          <v-card-text>
-            <slot name="delete-preview"></slot>
+    <message-modal
+      :show="confirmModal"
+      :type="type"
+      max-width="290"
+    >
+      <template v-slot:title>
+        <slot name="title">Confirm</slot>
+      </template>
+      <template v-slot:description>
+        <slot name="delete-preview"></slot>
+        <v-textarea v-model="note" label="Note" name="note" solo></v-textarea>
+      </template>
+      <template v-slot:actions>
+        <button class="btn btn-link" @click="doCancelled"> Cancel</button>
 
-            <v-textarea v-model="note" label="Note" name="note" solo></v-textarea>
-          </v-card-text>
-        </slot>
+        <button :class="'btn btn-'+ type" @click="doAgreed">
+          <slot name="button-confirm">Confirm</slot>
+        </button>
+      </template>
+    </message-modal>
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn color="green darken-1" text @click="doCancelled"> Cancel</v-btn>
-
-          <v-btn color="red darken-1" text @click="doAgreed">
-            <slot name="button-confirm">Confirm</slot>
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
-    <button class="btn btn-sm btn-danger float-left" @click.prevent="askConfirmation">
+    <button :class="'btn btn-sm float-left btn-' + type" @click.prevent="askConfirmation">
       <slot name="button-open">
         <span class="fal fa-fw fa-trash"></span> {{ $t('misc.delete') | capitalizeFirst }}
       </slot>
@@ -35,7 +31,13 @@
 </template>
 
 <script>
+import MessageModal from '../Modals/MessageModal.vue';
+
 export default {
+  components: {
+    MessageModal
+  },
+
   props: {
     item: {
       type: Object,
@@ -53,6 +55,11 @@ export default {
     isLoading: {
       type: Boolean,
     },
+
+    type: {
+      type: String,
+      default: 'success'
+    }
   },
 
   data() {
