@@ -26,6 +26,7 @@ import CardFooter from "./Pages/CardFooter.vue";
 
 import DatePopup from "./Inputs/DatePopup.vue";
 import BTextField from "./Inputs/TextField.vue";
+import BTextArea from "./Inputs/TextArea.vue";
 
 import PerformancePage from "./Pages/PerformancePage.vue";
 
@@ -123,5 +124,6 @@ export {
   ErrorMessage,
   SuccessMessage,
   WarningMessage,
-  BTextField
+  BTextField,
+  BTextArea
 };
