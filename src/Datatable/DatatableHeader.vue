@@ -1,11 +1,13 @@
 <template>
   <div class="d-flex flex-column">
-    <div class="d-flex justify-content-between">
-      <div>
+
+    <div class="row">
+      <div class="col">
         <div class="table_title">{{ title }}</div>
         <div v-if="subtitle" class="table_subtitle" v-html="subtitle"></div>
       </div>
-      <div>
+
+      <div class="col">
         <div v-if="messages && messages.success" class="table_message success">
           {{ messages.success }}
         </div>
@@ -16,16 +18,16 @@
           {{ messages.warning }}
         </div>
       </div>
-      <div class="tablesearch">
+      <div class="col tablesearch float-right" style="min-width:100px">
         <slot name="search"></slot>
       </div>
     </div>
 
-    <div class="d-flex justify-content-center">
-      <div class="mx-3">
+    <div class="row">
+      <div class="mx-3 col col-md-3">
         <slot name="filter_01"></slot>
       </div>
-      <div class="mx-3">
+      <div class="mx-3 col col-md-3">
         <slot name="filter_02"></slot>
       </div>
     </div>

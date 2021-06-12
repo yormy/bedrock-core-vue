@@ -9,7 +9,7 @@ export default {
 
   data() {
     return {
-      headers: null,
+      headers: [],
       searchInput: null,
 
       backupTable: {
@@ -42,6 +42,18 @@ export default {
   },
 
   methods: {
+    makeSearchable() {
+      // add dummy column to be able to additional default filtering on status
+      // remember to hide columns with css
+      this.headers.push(
+        {
+          text: 'd',
+          value: 'dummy',
+          width: '1px'
+        }
+      );
+    },
+
     copyClipboard(value) {
       const self = this;
       navigator.clipboard.writeText(value).then(function () {
@@ -177,3 +189,8 @@ export default {
 <!--  background-color:green;-->
 <!--}-->
 <!--</style>-->
+
+<!--Hide row on mobile only-->
+<!--::v-deep .v-data-table__wrapper tr.v-data-table__mobile-table-row td:nth-of-type(5) {-->
+<!--display:none-->
+<!--}-->
