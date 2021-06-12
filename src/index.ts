@@ -132,7 +132,7 @@ export {
   InfoMessage,
   BTextField,
   BTextArea,
-  BChip
+  BChip,
   BDropdown,
   BAutocomplete,
   MessageModal

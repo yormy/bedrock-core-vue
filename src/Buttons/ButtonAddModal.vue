@@ -3,7 +3,7 @@
     <v-dialog v-model="addModal" width="auto ">
       <v-card>
         <slot name="modal">
-          <v-card-title :class="headerClass" class="green headline">{{ headerText }}</v-card-title>
+          <v-card-title :class="'modal-header header-success'">{{ headerText }}</v-card-title>
 
           <v-card-text>
             <h3>{{ title }} </h3>
@@ -43,6 +43,7 @@ export default {
     header: {
       type: String,
       required: false,
+      default: 'modal-header header-success',
     },
 
     title: {
