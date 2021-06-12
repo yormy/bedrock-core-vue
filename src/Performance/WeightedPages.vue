@@ -2,14 +2,14 @@
   <v-card class="datatable">
     <datatable-header :title="title">
       <template v-slot:search>
-        <datatable-search :search-input.sync="search"></datatable-search>
+        <datatable-search :search-input.sync="searchInput"></datatable-search>
       </template>
     </datatable-header>
 
     <v-data-table
       :headers="headers"
-      :items="values"
-      :search="search"
+      :items="datatableValues"
+      :search="searchData"
       class="elevation-1"
       item-key="description"
       show-expand
@@ -23,14 +23,18 @@
         <td :colspan="headers.length">{{ item.description }} <br/></td>
       </template>
     </v-data-table>
+
   </v-card>
 </template>
 
 <script>
+import Datatable from '../Datatable/Datatable.vue';
 import DatatableHeader from '../Datatable/DatatableHeader.vue';
 import DatatableSearch from '../Datatable/DatatableSearch.vue';
 
 export default {
+  extends: Datatable,
+
   components: {
     DatatableHeader,
     DatatableSearch,
@@ -40,33 +44,54 @@ export default {
     title: {
       type: String,
     },
-    values: {
+
+    datatableValues: {
       type: Array,
     },
   },
 
   data() {
     return {
-      headers: null,
-      search: '',
+      searchInput: null,
     };
   },
 
   created() {
-    this.headers = [
-      {
-        text: this.$t('bedrock-core.general.count'),
-        value: 'count',
-      },
-      {
-        text: this.$t('bedrock-core.general.description'),
-        value: 'description',
-      },
-      {
-        text: this.$t('bedrock-core.performance.avg_weight'),
-        value: 'weightedAvg',
-      },
-    ];
+    this.createHeaders();
   },
+
+  methods: {
+    createHeaders() {
+      this.makeSearchable();
+
+      this.headers.push(
+        {
+          text: this.$t('bedrock-core.general.count'),
+          value: 'count',
+        },
+        {
+          text: this.$t('bedrock-core.general.description'),
+          value: 'description',
+        },
+        {
+          text: this.$t('bedrock-core.performance.avg_weight'),
+          value: 'weightedAvg',
+        },
+      );
+    }
+  }
 };
 </script>
+
+<style scoped>
+/* start hide search support */
+::v-deep .v-data-table__wrapper thead tr th:nth-of-type(2) {
+  display: none;
+}
+
+::v-deep .v-data-table__wrapper tr td:nth-of-type(2) {
+  display: none;
+}
+
+/* end hide search support*/
+</style>

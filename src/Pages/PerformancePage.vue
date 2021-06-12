@@ -69,13 +69,13 @@
       <div class="flex-fill mx-3">
         <weighted-pages
           :title="$t('bedrock-core.performance.weighted_pages')"
-          :values="pageWeightedAvg"
+          :datatable-values="pageWeightedAvg"
         ></weighted-pages>
       </div>
       <div class="flex-fill mx-3">
         <weighted-pages
           :title="$t('bedrock-core.performance.weighted_sql')"
-          :values="sqlWeightedAvg"
+          :datatable-values="sqlWeightedAvg"
         ></weighted-pages>
       </div>
     </div>
@@ -84,13 +84,13 @@
       <div class="flex-fill mx-3">
         <top-pages
           :title="$t('bedrock-core.performance.top_pages')"
-          :values="pageUsage"
+          :datatable-values="pageUsage"
         ></top-pages>
       </div>
       <div class="flex-fill mx-3">
         <slow-pages
           :title="$t('bedrock-core.performance.slow_pages')"
-          :values="pageSlow"
+          :datatable-values="pageSlow"
         ></slow-pages>
       </div>
     </div>
@@ -99,13 +99,13 @@
       <div class="flex-fill mx-3">
         <top-pages
           :title="$t('bedrock-core.performance.top_sql')"
-          :values="sqlUsage"
+          :datatable-values="sqlUsage"
         ></top-pages>
       </div>
       <div class="flex-fill mx-3">
         <slow-pages
           :title="$t('bedrock-core.performance.slow_sql')"
-          :values="sqlSlow"
+          :datatable-values="sqlSlow"
         ></slow-pages>
       </div>
     </div>

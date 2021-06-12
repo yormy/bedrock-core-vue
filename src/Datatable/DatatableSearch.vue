@@ -9,12 +9,18 @@
       ></v-text-field>
     </div>
     <div class="align-middle" @click="showSearchInput=!showSearchInput"><span class="fal fa-search"></span></div>
-    <div @click="showFilters = !showFilters"><span class="fal fa-filter"></span></div>
+    <div v-if="filter" @click="showFilters = !showFilters"><span class="fal fa-filter"></span></div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    filter: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       searchInput: '',

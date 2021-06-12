@@ -1,9 +1,11 @@
 <template>
   <v-card class="datatable">
     <datatable-header :title="$t('bedrock-core.server_log.access.title')">
+
       <template v-slot:search>
         <datatable-search :search-input.sync="searchInput"></datatable-search>
       </template>
+
       <template v-slot:filter_01>
         <a :href="route('admin.developer.serverlogs.access.export')">
           <button class="btn btn-primary" target="_blank">
@@ -11,6 +13,7 @@
           </button>
         </a>
       </template>
+
     </datatable-header>
 
     <v-data-table
@@ -57,13 +60,12 @@ export default {
 
   data() {
     return {
-      headers: null,
       severitySelected: null,
     };
   },
 
   created() {
-    this.setHeaders();
+    this.createHeaders();
   },
 
   methods: {
@@ -71,8 +73,10 @@ export default {
       return false;
     },
 
-    setHeaders() {
-      this.headers = [
+    createHeaders() {
+      this.makeSearchable();
+
+      this.headers.push(
         {
           text: this.$t('bedrock-core.server_log.access.field.host.label'),
           value: 'host',
@@ -92,16 +96,21 @@ export default {
         {
           text: this.$t('bedrock-core.general.date'),
           value: 'time',
-        },
-        {
-          text: 'd',
-          value: 'dummy',
-          class: 'hidden',
-          width: '1px',
-          align: ' d-none',
-        } /* add dummy column to be able to additional default filtering on status */,
-      ];
+        }
+      );
     },
   },
 };
 </script>
+<style scoped>
+/* start hide search support */
+::v-deep .v-data-table__wrapper thead tr th:nth-of-type(2) {
+  display: none;
+}
+
+::v-deep .v-data-table__wrapper tr td:nth-of-type(2) {
+  display: none;
+}
+
+/* end hide search support*/
+</style>

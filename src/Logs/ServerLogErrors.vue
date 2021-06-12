@@ -1,15 +1,22 @@
 <template>
   <v-card class="datatable">
     <datatable-header :title="$t('bedrock-core.server_log.error.title')">
+
       <template v-slot:search>
-        <datatable-search :search-input.sync="searchInput"></datatable-search>
+        <datatable-search
+          :search-input.sync="searchInput"
+          :show-filters.sync="showFilters"
+        ></datatable-search>
       </template>
+
       <template v-slot:filter_01>
         <datatable-filter
           :options="filterSeverities"
           :selected.sync="severitySelected"
+          :show="showFilters"
         ></datatable-filter>
       </template>
+
       <template v-slot:filter_01>
         <a :href="route('admin.developer.serverlogs.error.export')">
           <button class="btn btn-primary" target="_blank">
@@ -69,13 +76,13 @@ export default {
 
   data() {
     return {
-      headers: null,
       severitySelected: null,
+      showFilters: false,
     };
   },
 
   created() {
-    this.setHeaders();
+    this.createHeaders();
   },
 
   methods: {
@@ -94,8 +101,10 @@ export default {
       return false;
     },
 
-    setHeaders() {
-      this.headers = [
+    createHeaders() {
+      this.makeSearchable();
+
+      this.headers.push(
         {
           text: this.$t('bedrock-core.server_log.error.field.severity.label'),
           value: 'severity',
@@ -123,16 +132,21 @@ export default {
         {
           text: this.$t('bedrock-core.server_log.error.field.time.label'),
           value: 'time',
-        },
-        {
-          text: 'd',
-          value: 'dummy',
-          class: 'hidden',
-          width: '1px',
-          align: ' d-none',
-        } /* add dummy column to be able to additional default filtering on status */,
-      ];
+        }
+      );
     },
   },
 };
 </script>
+<style scoped>
+/* start hide search support */
+::v-deep .v-data-table__wrapper thead tr th:nth-of-type(2) {
+  display: none;
+}
+
+::v-deep .v-data-table__wrapper tr td:nth-of-type(2) {
+  display: none;
+}
+
+/* end hide search support*/
+</style>

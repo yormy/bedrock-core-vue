@@ -7,6 +7,7 @@
       <template v-slot:search>
         <datatable-search :search-input.sync="searchInput"></datatable-search>
       </template>
+
     </datatable-header>
 
     <v-data-table
@@ -46,7 +47,6 @@ export default {
 
   data() {
     return {
-      headers: null,
       searchInput: null,
     };
   },
@@ -57,7 +57,7 @@ export default {
 
   methods: {
     createHeaders() {
-      this.headers = [];
+      this.makeSearchable();
 
       this.headers.push(
         {
@@ -79,16 +79,21 @@ export default {
         {
           text: this.$t('bedrock-core.general.date'),
           value: 'created_at_human',
-        },
-        {
-          text: 'd',
-          value: 'dummy',
-          class: 'hidden',
-          width: '1px',
-          align: ' d-none',
-        } /* add dummy column to be able to additional default filtering on status */,
+        }
       );
     },
   },
 };
 </script>
+<style scoped>
+/* start hide search support */
+::v-deep .v-data-table__wrapper thead tr th:nth-of-type(1) {
+  display: none;
+}
+
+::v-deep .v-data-table__wrapper tr td:nth-of-type(1) {
+  display: none;
+}
+
+/* end hide search support*/
+</style>

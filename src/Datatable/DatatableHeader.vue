@@ -7,7 +7,7 @@
         <div v-if="subtitle" class="table_subtitle" v-html="subtitle"></div>
       </div>
 
-      <div class="col">
+      <div v-if="hasMessage()" class="col">
         <div v-if="messages && messages.success" class="table_message success">
           {{ messages.success }}
         </div>
@@ -18,6 +18,7 @@
           {{ messages.warning }}
         </div>
       </div>
+
       <div class="col tablesearch float-right" style="min-width:100px">
         <slot name="search"></slot>
       </div>
@@ -54,6 +55,15 @@ export default {
       required: false,
     },
   },
-}
 
+  methods: {
+    hasMessage() {
+      if (this.messages) {
+        return this.messages.success || this.messages.error || this.messages.warning;
+      }
+      return false;
+    },
+  }
+
+}
 </script>
