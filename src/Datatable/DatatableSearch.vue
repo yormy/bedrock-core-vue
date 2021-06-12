@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex">
+  <div class="d-flex justify-content-end">
     <div v-if="showSearchInput">
       <v-text-field
         v-model="searchInput"
@@ -9,6 +9,7 @@
       ></v-text-field>
     </div>
     <div class="align-middle" @click="showSearchInput=!showSearchInput"><span class="fal fa-search"></span></div>
+    <div @click="showFilters = !showFilters"><span class="fal fa-filter"></span></div>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ export default {
     return {
       searchInput: '',
       showSearchInput: false,
+      showFilters: false,
     };
   },
 
@@ -25,6 +27,10 @@ export default {
     searchInput() {
       this.$emit('update:searchInput', this.searchInput);
     },
+
+    showFilters() {
+      this.$emit('update:showFilters', this.showFilters);
+    }
   },
 };
 </script>

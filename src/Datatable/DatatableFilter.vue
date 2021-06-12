@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-select
+      v-if="show"
       v-model="selected"
       :clear-icon="'fal fa-xs fa-times'"
       :items="options"
@@ -23,6 +24,10 @@ export default {
     options: {
       type: Array,
     },
+    show: {
+      type: Boolean,
+      default: false,
+    }
   },
 
   data() {
