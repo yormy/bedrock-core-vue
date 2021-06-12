@@ -15,7 +15,8 @@
         <div class="subtitle">...or click to select a file from your computer</div>
       </div>
     </vue-dropzone>
-    <error-message :message="apiError.message"></error-message>
+
+    <alert :message="apiError.message" type="danger"></alert>
   </div>
 </template>
 
