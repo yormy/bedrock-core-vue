@@ -1,10 +1,10 @@
 <template>
-  <v-text-field
+  <text-field
     v-model="searchInput"
     :label="$t('bedrock-core.action.search')"
     append-icon="mdi-magnify"
     single-line
-  ></v-text-field>
+  ></text-field>
 </template>
 
 <script>

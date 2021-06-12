@@ -11,7 +11,7 @@
       </template>
       <template v-slot:description>
         <slot name="delete-preview"></slot>
-        <text-area v-model="note" label="Note" name="note" solo></text-area>
+        <text-area v-model="note" label="Note" name="note"></text-area>
       </template>
       <template v-slot:actions>
         <button class="btn btn-link" @click="doCancelled"> Cancel</button>

@@ -1,12 +1,12 @@
 <template>
   <div class="d-flex justify-content-end">
     <div v-if="showSearchInput">
-      <v-text-field
+      <text-field
         v-model="searchInput"
         :label="$t('bedrock-core.action.search')"
         dense
         single-line
-      ></v-text-field>
+      ></text-field>
     </div>
     <div class="align-middle" @click="showSearchInput=!showSearchInput"><span class="fal fa-search"></span></div>
     <div v-if="filter" @click="showFilters = !showFilters"><span class="fal fa-filter"></span></div>

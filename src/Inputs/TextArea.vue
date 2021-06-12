@@ -31,7 +31,7 @@ export default {
 
     apiErrors: {
       type: Object,
-      required: true,
+      required: false,
     },
 
     validationRules: {
@@ -41,7 +41,8 @@ export default {
 
     rows: {
       type: Number,
-      required: true,
+      default: 3,
+      required: false,
     },
   },
 

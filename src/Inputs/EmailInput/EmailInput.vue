@@ -1,7 +1,7 @@
 <template>
   <div>
     <ValidationProvider v-slot="{ errors }" name="email" rules="required|email|min:5">
-      <v-text-field
+      <text-field
         :id="id"
         ref="emailInput"
         v-model="form.email"
@@ -14,12 +14,11 @@
         :type="'email'"
         append-icon="fal fa-envelope"
         autocomplete="email"
-        outlined
         @blur="checkEmail"
         @keydown="apiErrors.email = ''"
         @keyup="$emit('update:email-address', form.email)"
       >
-      </v-text-field>
+      </text-field>
     </ValidationProvider>
   </div>
 </template>

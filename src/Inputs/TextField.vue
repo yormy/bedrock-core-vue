@@ -11,7 +11,6 @@
         @keydown="clearApiError()"
       >
       </v-text-field>
-      <!--              :outlined="outlined"-->
     </ValidationProvider>
   </div>
 </template>
@@ -31,19 +30,13 @@ export default {
 
     apiErrors: {
       type: Object,
-      required: true,
+      required: false,
     },
 
     validationRules: {
       type: String,
       required: false,
     },
-
-    // outlined: {
-    //   type: Boolean,
-    //   required: false,
-    //   default: false,
-    // }
   },
 
   data() {
