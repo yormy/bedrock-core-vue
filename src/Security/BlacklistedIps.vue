@@ -36,19 +36,20 @@
         >
           <template v-slot:form>
 
-            <v-textarea
+            <text-area
               v-model="formAdd.ip_address"
               :color="!form.api.errors.ip_address && formAdd.ip_address ? 'success' : ''"
               :error-messages="form.api.errors.ip_address ? form.api.errors.ip_address : ''"
               :label="$t('bedrock-core.general.ip_address')"
               :name="$t('bedrock-core.general.ip_address')"
               rows="1"
-            ></v-textarea>
-            <v-textarea
+            ></text-area>
+
+            <text-area
               v-model="formAdd.comment"
               :label="$t('bedrock-core.general.comment')"
               :name="$t('bedrock-core.general.comment')"
-            ></v-textarea>
+            ></text-area>
           </template>
         </button-add-modal>
       </template>
