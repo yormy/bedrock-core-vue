@@ -16,7 +16,7 @@
       </div>
     </vue-dropzone>
 
-    <alert :message="apiError.message" type="danger"></alert>
+    <error-message :message="apiError.message"></error-message>
   </div>
 </template>
 

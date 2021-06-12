@@ -16,9 +16,8 @@ import CodeInput from "./Misc/CodeInput.vue";
 import LocaleSwitcher from "./Misc/LocaleSwitcher.vue";
 import EmailInput from "./Inputs/EmailInput/EmailInput.vue";
 
-import BaseList from "./Base/BaseList.vue";
-import ListSearchComponent from "./Base/ListSearchComponent.vue";
-
+//import BaseList from "./Base/BaseList.vue";
+//import ListSearchComponent from "./Base/ListSearchComponent.vue";
 import ButtonConfirmWithNote from "./Buttons/ButtonConfirmWithNote.vue";
 import PageHeader from "./Pages/PageHeader.vue";
 import CardHeader from "./Pages/CardHeader.vue";
@@ -39,7 +38,7 @@ import SlowPages from "./Performance/SlowPages.vue";
 import TopPages from "./Performance/TopPages.vue";
 import WeightedPages from "./Performance/WeightedPages.vue";
 
-import ButtonAjax from "./Buttons/ButtonAjax.vue";
+//import ButtonAjax from "./Buttons/ButtonAjax.vue";
 import LoadingOverlay from "./Misc/LoadingOverlay.vue";
 import RbacLink from "./Misc/RbacLink.vue";
 
@@ -50,7 +49,10 @@ import FileDropzoneUpload from "./Misc/FileDropzoneUpload.vue";
 import ServerLogAccess from "./Logs/ServerLogAccess.vue";
 import ServerLogErrors from "./Logs/ServerLogErrors.vue";
 
-import Alert from "./Alerts/Alert.vue";
+import ErrorMessage from "./Alerts/ErrorMessage.vue";
+import SuccessMessage from "./Alerts/SuccessMessage.vue";
+import WarningMessage from "./Alerts/WarningMessage.vue";
+import InfoMessage from "./Alerts/InfoMessage.vue";
 
 import MessageModal from "./Modals/MessageModal.vue";
 
@@ -99,8 +101,8 @@ export {
   LocaleSwitcher,
   translations,
   SecureChange,
-  BaseList,
-  ListSearchComponent,
+  //BaseList,
+  //ListSearchComponent,
   ButtonConfirmWithNote,
   PageHeader,
   CardHeader,
@@ -114,14 +116,17 @@ export {
   SlowPages,
   TopPages,
   WeightedPages,
-  ButtonAjax,
+//  ButtonAjax,
   LoadingOverlay,
   RbacLink,
   TopbarDropdownItem,
   FileDropzoneUpload,
   ServerLogAccess,
   ServerLogErrors,
-  Alert,
+  ErrorMessage,
+  SuccessMessage,
+  WarningMessage,
+  InfoMessage,
   BTextField,
   BTextArea,
   MessageModal
