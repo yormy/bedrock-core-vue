@@ -26,6 +26,9 @@ import CardFooter from "./Pages/CardFooter.vue";
 import DatePopup from "./Inputs/DatePopup.vue";
 import BTextField from "./Inputs/TextField.vue";
 import BTextArea from "./Inputs/TextArea.vue";
+import BDropdown from "./Inputs/Dropdown.vue";
+import BAutocomplete from "./Inputs/Autocomplete.vue";
+import BChip from "./Inputs/Chip.vue";
 
 import PerformancePage from "./Pages/PerformancePage.vue";
 
@@ -129,5 +132,8 @@ export {
   InfoMessage,
   BTextField,
   BTextArea,
+  BChip
+  BDropdown,
+  BAutocomplete,
   MessageModal
 };
