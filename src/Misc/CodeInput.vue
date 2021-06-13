@@ -32,6 +32,8 @@
         />
       </template>
     </div>
+    <error-message :message="apiError"></error-message>
+
     <div v-if="loading" :style="{ lineHeight: `${fieldHeight}px` }" class="loading">
       <div class="blur"/>
       <svg
@@ -53,6 +55,7 @@
       </svg>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -76,6 +79,7 @@ export default {
       default: 'number',
     },
     className: String,
+
     fields: {
       type: Number,
       default: 6,
@@ -113,6 +117,16 @@ export default {
     },
 
     invalidInput: null,
+
+    fieldname: {
+      type: String,
+      required: false,
+    },
+
+    apiErrors: {
+      type: Object,
+      required: false,
+    },
   },
 
   data() {
@@ -155,6 +169,13 @@ export default {
       }
 
       return pattern;
+    },
+
+    apiError() {
+      if (!this.apiErrors || !this.apiErrors.errors) {
+        return '';
+      }
+      return this.apiErrors.errors[this.fieldname][0];
     },
   },
 
