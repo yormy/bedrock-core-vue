@@ -38,17 +38,19 @@
 
             <text-area
               v-model="formAdd.ip_address"
-              :color="!form.api.errors.ip_address && formAdd.ip_address ? 'success' : ''"
-              :error-messages="form.api.errors.ip_address ? form.api.errors.ip_address : ''"
               :label="$t('bedrock-core.general.ip_address')"
               :name="$t('bedrock-core.general.ip_address')"
+              :api-errors="apiErrors"
               rows="1"
+              fieldname="ip_address"
             ></text-area>
 
             <text-area
               v-model="formAdd.comment"
               :label="$t('bedrock-core.general.comment')"
               :name="$t('bedrock-core.general.comment')"
+              :api-errors="apiErrors"
+              fieldname="comment"
             ></text-area>
           </template>
         </button-add-modal>
@@ -115,8 +117,8 @@ export default {
 
         api: {
           message: '',
-          errors: {}
         },
+        apiErrors: {},
       },
 
       urls: {
@@ -179,7 +181,7 @@ export default {
         .catch(error => {
           this.reShowModal = !this.reShowModal; // just triggering the reshowing
           this.form.api.message = error.response.data.message;
-          this.form.api.errors = error.response.data.errors;
+          this.apiErrors = error.response.data.errors;
         })
         .finally(() => {
           this.form.state.isSubmittingAdd = false;

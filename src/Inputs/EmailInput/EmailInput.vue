@@ -1,25 +1,24 @@
 <template>
   <div>
-    <ValidationProvider v-slot="{ errors }" name="email" rules="required|email|min:5">
       <text-field
         :id="id"
-        ref="emailInput"
-        v-model="form.email"
         :class="emailField.className"
-        :color="emailColor"
-        :error-messages="apiErrors.email ? apiErrors.email : errors"
         :hint="emailField.hint"
+        ref="emailInput"
         :label="label"
         :persistent-hint="emailField.persistentHint"
         :type="'email'"
-        append-icon="fal fa-envelope"
-        autocomplete="email"
         @blur="checkEmail"
         @keydown="apiErrors.email = ''"
         @keyup="$emit('update:email-address', form.email)"
+        v-model="form.email"
+        :api-errors="apiErrors"
+        append-icon="fal fa-envelope"
+        autocomplete="email"
+        fieldname="email"
+        validation-rules="required|email|min:5"
       >
       </text-field>
-    </ValidationProvider>
   </div>
 </template>
 

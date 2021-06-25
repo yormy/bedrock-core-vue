@@ -1,7 +1,6 @@
 <script>
 import APICODES from '@consts/apiCodes';
 import CodeInput from './CodeInput.vue';
-import {mergeErrors} from "../Helpers/formhelper.js";
 
 export default {
   components: {
@@ -108,7 +107,7 @@ export default {
         })
         .catch((error) => {
           this.clearInput();
-          this.apiErrors = mergeErrors(error);
+          this.apiErrors = error.response.data;
 
           if (error.response.data.data && error.response.data.data.warnings) {
             this.emailWarning = error.response.data.data.warnings;

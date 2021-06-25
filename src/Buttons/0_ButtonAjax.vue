@@ -80,8 +80,8 @@ export default {
       this.errorMessage = '';
       this.successMessage = '';
 
-      const formData = new FormData();
-      formData.set('_token', this.csrf);
+      // const formData = new FormData();
+      // formData.set('_token', this.csrf);
 
       this.$http
         .post(this.url, formData)

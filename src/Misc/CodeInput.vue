@@ -175,7 +175,13 @@ export default {
       if (!this.apiErrors || !this.apiErrors.errors) {
         return '';
       }
-      return this.apiErrors.errors[this.fieldname][0];
+
+      if (this.apiErrors.errors[this.fieldname]) {
+        return this.apiErrors.errors[this.fieldname][0];
+      }
+
+      return '';
+
     },
   },
 
