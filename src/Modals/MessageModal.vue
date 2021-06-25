@@ -5,24 +5,25 @@
     v-on="$listeners"
     persistent
   >
-    <v-card>
+    <div class="card">
       <v-card-title :class="'modal-header header-'+ type">
         <slot name="title"></slot>
       </v-card-title>
+      >
 
-      <div class="mx-2">
+      <div class="card-body mx-2">
         <slot name="description"></slot>
       </div>
 
-      <v-card-actions>
-        <v-spacer></v-spacer>
+      <div class="card-footer">
         <slot name="actions">
-          <v-btn text @click="closed">
+          <button class="btn btn-link" @click="closed">
             {{ $t('bedrock-core.action.close') }}
-          </v-btn>
+          </button>
         </slot>
-      </v-card-actions>
-    </v-card>
+      </div>
+
+    </div>
   </v-dialog>
 </template>
 

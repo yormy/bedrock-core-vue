@@ -3,7 +3,7 @@
     <message-modal
       :show="deleteModal"
       max-width="290"
-      type="warning"
+      type="danger"
     >
       <template v-slot:title>
         {{ headerText }}
@@ -13,14 +13,17 @@
         <p>{{ description }}</p>
         <slot name="delete-preview"></slot>
       </template>
-      <template v-slot:actions>
-        <v-btn color="green darken-1" text @click="doCancelled">
-          {{ $t('bedrock-core.general.cancel') }}
-        </v-btn>
 
-        <v-btn color="red darken-1" text @click="doAgreed">
-          {{ confirmButtonText }}
-        </v-btn>
+      <template v-slot:actions>
+        <div class="d-flex justify-content-between">
+          <button @click="doCancelled">
+            {{ $t('bedrock-core.general.cancel') }}
+          </button>
+
+          <button class="btn btn-danger" @click="doAgreed">
+            {{ confirmButtonText }}
+          </button>
+        </div>
       </template>
     </message-modal>
 

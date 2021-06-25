@@ -1,29 +1,30 @@
 <template>
   <div>
     <v-dialog v-model="addModal" width="auto ">
-      <v-card>
+      <div class="card">
         <slot name="modal">
           <v-card-title :class="'modal-header header-success'">{{ headerText }}</v-card-title>
 
-          <v-card-text>
+          <div class="card-body">
             <h3>{{ title }} </h3>
             <p v-if="description" v-html="description"></p>
             <slot name="form"></slot>
-          </v-card-text>
+          </div>
         </slot>
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between">
+            <button @click="doCancelled">
+              {{ $t('bedrock-core.general.cancel') }}
+            </button>
 
-          <v-btn color="green darken-1" text @click="doCancelled">
-            {{ $t('bedrock-core.general.cancel') }}
-          </v-btn>
+            <button class="btn btn-success" @click="doAddItem">
+              {{ confirmButtonText }}
+            </button>
+          </div>
+        </div>
 
-          <v-btn color="green darken-1" text @click="doAddItem">
-            {{ confirmButtonText }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+      </div>
     </v-dialog>
 
     <button-submit :btn-class="btnClass" :is-loading="isLoading" @click="showForm">
