@@ -1,32 +1,34 @@
 <script>
 export default {
   props: {
+    title: {
+      type: String,
+    },
+
+    datatableValues: {
+      type: Array,
+    },
+
     caseSensitive: {
       type: Boolean,
       default: false,
     },
+
+
   },
 
   data() {
     return {
+      table: {
+        searchInput: null,
+        showFilters: false,
+        headers: [],
+        values: this.datatableValues,
+        backup: null
+      },
+
       headers: [],
       searchInput: null,
-
-      backupTable: {
-        values: null,
-      },
-
-      form: {
-        state: {
-          isSubmittingAdd: false,
-          isSubmittingRemove: false,
-        },
-
-        messages: {
-          success: '',
-          error: '',
-        },
-      },
 
       valueOnClipboard: null,
     };
@@ -34,10 +36,10 @@ export default {
 
   computed: {
     searchData() {
-      if (this.searchInput === '' || !this.searchInput) {
+      if (this.table.searchInput === '' || !this.table.searchInput) {
         return '@';
       }
-      return this.searchInput;
+      return this.table.searchInput;
     },
   },
 
@@ -45,7 +47,7 @@ export default {
     makeSearchable() {
       // add dummy column to be able to additional default filtering on status
       // remember to hide columns with css
-      this.headers.push(
+      this.table.headers.push(
         {
           text: 'd',
           value: 'dummy',
@@ -64,20 +66,20 @@ export default {
     },
 
     addItemToTable(values, item) {
-      this.backupTable.values = JSON.parse(JSON.stringify(values));
+      this.table.backup = JSON.parse(JSON.stringify(values));
       values.push(item);
       return values;
     },
 
     updateItemInTable(values, item, findOn) {
       // NOTE: replacing the item in the array does not trigger a refresh of the table
-      this.backupTable.values = JSON.parse(JSON.stringify(values));
+      this.table.backup = JSON.parse(JSON.stringify(values));
       const withoutItem = this.deleteItemFromTable(values, item, findOn);
       return this.addItemToTable(withoutItem, item);
     },
 
     deleteItemFromTable(values, item, findOn) {
-      this.backupTable.values = JSON.parse(JSON.stringify(values));
+      this.table.backup = JSON.parse(JSON.stringify(values));
       const foundIndex = this.findIndex(values, item, findOn);
 
       const copy = JSON.parse(JSON.stringify(values));
@@ -86,7 +88,7 @@ export default {
     },
 
     restoreTable() {
-      return this.backupTable.values;
+      return this.table.backup;
     },
 
     checkFilters(item) {
@@ -153,6 +155,7 @@ export default {
     clearformResult() {
       this.form.messages.success = '';
       this.form.messages.error = '';
+      this.form.messages.wearning = '';
     },
   },
 };

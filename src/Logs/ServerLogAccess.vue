@@ -3,7 +3,7 @@
     <datatable-header :title="$t('bedrock-core.server_log.access.title')">
 
       <template v-slot:search>
-        <datatable-search :search-input.sync="searchInput"></datatable-search>
+        <datatable-search :search-input.sync="table.searchInput"></datatable-search>
       </template>
 
       <template v-slot:filter_01>
@@ -18,8 +18,8 @@
 
     <v-data-table
       :custom-filter="filter"
-      :headers="headers"
-      :items="datatableValues"
+      :headers="table.headers"
+      :items="table.values"
       :items-per-page="10"
       :search="searchData"
       class="elevation-1"
@@ -49,15 +49,6 @@ export default {
     DatatableSearch,
   },
 
-  props: {
-    title: {
-      type: String,
-    },
-    datatableValues: {
-      type: Array,
-    },
-  },
-
   data() {
     return {
       severitySelected: null,
@@ -76,7 +67,7 @@ export default {
     createHeaders() {
       this.makeSearchable();
 
-      this.headers.push(
+      this.table.headers.push(
         {
           text: this.$t('bedrock-core.server_log.access.field.host.label'),
           value: 'host',

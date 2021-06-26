@@ -6,12 +6,12 @@
       :title="$t('bedrock-core.blacklisted_ip.index.title')"
     >
       <template v-slot:search>
-        <datatable-search :search-input.sync="searchInput"></datatable-search>
+        <datatable-search :search-input.sync="table.searchInput"></datatable-search>
       </template>
     </datatable-header>
 
     <v-data-table
-      :headers="headers"
+      :headers="table.headers"
       :items="table.values"
       :search="searchData"
       class="elevation-1"
@@ -36,21 +36,20 @@
         >
           <template v-slot:form>
 
-            <text-area
-              v-model="formAdd.ip_address"
+            <text-field
+              v-model="form.data.ip_address"
               :label="$t('bedrock-core.general.ip_address')"
               :name="$t('bedrock-core.general.ip_address')"
-              :api-errors="apiErrors"
-              rows="1"
               fieldname="ip_address"
-            ></text-area>
+              :api-errors="form.apiErrors"
+            ></text-field>
 
             <text-area
-              v-model="formAdd.comment"
+              v-model="form.data.comment"
               :label="$t('bedrock-core.general.comment')"
               :name="$t('bedrock-core.general.comment')"
-              :api-errors="apiErrors"
               fieldname="comment"
+              :api-errors="form.apiErrors"
             ></text-area>
           </template>
         </button-add-modal>
@@ -80,32 +79,16 @@ export default {
     DatatableSearch,
   },
 
-  props: {
-    title: {
-      type: String,
-    },
-
-    datatableValues: {
-      type: Array,
-    },
-  },
-
   data() {
     return {
-      searchInput: null,
-
       reShowModal: false,
 
-      table: {
-        values: this.datatableValues,
-      },
-
-      formAdd: {
-        ip: '',
-        comment: '',
-      },
-
       form: {
+        data: {
+          ip: '',
+          comment: '',
+        },
+
         state: {
           isSubmittingAdd: false,
           isSubmittingRemove: false,
@@ -113,17 +96,16 @@ export default {
 
         messages: {
           success: '',
+          warning: '',
+          error: '',
         },
 
-        api: {
-          message: '',
-        },
         apiErrors: {},
       },
 
       urls: {
-        blacklistIpDelete: this.route('api.v1.admin.system.blacklist.ip.delete'),
-        blacklistIpAdd: this.route('api.v1.admin.system.blacklist.ip.add'),
+        create: this.route('api.v1.admin.system.blacklist.ip.add'),
+        delete: this.route('api.v1.admin.system.blacklist.ip.delete'),
       },
     };
   },
@@ -136,7 +118,7 @@ export default {
     createHeaders() {
       this.makeSearchable();
 
-      this.headers.push(
+      this.table.headers.push(
         {
           text: this.$t('bedrock-core.general.ip_address'),
           value: 'ip_address',
@@ -165,23 +147,19 @@ export default {
       this.clearformResult();
       this.form.state.isSubmittingAdd = true;
 
-      const payload = this.formAdd;
+      const payload = this.form.data;
 
       this.$http
-        .post(this.urls.blacklistIpAdd, payload)
+        .post(this.urls.create, payload)
         .then(response => {
-          if (response.data.success) {
-            this.table.values = this.addItemToTable(this.table.values, response.data.data.item);
-            this.form.messages.success = response.data.message;
-            this.formAdd = {};
-          } else {
-            this.form.messages.error = response.data.message;
-          }
+          this.table.values = this.addItemToTable(this.table.values, response.data.data);
+          this.form.messages.success = response.data.message;
+          this.form.data = {};
         })
         .catch(error => {
           this.reShowModal = !this.reShowModal; // just triggering the reshowing
-          this.form.api.message = error.response.data.message;
-          this.apiErrors = error.response.data.errors;
+          this.form.messages.error = error.response.data.message;
+          this.form.apiErrors = error.response.data.errors;
         })
         .finally(() => {
           this.form.state.isSubmittingAdd = false;
@@ -203,14 +181,9 @@ export default {
       };
 
       this.$http
-        .delete(this.urls.blacklistIpDelete, {data: payload})
+        .delete(this.urls.delete, {data: payload})
         .then(response => {
-          if (response.data.success) {
-            this.form.messages.success = response.data.message;
-          } else {
-            this.form.messages.error = response.data.message;
-            this.table.values = this.restoreTable();
-          }
+          this.form.messages.success = response.data.message;
         })
         .catch(error => {
           this.table.values = this.restoreTable();
@@ -219,11 +192,6 @@ export default {
         .finally(() => {
           this.form.state.isSubmittingRemove = false;
         });
-    },
-
-    clearformResult() {
-      this.form.messages.success = '';
-      this.form.messages.error = '';
     },
   },
 };

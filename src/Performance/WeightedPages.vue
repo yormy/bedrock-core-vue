@@ -2,13 +2,13 @@
   <v-card class="datatable">
     <datatable-header :title="title">
       <template v-slot:search>
-        <datatable-search :search-input.sync="searchInput"></datatable-search>
+        <datatable-search :search-input.sync="table.searchInput"></datatable-search>
       </template>
     </datatable-header>
 
     <v-data-table
-      :headers="headers"
-      :items="datatableValues"
+      :headers="table.headers"
+      :items="table.values"
       :search="searchData"
       class="elevation-1"
       item-key="description"
@@ -40,22 +40,6 @@ export default {
     DatatableSearch,
   },
 
-  props: {
-    title: {
-      type: String,
-    },
-
-    datatableValues: {
-      type: Array,
-    },
-  },
-
-  data() {
-    return {
-      searchInput: null,
-    };
-  },
-
   created() {
     this.createHeaders();
   },
@@ -64,7 +48,7 @@ export default {
     createHeaders() {
       this.makeSearchable();
 
-      this.headers.push(
+      this.table.headers.push(
         {
           text: this.$t('bedrock-core.general.count'),
           value: 'count',

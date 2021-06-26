@@ -5,14 +5,14 @@
       :title="$t('bedrock-core.action_tarpit.index.title')"
     >
       <template v-slot:search>
-        <datatable-search :search-input.sync="searchInput"></datatable-search>
+        <datatable-search :search-input.sync="table.searchInput"></datatable-search>
       </template>
 
     </datatable-header>
 
     <v-data-table
-      :headers="headers"
-      :items="datatableValues"
+      :headers="table.headers"
+      :items="table.values"
       :search="searchData"
       class="elevation-1"
       item-key="xid"
@@ -35,19 +35,15 @@ export default {
     DatatableSearch,
   },
 
-  props: {
-    title: {
-      type: String,
-    },
-
-    datatableValues: {
-      type: Array,
-    },
-  },
-
   data() {
     return {
-      searchInput: null,
+      form: {
+        messages: {
+          success: '',
+          warning: '',
+          error: '',
+        },
+      }
     };
   },
 
@@ -59,7 +55,7 @@ export default {
     createHeaders() {
       this.makeSearchable();
 
-      this.headers.push(
+      this.table.headers.push(
         {
           text: this.$t('bedrock-core.general.ip_address'),
           value: 'ip_address',

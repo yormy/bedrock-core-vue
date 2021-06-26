@@ -4,8 +4,8 @@
 
       <template v-slot:search>
         <datatable-search
-          :search-input.sync="searchInput"
-          :show-filters.sync="showFilters"
+          :search-input.sync="table.searchInput"
+          :show-filters.sync="table.showFilters"
         ></datatable-search>
       </template>
 
@@ -13,7 +13,7 @@
         <datatable-filter
           :options="filterSeverities"
           :selected.sync="severitySelected"
-          :show="showFilters"
+          :show="table.showFilters"
         ></datatable-filter>
       </template>
 
@@ -28,9 +28,8 @@
 
     <v-data-table
       :custom-filter="filter"
-      :headers="headers"
-      :items="datatableValues"
-      :items-per-page="10"
+      :headers="table.headers"
+      :items="table.values"
       :search="searchData"
       class="elevation-1"
       item-key="index"
@@ -63,12 +62,6 @@ export default {
   },
 
   props: {
-    title: {
-      type: String,
-    },
-    datatableValues: {
-      type: Array,
-    },
     filterSeverities: {
       type: Array,
     },
@@ -77,7 +70,6 @@ export default {
   data() {
     return {
       severitySelected: null,
-      showFilters: false,
     };
   },
 
@@ -104,7 +96,7 @@ export default {
     createHeaders() {
       this.makeSearchable();
 
-      this.headers.push(
+      this.table.headers.push(
         {
           text: this.$t('bedrock-core.server_log.error.field.severity.label'),
           value: 'severity',
