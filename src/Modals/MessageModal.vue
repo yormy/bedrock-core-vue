@@ -9,7 +9,6 @@
       <v-card-title :class="'modal-header header-'+ type">
         <slot name="title"></slot>
       </v-card-title>
-      >
 
       <div class="card-body mx-2">
         <slot name="description"></slot>
