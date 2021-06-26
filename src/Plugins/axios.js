@@ -81,12 +81,12 @@ function redirectIfNeeded(error) {
     error.response &&
     error.response.data &&
     error.response.data.data &&
-    error.response.data.data.resolve_url
+    error.response.data.redirect_to
   ) {
-    let redirectUrl = error.response.data.data.resolve_url;
+    let redirectUrl = error.response.data.redirect_to;
 
-    if (error.response.data.data.intended_url) {
-      redirectUrl += `?intendedUrl=${error.response.data.data.intended_url}`;
+    if (error.response.data.redirect_from) {
+      redirectUrl += `?intendedUrl=${error.response.data.redirect_from}`;
     }
 
     window.location.href = redirectUrl;
