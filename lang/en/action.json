@@ -10,5 +10,7 @@
     "select": "Select",
     "send": "Send",
     "view": "View",
-    "export": "Export"
+    "export": "Export",
+    "cancel": "Canecly",
+    "confirm": "conbtimey"
 }

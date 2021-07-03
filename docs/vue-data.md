@@ -29,6 +29,10 @@ form: {
       update: '',
       delete: '',
     },
+    
+    routes: {
+        open: 'routename'
+    }
 }
 ```
 
