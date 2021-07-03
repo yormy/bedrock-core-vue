@@ -1,6 +1,12 @@
 # DATA fields
 
 ```
+page: {
+    state: {
+        isLoading: false,
+    }
+},
+
 form: {
    
     data: {
@@ -23,6 +29,10 @@ form: {
         errors: "['firstname' => ['error1', 'error2']
     }
         
+    routes: {
+        open: 'routename'
+    }
+    
     urls: {
       create: '',
       read: '',
@@ -30,9 +40,7 @@ form: {
       delete: '',
     },
     
-    routes: {
-        open: 'routename'
-    }
+
 }
 ```
 
