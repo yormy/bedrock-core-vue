@@ -7,8 +7,6 @@ export default {
   },
 
   props: {
-    changeActionUrl: String,
-
     authenticatorEnabled: {
       type: Boolean,
       required: true,
@@ -19,6 +17,8 @@ export default {
     return {
       confirmCode: '',
       confirmCodeInvalid: false,
+
+      changeActionUrl: String,
 
       formConfirmCode: {
         isSubmitting: false,

@@ -79,7 +79,7 @@ import getLocale from "./Plugins/locale.js";
 import axios from "./Plugins/axios.js";
 
 //@ts-ignore
-import {getFirstValidationError, mergeErrors} from "./Helpers/formhelper.js";
+import {getFirstValidationError} from "./Helpers/formhelper.js";
 
 //@ts-ignore
 import translations from '../lang/translations';
@@ -99,7 +99,6 @@ export {
   EmailInput,
   isLoggedIn, doLogout, removeTokensUser, removeTokensAdmin, storeTokens,
   getLocale,
-  mergeErrors,
   getFirstValidationError,
   axios,
   LocaleSwitcher,
