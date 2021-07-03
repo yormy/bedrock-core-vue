@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <message-modal
       :show="confirmModal"
       :type="type"
@@ -21,17 +20,19 @@
         </text-area>
       </template>
       <template v-slot:actions>
-        <button class="btn btn-link" @click="doCancelled"> Cancel</button>
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-link" @click="doCancelled">{{ $t('bedrock-core.action.cancel') }}</button>
 
-        <button :class="'btn btn-'+ type" @click="doAgreed">
-          <slot name="button-confirm">Confirm</slot>
-        </button>
+          <button :class="'btn btn-'+ type" @click="doAgreed">
+            <slot name="button-confirm">{{ $t('bedrock-core.action.confirm') }}</slot>
+          </button>
+        </div>
       </template>
     </message-modal>
 
     <button :class="'btn btn-sm float-left btn-' + type" @click.prevent="askConfirmation">
       <slot name="button-open">
-        <span class="fal fa-fw fa-trash"></span> {{ $t('misc.delete') | capitalizeFirst }}
+        <span class="fal fa-fw fa-trash"></span>{{ $t('bedrock-core.action.delete') }}
       </slot>
     </button>
   </div>
@@ -46,6 +47,11 @@ export default {
   },
 
   props: {
+    apiErrors: {
+      type: Object,
+      required: true,
+    },
+
     item: {
       type: Object,
       required: true,

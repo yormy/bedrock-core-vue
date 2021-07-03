@@ -1,5 +1,4 @@
 <script>
-import APICODES from '@consts/apiCodes';
 import CodeInput from './CodeInput.vue';
 
 export default {
@@ -9,7 +8,6 @@ export default {
 
   props: {
     changeActionUrl: String,
-    tokenErrorMessage: String,
 
     authenticatorEnabled: {
       type: Boolean,
@@ -24,10 +22,12 @@ export default {
 
       formConfirmCode: {
         isSubmitting: false,
-      },
 
-      form: {
-        isSubmitting: false,
+        messages: {
+          success: '',
+          warning: '',
+          error: '',
+        },
       },
 
       expiredMessage: '',
@@ -41,7 +41,6 @@ export default {
 
       passwordExpose: false,
 
-      apiErrors: {},
       successMessage: '',
 
       emailWarning: {},
@@ -89,39 +88,37 @@ export default {
         return;
       }
 
-      this.form.isSubmitting = true;
+      this.form.state.isSubmitting = true;
 
       const data = this.getData();
 
       this.clearResponses();
       this.$http
         .post(this.changeActionUrl, data)
-        .then((response) => {
-          if (response.data.success) {
-            this.successMessage = response.data.message;
-            this.confirmableAction.xid = response.data.data.xid;
-            this.confirmableAction.method = response.data.data.method;
-            this.confirmableAction.title = response.data.data.title;
-            this.confirmableAction.description = response.data.data.description;
-          }
+        .then((success) => {
+          this.formConfirmCode.messages.success = success.data.message;
+          this.confirmableAction.xid = success.data.data.xid;
+          this.confirmableAction.method = success.data.data.method;
+          this.confirmableAction.title = success.data.data.title;
+          this.confirmableAction.description = success.data.data.description;
         })
         .catch((error) => {
           this.clearInput();
-          this.apiErrors = error.response.data;
+          this.form.apiErrors = error.response.data.data;
 
           if (error.response.data.data && error.response.data.data.warnings) {
-            this.emailWarning = error.response.data.data.warnings;
+            this.formConfirmCode.messages.error = error.response.data.data.warnings;
             this.backendhint = this.emailWarning.email.message;
             this.$refs.emailInput.focus();
             this.skipWarnings = true;
           }
 
-          if (error.response.data.data) {
-            if (error.response.data.data.code === APICODES.AUTH_AUTHENTICATOR_MISSING) {
+          if (error.response.data.code) {
+            if (error.response.data.code === 'AUTHENTICATOR_CODE_MISSING') {
               this.resetLoadingState();
               return;
             }
-            if (error.response.data.data.code === APICODES.AUTH_AUTHENTICATOR_INVALID) {
+            if (this.form.apiErrors.errors && this.form.apiErrors.errors.authenticatorCode) {
               this.resetLoadingState();
               return;
             }
@@ -138,8 +135,9 @@ export default {
     },
 
     clearResponses() {
-      this.apiErrors = {};
-      this.successMessage = '';
+      this.form.apiErrors = {};
+      this.formConfirmCode.messages.success = '';
+      this.formConfirmCode.messages.error = '';
     },
 
     clearInput() {
@@ -149,7 +147,7 @@ export default {
     },
 
     resetLoadingState() {
-      this.form.isSubmitting = false;
+      this.form.state.isSubmitting = false;
     },
   },
 };

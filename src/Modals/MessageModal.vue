@@ -16,7 +16,7 @@
 
       <div class="card-footer">
         <slot name="actions">
-          <button class="btn btn-link" @click="closed">
+          <button class="btn btn-success float-right" @click="closed">
             {{ $t('bedrock-core.action.close') }}
           </button>
         </slot>

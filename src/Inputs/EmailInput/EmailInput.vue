@@ -11,11 +11,11 @@
         @blur="checkEmail"
         @keydown="apiErrors.email = ''"
         @keyup="$emit('update:email-address', form.email)"
-        v-model="form.email"
-        :api-errors="apiErrors"
         append-icon="fal fa-envelope"
         autocomplete="email"
         fieldname="email"
+        v-model="form.email"
+        :api-errors="apiErrors"
         validation-rules="required|email|min:5"
       >
       </text-field>

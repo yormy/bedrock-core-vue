@@ -13,8 +13,6 @@ export default {
       type: Boolean,
       default: false,
     },
-
-
   },
 
   data() {
@@ -24,7 +22,8 @@ export default {
         showFilters: false,
         headers: [],
         values: this.datatableValues,
-        backup: null
+        backup: null,
+        searchEnabled: true,
       },
 
       headers: [],
@@ -36,6 +35,10 @@ export default {
 
   computed: {
     searchData() {
+      if (!this.table.searchEnabled) {
+        return '';
+      }
+
       if (this.table.searchInput === '' || !this.table.searchInput) {
         return '@';
       }
@@ -79,12 +82,16 @@ export default {
     },
 
     deleteItemFromTable(values, item, findOn) {
-      this.table.backup = JSON.parse(JSON.stringify(values));
+      this.copyTableTo(values, this.table.backup)
       const foundIndex = this.findIndex(values, item, findOn);
 
       const copy = JSON.parse(JSON.stringify(values));
       copy.splice(foundIndex, 1);
       return copy;
+    },
+
+    copyTableTo(fromValues, toValues) {
+      toValues = JSON.parse(JSON.stringify(fromValues));
     },
 
     restoreTable() {
