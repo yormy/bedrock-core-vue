@@ -11,10 +11,18 @@
       :items="table.values"
       :search="searchData"
       class="elevation-1"
-      item-key="description"
+      item-key="xid"
       show-expand
       single-select
     >
+      <template v-slot:[`item.person_xid`]="{ item }">
+        <span class="btn btn-link" @click="copyClipboard(item.person_xid)">
+          <span>{{ item.person_xid | truncate(2) }}</span>
+          <span v-if="item.person_xid && item.person_xid === valueOnClipboard"><span
+            class="fal fa-clipboard"></span></span>
+        </span>
+      </template>
+
       <template v-slot:[`item.description`]="{ item }">
         {{ item.description | truncate(40) }}
       </template>
@@ -50,6 +58,10 @@ export default {
 
       this.table.headers.push(
         {
+          text: '#',
+          value: 'person_xid',
+        },
+        {
           text: this.$t('bedrock-core.general.count'),
           value: 'count',
         },
@@ -59,7 +71,7 @@ export default {
         },
         {
           text: this.$t('bedrock-core.performance.avg_weight'),
-          value: 'weightedAvg',
+          value: 'weighted_avg',
         },
       );
     }
