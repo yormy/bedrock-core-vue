@@ -79,6 +79,10 @@ function popupIfNeeded(error) {
   if (error.response.status === 429) {
     alert(error.response.data.message);
   }
+
+  if (error.response.status === 403) {
+    window.location.href = '/blocked?code=403';
+  }
 }
 
 function redirectIfNeeded(error) {
