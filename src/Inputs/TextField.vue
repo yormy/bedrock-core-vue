@@ -5,6 +5,7 @@
       <v-text-field
         v-bind="$attrs"
         v-on="$listeners"
+        :label="getLabel()"
         :color="isValid"
         :error-messages="apiError ? apiError : errors"
         :value="value"
@@ -28,6 +29,11 @@ export default {
       required: false,
     },
 
+    label: {
+      type: String,
+      required: false,
+    },
+
     apiErrors: {
       type: Object,
       required: false,
@@ -37,6 +43,12 @@ export default {
       type: String,
       required: false,
     },
+
+    required: {
+      type: Boolean,
+      required: false,
+      default: false,
+    }
   },
 
   data() {
@@ -64,6 +76,15 @@ export default {
   },
 
   methods: {
+    getLabel() {
+      let append = '';
+      if (this.required) {
+        append = ' *'
+      }
+
+      return this.label + append;
+    },
+
     clearApiError() {
       if (this.apiErrors && this.apiErrors.errors) {
         // eslint-disable-next-line vue/no-mutating-props

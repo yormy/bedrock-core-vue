@@ -2,19 +2,20 @@
   <div>
     <form @submit.prevent>
       <text-field
-        v-bind="$attrs"
-        v-on="$listeners"
         :api-errors="apiErrors"
         :append-icon="expose ? 'fal fa-eye' : 'fal fa-eye-slash'"
         :autocomplete="autocomplete ? 'password' : ''"
         :fieldname="fieldname"
         :hint="hint"
         :label="label"
+        v-bind="$attrs"
         :type="expose ? 'text' : 'password'"
         :validation-rules="validationRules"
         :value="value"
-        counter
         @click:append="() => (expose = !expose)"
+        v-on="$listeners"
+        :required="required"
+        counter
       >
       </text-field>
     </form>
@@ -59,6 +60,12 @@ export default {
     apiErrors: {
       type: Object,
     },
+
+    required: {
+      type: Boolean,
+      required: false,
+      default: false,
+    }
 
   },
 

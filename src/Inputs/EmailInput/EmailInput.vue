@@ -7,6 +7,7 @@
         ref="emailInput"
         :label="label"
         :persistent-hint="emailField.persistentHint"
+        :api-errors="apiErrors"
         :type="'email'"
         @blur="checkEmail"
         @keydown="apiErrors.email = ''"
@@ -14,8 +15,8 @@
         append-icon="fal fa-envelope"
         autocomplete="email"
         fieldname="email"
+        :required="required"
         v-model="form.email"
-        :api-errors="apiErrors"
         validation-rules="required|email|min:5"
       >
       </text-field>
@@ -56,6 +57,12 @@ export default {
       type: Object,
       required: true,
     },
+
+    required: {
+      type: Boolean,
+      required: false,
+      default: false,
+    }
   },
 
   data() {
