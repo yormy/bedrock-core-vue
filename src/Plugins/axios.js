@@ -75,6 +75,12 @@ function doStoreTokens(config, responseData) {
   storeTokens(responseData, loginas);
 }
 
+function popupIfNeeded(error) {
+  if (error.response.status === 429) {
+    alert(error.response.data.message);
+  }
+}
+
 function redirectIfNeeded(error) {
   // redirect to resolve page : ie in case the terms were not accepted and this is a post call
   if (
@@ -157,6 +163,8 @@ axiosApi.interceptors.response.use(
     const originalRequest = error.config;
 
     redirectIfNeeded(error);
+
+    popupIfNeeded(error);
 
     return Promise.reject(error);
     //
