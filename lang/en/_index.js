@@ -13,6 +13,7 @@ import performance from './performance.json';
 import server_log from './server_log.json';
 import blacklisted_ip from './blacklisted_ip.json';
 import action_tarpit from './action_tarpit.json';
+import settings from './settings.json';
 
 export default {
   general,
@@ -29,5 +30,6 @@ export default {
   performance,
   server_log,
   blacklisted_ip,
-  action_tarpit
+  action_tarpit,
+  settings
 };

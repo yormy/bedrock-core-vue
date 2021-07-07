@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <span>
     <ValidationProvider v-slot="{ errors }" :name="fieldname" :rules="validationRules">
 
       <v-text-field
@@ -10,14 +10,31 @@
         :error-messages="apiError ? apiError : errors"
         :value="value"
         @keydown="clearApiError()"
+        :append-outer-icon="description != null ? 'fal fa-info-circle fa-xs': ''"
+        @click:append-outer="() => (infoDialog = !infoDialog)"
       >
       </v-text-field>
+
+      <info-modal
+        :content="description"
+        :show="infoDialog"
+        :title="label"
+      >
+      </info-modal>
+
+
     </ValidationProvider>
-  </div>
+  </span>
 </template>
 
 <script>
+import InfoModal from '../Modals/InfoModal.vue';
+
 export default {
+  components: {
+    InfoModal,
+  },
+
   inheritAttrs: false,
   props: {
     value: {
@@ -44,15 +61,24 @@ export default {
       required: false,
     },
 
+    description: {
+      type: String,
+      required: false,
+      default: null,
+    },
+
     required: {
       type: Boolean,
       required: false,
       default: false,
     }
+
   },
 
   data() {
-    return {};
+    return {
+      infoDialog: false,
+    };
   },
 
   computed: {
@@ -73,6 +99,10 @@ export default {
       }
       return this.apiErrors.errors[this.fieldname];
     },
+
+    descripion() {
+      return "dsfdfsdfsd"
+    }
   },
 
   methods: {

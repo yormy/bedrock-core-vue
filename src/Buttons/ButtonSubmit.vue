@@ -13,6 +13,7 @@
 
       <span v-if="iconAppend" :class="iconAppend"></span>
     </button>
+    <span v-if="isSavedSuccessful" class="text-success fal fa-check"></span>
   </span>
   <!--            <div v-if="'' !== errorMessage" class="text-danger">-->
   <!--                &nbsp;{{ errorMessage }}-->
@@ -51,6 +52,10 @@ export default {
     isLoading: {
       type: Boolean,
     },
+
+    isSavedSuccessful: {
+      type: Boolean,
+    }
   },
 
   methods: {

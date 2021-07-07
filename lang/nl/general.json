@@ -8,5 +8,7 @@
     "disable": "Uit zetten",
     "enable": "Aan zetten",
     "cancel": "Annuleren",
-    "delete": "Verwijderen"
+    "delete": "Verwijderen",
+    "save": "Opslaan",
+    "close": "Close"
 }

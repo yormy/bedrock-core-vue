@@ -18,5 +18,7 @@
     "count": "Count",
     "until": "until",
     "filter": "Filter",
-    "user_agent": "Browser"
+    "user_agent": "Browser",
+    "save": "Save",
+    "close": "Close"
 }
