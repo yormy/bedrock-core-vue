@@ -36,6 +36,7 @@ export default {
   },
 
   inheritAttrs: false,
+
   props: {
     value: {
       required: false,
@@ -99,10 +100,6 @@ export default {
       }
       return this.apiErrors.errors[this.fieldname];
     },
-
-    descripion() {
-      return "dsfdfsdfsd"
-    }
   },
 
   methods: {

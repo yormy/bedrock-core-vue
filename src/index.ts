@@ -27,6 +27,8 @@ import CardFooter from "./Pages/CardFooter.vue";
 import DatePopup from "./Inputs/DatePopup.vue";
 import BTextField from "./Inputs/TextField.vue";
 import BTextArea from "./Inputs/TextArea.vue";
+import BSwitch from "./Inputs/Switch.vue";
+import BSwitchMultiple from "./Inputs/SwitchMultiple.vue";
 import BDropdown from "./Inputs/Dropdown.vue";
 import BAutocomplete from "./Inputs/Autocomplete.vue";
 import BChip from "./Inputs/Chip.vue";
@@ -143,5 +145,7 @@ export {
   BAutocomplete,
   MessageModal,
   BrandingSettings,
-  InfoIcon
+  InfoIcon,
+  BSwitch,
+  BSwitchMultiple
 };

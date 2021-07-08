@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="content">
     <span class="fal fa-info-circle" @click="infoDialog= !infoDialog"></span>
     <info-modal
       :content="content"
