@@ -38,6 +38,10 @@ import PerformancePage from "./Pages/PerformancePage.vue";
 import BlacklistedIps from "./Security/BlacklistedIps.vue";
 import ActionTarpits from "./Security/ActionTarpits.vue";
 
+import MarketingSnippits from "./System/Communications/MarketingSnippits.vue";
+import MarketingPromos from "./System/Communications/MarketingPromos.vue";
+import EmailTemplates from "./System/Communications/EmailTemplates.vue";
+
 import LoadGraph from "./Performance/LoadGraph.vue";
 import PerformanceCard from "./Performance/PerformanceCard.vue";
 import SlowPages from "./Performance/SlowPages.vue";
@@ -147,5 +151,8 @@ export {
   BrandingSettings,
   InfoIcon,
   BSwitch,
-  BSwitchMultiple
+  BSwitchMultiple,
+  MarketingSnippits,
+  MarketingPromos,
+  EmailTemplates,
 };

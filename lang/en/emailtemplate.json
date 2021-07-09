@@ -1,0 +1,16 @@
+{
+    "title": "",
+    "subtitle": "",
+    "description": "",
+    "index": {
+        "title": "Email templates"
+    },
+    "field": {
+        "name": {
+            "label": "Template Name"
+        },
+        "subject": {
+            "label": "Subject"
+        }
+    }
+}

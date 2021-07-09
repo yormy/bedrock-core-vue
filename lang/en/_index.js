@@ -15,6 +15,9 @@ import blacklisted_ip from './blacklisted_ip.json';
 import action_tarpit from './action_tarpit.json';
 import settings from './settings.json';
 import status from './status.json';
+import emailtemplate from './emailtemplate.json';
+import marketingpromo from './marketingpromo.json';
+import marketingsnippit from './marketingsnippit.json';
 
 export default {
   general,
@@ -33,5 +36,8 @@ export default {
   blacklisted_ip,
   action_tarpit,
   settings,
-  status
+  status,
+  emailtemplate,
+  marketingpromo,
+  marketingsnippit
 };

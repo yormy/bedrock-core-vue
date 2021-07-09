@@ -1,0 +1,16 @@
+{
+    "title": "",
+    "subtitle": "",
+    "description": "",
+    "index": {
+        "title": "Marketing Snippits"
+    },
+    "field": {
+        "subject": {
+            "label": "Subject"
+        },
+        "content": {
+            "label": "Content"
+        }
+    }
+}
