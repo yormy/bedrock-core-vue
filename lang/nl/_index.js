@@ -9,6 +9,7 @@ import audit from './audit.json';
 import general from './general.json';
 import firewall from './firewall.json';
 import settings from './settings.json';
+import status from './status.json';
 
 export default {
   general,
@@ -21,5 +22,6 @@ export default {
   log_activities,
   audit,
   firewall,
-  settings
+  settings,
+  status
 };
