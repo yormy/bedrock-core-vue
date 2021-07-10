@@ -39,7 +39,6 @@
             <text-field
               v-model="form.data.ip_address"
               :label="$t('bedrock-core.general.ip_address')"
-              :name="$t('bedrock-core.general.ip_address')"
               fieldname="ip_address"
               :api-errors="form.apiErrors"
             ></text-field>
@@ -47,7 +46,6 @@
             <text-area
               v-model="form.data.comment"
               :label="$t('bedrock-core.general.comment')"
-              :name="$t('bedrock-core.general.comment')"
               fieldname="comment"
               :api-errors="form.apiErrors"
             ></text-area>
