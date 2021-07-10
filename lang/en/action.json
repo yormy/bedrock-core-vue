@@ -11,6 +11,8 @@
     "send": "Send",
     "view": "View",
     "export": "Export",
-    "cancel": "Canecly",
-    "confirm": "conbtimey"
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "back": "Back",
+    "save": "Save"
 }
