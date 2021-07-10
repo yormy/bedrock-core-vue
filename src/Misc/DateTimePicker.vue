@@ -22,7 +22,7 @@
 
       <div class="v-date-time-widget-container">
         <div class="d-flex justify-content-center mb-0">
-          <h3>{{ title }}</h3>
+          <h3>{{ modalTitle }}</h3>
         </div>
         <div class="d-flex justify-content-center mb-5">
           {{ description }}
@@ -75,10 +75,15 @@ export default {
 
     title: {
       type: String,
-      required: true,
+      required: false,
     },
 
     description: {
+      type: String,
+      required: false,
+    },
+
+    current: {
       type: String,
       required: false,
     }
@@ -104,6 +109,13 @@ export default {
       }
     },
 
+    modalTitle() {
+      if (!this.title) {
+        return this.label;
+      }
+      return this.title;
+    },
+
     currentSelection() {
       return this.formatDate(this.dateModel) + ' ' + this.timeModel;
     }
@@ -124,10 +136,17 @@ export default {
       this.$t('bedrock-core.general.month_abbrev.nov'),
       this.$t('bedrock-core.general.month_abbrev.dec')
     );
+
+    this.displayDate = this.formatCurrentDatabaseDate(this.current);
   },
 
   methods: {
     allowedStep: m => m % 15 === 0,
+
+    formatCurrentDatabaseDate(dateTime) {
+      const [date, time] = dateTime.split(' ')
+      return this.formatDate(date) + " " + time;
+    },
 
     formatDate(date) {
       if (!date) return '';
