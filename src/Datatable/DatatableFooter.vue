@@ -3,7 +3,7 @@
     <div>
       <div class="table_footer">{{ title }}</div>
     </div>
-    <div class="table_search">
+    <div class="table_search my-3">
       <slot name="buttons">
       </slot>
     </div>
