@@ -26,6 +26,8 @@
       <date-time-picker
         v-model="form.data.active_at"
         :current="form.data.active_at"
+        :api-errors="form.apiErrors"
+        fieldname="active_at"
         :description="$t('bedrock-core.marketingsnippit.field.active_at.hint')"
         :label="$t('bedrock-core.marketingsnippit.field.active_at.label')"
       />
@@ -33,6 +35,8 @@
       <date-time-picker
         v-model="form.data.expires_at"
         :current="form.data.expires_at"
+        :api-errors="form.apiErrors"
+        fieldname="expires_at"
         :description="$t('bedrock-core.marketingsnippit.field.expires_at.hint')"
         :label="$t('bedrock-core.marketingsnippit.field.expires_at.label')"/>
 

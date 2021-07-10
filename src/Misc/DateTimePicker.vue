@@ -17,6 +17,9 @@
           :label="label"
           prepend-icon="fal fa-calendar-day"
           readonly
+          :color="isValid"
+          :error-messages="apiError ? apiError : ''"
+          @keydown="clearApiError()"
         ></v-text-field>
       </template>
 
@@ -34,6 +37,7 @@
               v-model="dateModel"
               width="240"
               color="primary"
+              @change="resetTime()"
             >
             </v-date-picker>
           </v-flex>
@@ -86,7 +90,17 @@ export default {
     current: {
       type: String,
       required: false,
-    }
+    },
+
+    fieldname: {
+      type: String,
+      required: false,
+    },
+
+    apiErrors: {
+      type: Object,
+      required: false,
+    },
 
   },
 
@@ -117,8 +131,26 @@ export default {
     },
 
     currentSelection() {
-      return this.formatDate(this.dateModel) + ' ' + this.timeModel;
-    }
+      return this.formatDate(this.dateModel) + ' ' + this.formatTime(this.timeModel);
+    },
+
+    apiError() {
+      if (!this.apiErrors || !this.apiErrors.errors) {
+        return '';
+      }
+      return this.apiErrors.errors[this.fieldname];
+    },
+
+    isValid() {
+      if (
+        (!this.apiErrors || !this.apiErrors.errors || !this.apiErrors.errors[this.fieldname]) &&
+        this.value
+      ) {
+        return 'success';
+      }
+
+      return '';
+    },
   },
 
   created() {
@@ -139,14 +171,15 @@ export default {
 
     this.setInitialDateTime(this.current);
   },
-}
-,
 
 methods: {
   allowedStep: m => m % 15 === 0,
 
-    setInitialDateTime(dateTime)
-  {
+  resetTime() {
+    console.log('reset');
+  },
+
+  setInitialDateTime(dateTime) {
     const [date, time] = dateTime.split(' ')
 
     // set the internal value to the parsed value without seconds
@@ -156,43 +189,49 @@ methods: {
 
     const dateTimeFormatted = this.formatDate(date) + " " + this.formatTime(time);
     this.displayDate = dateTimeFormatted;
-  }
-,
+  },
 
-  formatDate(date)
-  {
+  formatDate(date) {
     if (!date) return '';
 
     const [year, month, day] = date.split('-')
     let monthName = this.monthNames[parseInt(month) - 1]
     return `${monthName} ${day}, ${year}`;
-  }
-,
+  },
 
-  formatTime(time)
-  {
-    const [hours, minutes, seconds] = time.split(':')
-    return `${hours}:${minutes}`;
-  }
-,
+  formatTime(time) {
+    console.log('t:' + time);
+    if (time != '') {
+      console.log('parse');
+      const [hours, minutes, seconds] = time.split(':')
+      const hoursPadded = hours.padStart(2, '0'); // always 2 digits for consistency and validation
+      const minutesPadded = minutes.padStart(2, '0'); // always 2 digits for consistency and validation
+      console.log('pad' + hoursPadded);
+      return `${hoursPadded}:${minutesPadded}`;
+    }
+  },
 
   // Confirm the datetime selection and close the popover
-  confirm()
-  {
+  confirm() {
     this.onUpdateDate();
     this.dropdownOpen = false
-  }
-,
+  },
 
   // Format the date and trigger the input event
-  onUpdateDate()
-  {
+  onUpdateDate() {
     if (!this.dateModel || !this.timeModel) return false;
 
-      let selectedTime = this.timeModel
-      this.displayDate = this.formatDate(this.dateModel) + ' ' + selectedTime
-      this.$emit('input', this.dateModel + ' ' + selectedTime);
-    },
+    let selectedTime = this.formatTime(this.timeModel);
+    this.displayDate = this.formatDate(this.dateModel) + ' ' + selectedTime
+    this.$emit('input', this.dateModel + ' ' + selectedTime);
+  },
+},
+
+  clearApiError() {
+    if (this.apiErrors && this.apiErrors.errors) {
+      // eslint-disable-next-line vue/no-mutating-props
+      this.apiErrors.errors[this.fieldname] = '';
+    }
   },
 
   mounted() {
@@ -201,7 +240,7 @@ methods: {
     var currentHour = d.getHours() % 12; // AM,PM format
     var minutes = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
     var currentTime = currentHour + ':' + minutes;
-    this.timeModel = currentTime;
+    this.timeModel = "12:00";
     this.dateModel = d.toISOString().substr(0, 10);
   }
 };
