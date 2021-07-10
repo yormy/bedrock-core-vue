@@ -137,34 +137,57 @@ export default {
       this.$t('bedrock-core.general.month_abbrev.dec')
     );
 
-    this.displayDate = this.formatCurrentDatabaseDate(this.current);
+    this.setInitialDateTime(this.current);
   },
+}
+,
 
-  methods: {
-    allowedStep: m => m % 15 === 0,
+methods: {
+  allowedStep: m => m % 15 === 0,
 
-    formatCurrentDatabaseDate(dateTime) {
-      const [date, time] = dateTime.split(' ')
-      return this.formatDate(date) + " " + time;
-    },
+    setInitialDateTime(dateTime)
+  {
+    const [date, time] = dateTime.split(' ')
 
-    formatDate(date) {
-      if (!date) return '';
+    // set the internal value to the parsed value without seconds
+    // this way when posting unchanged values and changed values never have seconds
+    // and the backend can validate on not having seconds
+    this.$emit('input', date + " " + this.formatTime(time));
 
-      const [year, month, day] = date.split('-')
-      let monthName = this.monthNames[parseInt(month) - 1]
-      return `${monthName} ${day}, ${year}`;
-    },
+    const dateTimeFormatted = this.formatDate(date) + " " + this.formatTime(time);
+    this.displayDate = dateTimeFormatted;
+  }
+,
 
-    // Confirm the datetime selection and close the popover
-    confirm() {
-      this.onUpdateDate();
-      this.dropdownOpen = false
-    },
+  formatDate(date)
+  {
+    if (!date) return '';
 
-    // Format the date and trigger the input event
-    onUpdateDate() {
-      if (!this.dateModel || !this.timeModel) return false;
+    const [year, month, day] = date.split('-')
+    let monthName = this.monthNames[parseInt(month) - 1]
+    return `${monthName} ${day}, ${year}`;
+  }
+,
+
+  formatTime(time)
+  {
+    const [hours, minutes, seconds] = time.split(':')
+    return `${hours}:${minutes}`;
+  }
+,
+
+  // Confirm the datetime selection and close the popover
+  confirm()
+  {
+    this.onUpdateDate();
+    this.dropdownOpen = false
+  }
+,
+
+  // Format the date and trigger the input event
+  onUpdateDate()
+  {
+    if (!this.dateModel || !this.timeModel) return false;
 
       let selectedTime = this.timeModel
       this.displayDate = this.formatDate(this.dateModel) + ' ' + selectedTime
