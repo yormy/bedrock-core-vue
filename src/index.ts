@@ -75,6 +75,8 @@ import InfoIcon from "./Buttons/InfoIcon.vue";
 
 import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 
+import DateTimePicker from "./Misc/DateTimePicker.vue";
+
 
 // @ts-ignore
 import {
@@ -160,4 +162,5 @@ export {
   MarketingSnippitShow,
   MarketingPromos,
   EmailTemplates,
+  DateTimePicker,
 };

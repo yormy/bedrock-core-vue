@@ -23,6 +23,8 @@
         ></text-area>
       </ValidationObserver>
 
+      <date-time-picker v-model="form.data.active_at"/>
+
       <card-footer>
         <template v-slot:buttons>
           <button-submit :is-loading="form.state.isSubmitting" @click="save">
@@ -40,11 +42,14 @@
 <script>
 import CardHeader from "../../Pages/CardHeader.vue";
 import CardFooter from "../../Pages/CardFooter.vue";
+import DateTimePicker from "../../Misc/DateTimePicker.vue";
+
 
 export default {
   components: {
     CardFooter,
-    CardHeader
+    CardHeader,
+    DateTimePicker
   },
 
   props: {
@@ -60,6 +65,8 @@ export default {
         data: {
           title: this.model.title,
           description: this.model.description,
+          active_at: this.model.active_at,
+          expires_at: this.model.expires_at,
         },
 
         state: {
