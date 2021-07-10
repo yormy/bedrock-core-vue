@@ -3,6 +3,7 @@
     "user_agent": "browser",
     "created_at": "created at",
     "active_at": "Active at",
+    "expires_at": "Expires at",
     "date": "Date",
     "ip": "IP",
     "ip_address": "IP Address",

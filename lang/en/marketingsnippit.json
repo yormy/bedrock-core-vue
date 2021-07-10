@@ -19,6 +19,10 @@
         "content": {
             "label": "Content",
             "hint": "More details"
+        },
+        "active_from_till": {
+            "label": "Active from-until",
+            "content": "Active from {active_at} until {expires_at}"
         }
     }
 }

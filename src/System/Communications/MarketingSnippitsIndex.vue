@@ -146,8 +146,12 @@ export default {
           value: 'description',
         },
         {
-          text: this.$t('bedrock-core.general.date'),
-          value: 'created_at_human',
+          text: this.$t('bedrock-core.general.active_at'),
+          value: 'active_at_human',
+        },
+        {
+          text: this.$t('bedrock-core.general.expires_at'),
+          value: 'expires_at_human',
         },
         {
           text: '',

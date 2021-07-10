@@ -4,13 +4,25 @@
       <card-header :title="$t('bedrock-core.marketingsnippit.show.title')"></card-header>
 
       <div>
-        <h3>{{ $t('bedrock-core.marketingsnippit.field.title.hint') }}</h3>
+        <h3>{{ $t('bedrock-core.marketingsnippit.field.title.label') }}</h3>
         <p>{{ form.data.title }}</p>
       </div>
 
       <div>
-        <h3>{{ $t('bedrock-core.marketingsnippit.field.content.hint') }}</h3>
+        <h3>{{ $t('bedrock-core.marketingsnippit.field.content.label') }}</h3>
         <p>{{ form.data.description }}</p>
+      </div>
+
+      <div>
+        <h3>
+          {{ $t('bedrock-core.marketingsnippit.field.active_from_till.label') }}
+        </h3>
+        <p>
+          {{
+            $t('bedrock-core.marketingsnippit.field.active_from_till.content',
+              {active_at: form.data.active_at, expires_at: form.data.expires_at})
+          }}
+        </p>
       </div>
 
       <card-footer>
@@ -50,6 +62,8 @@ export default {
         data: {
           title: this.model.title,
           description: this.model.description,
+          active_at: this.model.active_at,
+          expires_at: this.model.expires_at,
         },
 
         state: {
