@@ -14,70 +14,84 @@
         <v-text-field
           v-model="displayDate"
           v-on="on"
-          label="Date Time"
-          prepend-icon="event"
+          :label="label"
+          prepend-icon="fal fa-calendar-day"
           readonly
         ></v-text-field>
       </template>
 
       <div class="v-date-time-widget-container">
+        <div class="d-flex justify-content-center mb-0">
+          <h3>{{ title }}</h3>
+        </div>
+        <div class="d-flex justify-content-center mb-5">
+          {{ description }}
+        </div>
+
         <v-layout row wrap>
           <v-flex sm6 xs12>
             <v-date-picker
               v-model="dateModel"
+              width="240"
               color="primary"
-              width="240"></v-date-picker>
-
+            >
+            </v-date-picker>
           </v-flex>
+
           <v-flex sm6 xs12>
-            <v-btn :color="getMeridiamButtonColor('AM')"
-                   class="btn-am"
-                   fab
-                   small @click="meridiam='AM'">AM
-            </v-btn>
-
-            <v-btn
-              :color="getMeridiamButtonColor('PM')"
-              class="btn-pm" fab
-              small
-              @click="meridiam='PM'">PM
-            </v-btn>
-
             <v-time-picker
+              :allowed-minutes="allowedStep"
+              format="24hr"
               v-if="dropdownOpen"
               v-model="timeModel"
               :no-title="true"
               color="primary"
-              width="240"></v-time-picker>
-
-            <h3 class="text-xs-center">{{ currentSelection }}</h3>
+              width="280">
+            </v-time-picker>
+            <div class="text-center"><strong>{{ currentSelection }}</strong></div>
           </v-flex>
 
-          <v-flex class="text-xs-center" xs12>
-            <v-btn small text @click="dropdownOpen = false">Cancel</v-btn>
-            <v-btn small text @click="confirm()">Ok</v-btn>
-          </v-flex>
         </v-layout>
+
+        <div class="d-flex justify-content-end mx-3 mb-3">
+          <button class="btn text-link" @click="dropdownOpen = false">{{ $t('bedrock-core.action.cancel') }}</button>
+          <button class="btn btn-primary" @click="confirm()">{{ $t('bedrock-core.action.select') }}</button>
+        </div>
+
       </div>
+
     </v-menu>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+
+    label: {
+      type: String,
+      required: true,
+    },
+
+    title: {
+      type: String,
+      required: true,
+    },
+
+    description: {
+      type: String,
+      required: false,
+    }
+
+  },
+
   data() {
     return {
       dropdownOpen: false,
-      meridiam: 'AM',
       displayDate: '',
       dateModel: '',
       timeModel: '',
-      monthNames: [
-        "Jan", "Feb", "Mar",
-        "Apr", "May", "June", "Jul",
-        "Aug", "Sept", "Oct",
-        "Nov", "Dec"
-      ]
+      monthNames: []
     };
   },
 
@@ -91,17 +105,35 @@ export default {
     },
 
     currentSelection() {
-      let selectedTime = this.timeModel + ' ' + this.meridiam
-      return this.formatDate(this.dateModel) + ' ' + selectedTime;
+      return this.formatDate(this.dateModel) + ' ' + this.timeModel;
     }
   },
 
+  created() {
+    this.monthNames.push(
+      this.$t('bedrock-core.general.month_abbrev.jan'),
+      this.$t('bedrock-core.general.month_abbrev.feb'),
+      this.$t('bedrock-core.general.month_abbrev.mar'),
+      this.$t('bedrock-core.general.month_abbrev.apr'),
+      this.$t('bedrock-core.general.month_abbrev.may'),
+      this.$t('bedrock-core.general.month_abbrev.jun'),
+      this.$t('bedrock-core.general.month_abbrev.jul'),
+      this.$t('bedrock-core.general.month_abbrev.aug'),
+      this.$t('bedrock-core.general.month_abbrev.sep'),
+      this.$t('bedrock-core.general.month_abbrev.okt'),
+      this.$t('bedrock-core.general.month_abbrev.nov'),
+      this.$t('bedrock-core.general.month_abbrev.dec')
+    );
+  },
+
   methods: {
+    allowedStep: m => m % 15 === 0,
+
     formatDate(date) {
       if (!date) return '';
 
       const [year, month, day] = date.split('-')
-      let monthName = this.monthNames[parseInt(month)]
+      let monthName = this.monthNames[parseInt(month) - 1]
       return `${monthName} ${day}, ${year}`;
     },
 
@@ -115,18 +147,9 @@ export default {
     onUpdateDate() {
       if (!this.dateModel || !this.timeModel) return false;
 
-      let selectedTime = this.timeModel + ' ' + this.meridiam
+      let selectedTime = this.timeModel
       this.displayDate = this.formatDate(this.dateModel) + ' ' + selectedTime
       this.$emit('input', this.dateModel + ' ' + selectedTime);
-    },
-
-    // Set the active state for the meridiam buttons
-    getMeridiamButtonColor(m) {
-      if (m === this.meridiam) {
-        return 'primary';
-      } else {
-        return 'darkgray';
-      }
     },
   },
 
@@ -138,10 +161,6 @@ export default {
     var currentTime = currentHour + ':' + minutes;
     this.timeModel = currentTime;
     this.dateModel = d.toISOString().substr(0, 10);
-
-    if (d.getHours() >= 12) {
-      this.meridiam = 'PM';
-    }
   }
 };
 </script>
@@ -149,18 +168,6 @@ export default {
 .v-date-time-widget-container {
   background: white;
   padding: 15px
-}
-
-.v-card {
-  box-shadow: none
-}
-
-.btn-am {
-  float: left;
-}
-
-.btn-pm {
-  float: right
 }
 
 .v-date-picker-table {
