@@ -38,7 +38,10 @@ import PerformancePage from "./Pages/PerformancePage.vue";
 import BlacklistedIps from "./Security/BlacklistedIps.vue";
 import ActionTarpits from "./Security/ActionTarpits.vue";
 
-import MarketingSnippits from "./System/Communications/MarketingSnippits.vue";
+import MarketingSnippitsIndex from "./System/Communications/MarketingSnippitsIndex.vue";
+import MarketingSnippitEdit from "./System/Communications/MarketingSnippitEdit.vue";
+import MarketingSnippitShow from "./System/Communications/MarketingSnippitShow.vue";
+
 import MarketingPromos from "./System/Communications/MarketingPromos.vue";
 import EmailTemplates from "./System/Communications/EmailTemplates.vue";
 
@@ -152,7 +155,9 @@ export {
   InfoIcon,
   BSwitch,
   BSwitchMultiple,
-  MarketingSnippits,
+  MarketingSnippitsIndex,
+  MarketingSnippitEdit,
+  MarketingSnippitShow,
   MarketingPromos,
   EmailTemplates,
 };

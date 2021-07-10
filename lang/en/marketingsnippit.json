@@ -5,12 +5,20 @@
     "index": {
         "title": "Marketing Snippits"
     },
+    "edit": {
+        "title": "Marketing Snippit"
+    },
+    "show": {
+        "title": "Marketing Snippit"
+    },
     "field": {
-        "subject": {
-            "label": "Subject"
+        "title": {
+            "label": "title",
+            "hint": "The catchy headline of this promotional piece"
         },
         "content": {
-            "label": "Content"
+            "label": "Content",
+            "hint": "More details"
         }
     }
 }
