@@ -100,7 +100,7 @@
       </template>
     </datatable-footer>
 
-    <button-update-modal
+    <update-modal
       :description="$t('bedrock-core.marketingsnippit.create.description')"
       :header="$t('bedrock-core.marketingsnippit.create.title')"
       :re-show-modal="modals.reshowUpdate"
@@ -144,9 +144,9 @@
           :label="$t('bedrock-core.marketingsnippit.field.expires_at.label')"
           fieldname="expires_at"/>
       </template>
-    </button-update-modal>
+    </update-modal>
 
-    <button-view-modal
+    <view-modal
       :description="$t('bedrock-core.marketingsnippit.create.description')"
       :header="$t('bedrock-core.marketingsnippit.create.title')"
       :show-modal.sync="modals.showView"
@@ -176,7 +176,7 @@
           </p>
         </div>
       </template>
-    </button-view-modal>
+    </view-modal>
 
   </v-card>
 </template>
@@ -188,9 +188,8 @@ import DatatableSearch from '../../../Datatable/DatatableSearch.vue';
 import DatatableFooter from "../../../Datatable/DatatableFooter.vue";
 import ButtonDelete from '../../../Buttons/ButtonDelete.vue';
 import ButtonAddModal from '../../../Buttons/ButtonAddModal.vue';
-import ButtonUpdateModal from '../../../Buttons/ButtonUpdateModal.vue';
-import ButtonViewModal from '../../../Buttons/ButtonViewModal.vue';
-
+import UpdateModal from '../../../Modals/UpdateModal.vue';
+import ViewModal from '../../../Modals/ViewModal.vue';
 
 export default {
   extends: Datatable,
@@ -201,8 +200,8 @@ export default {
     DatatableSearch,
     ButtonDelete,
     ButtonAddModal,
-    ButtonUpdateModal,
-    ButtonViewModal
+    UpdateModal,
+    ViewModal
   },
 
   data() {
