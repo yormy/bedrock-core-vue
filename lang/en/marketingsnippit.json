@@ -11,6 +11,11 @@
     "show": {
         "title": "Marketing Snippit"
     },
+    "create": {
+        "title": "Marketing Snippit",
+        "subtitle": "",
+        "description": ""
+    },
     "field": {
         "title": {
             "label": "title",
