@@ -168,65 +168,71 @@ export default {
       this.$t('bedrock-core.general.month_abbrev.nov'),
       this.$t('bedrock-core.general.month_abbrev.dec')
     );
-
     this.setInitialDateTime(this.current);
   },
 
-methods: {
-  allowedStep: m => m % 15 === 0,
-
-  resetTime() {
+  watch: {
+    current() {
+      this.setInitialDateTime(this.current);
+    },
   },
 
-  setInitialDateTime(dateTime) {
-    if (dateTime.trim() == '' || dateTime == undefined) {
-      this.displayDate = '';
-      return;
-    }
+  methods: {
+    allowedStep: m => m % 15 === 0,
 
-    const [date, time] = dateTime.split(' ')
+    resetTime() {
+    },
 
-    // set the internal value to the parsed value without seconds
-    // this way when posting unchanged values and changed values never have seconds
-    // and the backend can validate on not having seconds
-    this.$emit('input', date + " " + this.formatTime(time));
+    setInitialDateTime(dateTime) {
+      if (dateTime.trim() == '' || dateTime == undefined) {
+        this.displayDate = '';
+        console.log('date was null');
+        return;
+      }
 
-    const dateTimeFormatted = this.formatDate(date) + " " + this.formatTime(time);
-    this.displayDate = dateTimeFormatted;
+      const [date, time] = dateTime.split(' ')
+
+      // set the internal value to the parsed value without seconds
+      // this way when posting unchanged values and changed values never have seconds
+      // and the backend can validate on not having seconds
+      this.$emit('input', date + " " + this.formatTime(time));
+
+      const dateTimeFormatted = this.formatDate(date) + " " + this.formatTime(time);
+      this.displayDate = dateTimeFormatted;
+    },
+
+    formatDate(date) {
+      if (!date) return '';
+
+      const [year, month, day] = date.split('-')
+      let monthName = this.monthNames[parseInt(month) - 1]
+      return `${monthName} ${day}, ${year}`;
+    },
+
+    formatTime(time) {
+      if (time != '') {
+        const [hours, minutes, seconds] = time.split(':')
+        const hoursPadded = hours.padStart(2, '0'); // always 2 digits for consistency and validation
+        const minutesPadded = minutes.padStart(2, '0'); // always 2 digits for consistency and validation
+        return `${hoursPadded}:${minutesPadded}`;
+      }
+    },
+
+    // Confirm the datetime selection and close the popover
+    confirm() {
+      this.onUpdateDate();
+      this.dropdownOpen = false
+    },
+
+    // Format the date and trigger the input event
+    onUpdateDate() {
+      if (!this.dateModel || !this.timeModel) return false;
+
+      let selectedTime = this.formatTime(this.timeModel);
+      this.displayDate = this.formatDate(this.dateModel) + ' ' + selectedTime
+      this.$emit('input', this.dateModel + ' ' + selectedTime);
+    },
   },
-
-  formatDate(date) {
-    if (!date) return '';
-
-    const [year, month, day] = date.split('-')
-    let monthName = this.monthNames[parseInt(month) - 1]
-    return `${monthName} ${day}, ${year}`;
-  },
-
-  formatTime(time) {
-    if (time != '') {
-      const [hours, minutes, seconds] = time.split(':')
-      const hoursPadded = hours.padStart(2, '0'); // always 2 digits for consistency and validation
-      const minutesPadded = minutes.padStart(2, '0'); // always 2 digits for consistency and validation
-      return `${hoursPadded}:${minutesPadded}`;
-    }
-  },
-
-  // Confirm the datetime selection and close the popover
-  confirm() {
-    this.onUpdateDate();
-    this.dropdownOpen = false
-  },
-
-  // Format the date and trigger the input event
-  onUpdateDate() {
-    if (!this.dateModel || !this.timeModel) return false;
-
-    let selectedTime = this.formatTime(this.timeModel);
-    this.displayDate = this.formatDate(this.dateModel) + ' ' + selectedTime
-    this.$emit('input', this.dateModel + ' ' + selectedTime);
-  },
-},
 
   clearApiError() {
     if (this.apiErrors && this.apiErrors.errors) {
