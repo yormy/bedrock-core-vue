@@ -34,8 +34,14 @@
             </template>
           </button-delete>
         </div>
-        <button class="btn btn-warning" @click="openUpdateModal(item)">edit</button>
-        <button class="btn btn-success" @click="openViewModal(item)">view</button>
+
+
+        <button-submit :is-loading="item.xid == currentItem.xid" @click="openUpdateModal(item)">
+          <span class="fal fa-pencil"></span>
+        </button-submit>
+        <button class="btn btn-primary" @click="openViewModal(item)">
+          <span class="fal fa-eye"></span>
+        </button>
 
       </template>
 

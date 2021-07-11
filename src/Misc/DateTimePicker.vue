@@ -184,7 +184,7 @@ export default {
     },
 
     setInitialDateTime(dateTime) {
-      if (dateTime.trim() == '' || dateTime == undefined) {
+      if (dateTime == undefined || dateTime.trim() == '') {
         this.displayDate = '';
         return;
       }

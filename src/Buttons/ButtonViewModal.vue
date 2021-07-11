@@ -9,7 +9,7 @@
 
       <div class="card">
         <slot name="modal">
-          <v-card-title :class="'modal-header header-success'">{{ headerText }}</v-card-title>
+          <v-card-title :class="'modal-header header-info'">{{ headerText }}</v-card-title>
 
           <div class="card-body">
             <h3>{{ title }} </h3>
@@ -38,7 +38,7 @@ export default {
     header: {
       type: String,
       required: false,
-      default: 'modal-header header-success',
+      default: 'modal-header header-info',
     },
 
     title: {

@@ -9,7 +9,7 @@
 
       <div class="card">
         <slot name="modal">
-          <v-card-title :class="'modal-header header-success'">{{ headerText }}</v-card-title>
+          <v-card-title :class="'modal-header header-warning'">{{ headerText }}</v-card-title>
 
           <div class="card-body">
             <h3>{{ title }} </h3>
@@ -24,7 +24,7 @@
               {{ $t('bedrock-core.general.cancel') }}
             </button>
 
-            <button class="btn btn-success" @click="doUpdateItem">
+            <button class="btn btn-warning" @click="doUpdateItem">
               {{ confirmButtonText }}
             </button>
           </div>
@@ -42,7 +42,7 @@ export default {
     header: {
       type: String,
       required: false,
-      default: 'modal-header header-success',
+      default: 'modal-header header-warning',
     },
 
     title: {
@@ -79,8 +79,8 @@ export default {
 
   data() {
     return {
-      headerText: this.header ? this.header : this.$t('bedrock-core.action.add'),
-      confirmButtonText: this.confirmButton ? this.confirmButton : this.$t('bedrock-core.action.add'),
+      headerText: this.header ? this.header : this.$t('bedrock-core.action.update'),
+      confirmButtonText: this.confirmButton ? this.confirmButton : this.$t('bedrock-core.action.update'),
       showModalData: this.showModal
     };
   },
