@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import CardHeader from "../../Pages/CardHeader.vue";
-import CardFooter from "../../Pages/CardFooter.vue";
+import CardHeader from "../../../Pages/CardHeader.vue";
+import CardFooter from "../../../Pages/CardFooter.vue";
 
 export default {
   components: {

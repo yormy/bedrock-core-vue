@@ -38,11 +38,17 @@ import PerformancePage from "./Pages/PerformancePage.vue";
 import BlacklistedIps from "./Security/BlacklistedIps.vue";
 import ActionTarpits from "./Security/ActionTarpits.vue";
 
-import MarketingSnippitsIndex from "./System/Communications/MarketingSnippitsIndex.vue";
-import MarketingSnippitEdit from "./System/Communications/MarketingSnippitEdit.vue";
-import MarketingSnippitShow from "./System/Communications/MarketingSnippitShow.vue";
+import MarketingSnippitIndex
+  from "./System/Communications/MarketingSnippit/MarketingSnippitIndex.vue";
+import MarketingSnippitShow
+  from "./System/Communications/MarketingSnippit/MarketingSnippitShow.vue";
+import MarketingSnippitEdit
+  from "./System/Communications/MarketingSnippit/MarketingSnippitEdit.vue";
 
-import MarketingPromos from "./System/Communications/MarketingPromos.vue";
+import MarketingPromoIndex from "./System/Communications/MarketingPromo/MarketingPromoIndex.vue";
+import MarketingPromoShow from "./System/Communications/MarketingPromo/MarketingPromoShow.vue";
+import MarketingPromoEdit from "./System/Communications/MarketingPromo/MarketingPromoEdit.vue";
+
 import EmailTemplates from "./System/Communications/EmailTemplates.vue";
 
 import LoadGraph from "./Performance/LoadGraph.vue";
@@ -157,10 +163,12 @@ export {
   InfoIcon,
   BSwitch,
   BSwitchMultiple,
-  MarketingSnippitsIndex,
-  MarketingSnippitEdit,
+  MarketingSnippitIndex,
   MarketingSnippitShow,
-  MarketingPromos,
+  MarketingSnippitEdit,
+  MarketingPromoIndex,
+  MarketingPromoShow,
+  MarketingPromoEdit,
   EmailTemplates,
   DateTimePicker,
 };

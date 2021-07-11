@@ -3,42 +3,62 @@
     <loading-overlay :show="form.state.isSubmitting"></loading-overlay>
 
     <div class="m-3">
-      <card-header :title="$t('bedrock-core.marketingsnippit.edit.title')"></card-header>
+      <card-header :title="$t('bedrock-core.marketingpromo.edit.title')"></card-header>
 
+      this IS PROMO:
       <ValidationObserver ref="form">
+
+        {{ form.data.position }}
+        <dropdown
+          v-model="form.data.position"
+          :api-errors="form.apiErrors"
+          :items="options['positions']"
+          :label="$t('bedrock-users.standby.field.reason.label')"
+          fieldname="position"
+        ></dropdown>
+
+
         <text-field
           v-model="form.data.title"
           :api-errors="form.apiErrors"
-          :hint="$t('bedrock-core.marketingsnippit.field.title.hint')"
-          :label="$t('bedrock-core.marketingsnippit.field.title.label')"
+          :hint="$t('bedrock-core.marketingpromo.field.title.hint')"
+          :label="$t('bedrock-core.marketingpromo.field.title.label')"
           fieldname="title"
         ></text-field>
 
-        <text-area
-          v-model="form.data.description"
+        <text-field
+          v-model="form.data.subtitle"
           :api-errors="form.apiErrors"
-          :hint="$t('bedrock-core.marketingsnippit.field.content.hint')"
-          :label="$t('bedrock-core.marketingsnippit.field.content.label')"
-          fieldname="description"
+          :hint="$t('bedrock-core.marketingpromo.field.subtitle.hint')"
+          :label="$t('bedrock-core.marketingpromo.field.subtitle.label')"
+          fieldname="subtitle"
+        ></text-field>
+
+        <text-area
+          v-model="form.data.content"
+          :api-errors="form.apiErrors"
+          :hint="$t('bedrock-core.marketingpromo.field.content.hint')"
+          :label="$t('bedrock-core.marketingpromo.field.content.label')"
+          fieldname="content"
         ></text-area>
       </ValidationObserver>
 
       <date-time-picker
         v-model="form.data.active_at"
-        :current="form.data.active_at"
         :api-errors="form.apiErrors"
+        :current="form.data.active_at"
+        :description="$t('bedrock-core.marketingpromo.field.active_at.hint')"
+        :label="$t('bedrock-core.marketingpromo.field.active_at.label')"
         fieldname="active_at"
-        :description="$t('bedrock-core.marketingsnippit.field.active_at.hint')"
-        :label="$t('bedrock-core.marketingsnippit.field.active_at.label')"
       />
 
       <date-time-picker
         v-model="form.data.expires_at"
-        :current="form.data.expires_at"
         :api-errors="form.apiErrors"
-        fieldname="expires_at"
-        :description="$t('bedrock-core.marketingsnippit.field.expires_at.hint')"
-        :label="$t('bedrock-core.marketingsnippit.field.expires_at.label')"/>
+        :current="form.data.expires_at"
+        :description="$t('bedrock-core.marketingpromo.field.expires_at.hint')"
+        :label="$t('bedrock-core.marketingpromo.field.expires_at.label')"
+        fieldname="expires_at"/>
 
       <card-footer>
         <template v-slot:buttons>
@@ -55,9 +75,9 @@
 </template>
 
 <script>
-import CardHeader from "../../Pages/CardHeader.vue";
-import CardFooter from "../../Pages/CardFooter.vue";
-import DateTimePicker from "../../Misc/DateTimePicker.vue";
+import CardHeader from "../../../Pages/CardHeader.vue";
+import CardFooter from "../../../Pages/CardFooter.vue";
+import DateTimePicker from "../../../Misc/DateTimePicker.vue";
 
 
 export default {
@@ -72,14 +92,21 @@ export default {
       type: Object,
       required: true,
     },
+
+    options: {
+      type: Object,
+      required: true,
+    },
   },
 
   data() {
     return {
       form: {
         data: {
+          position: this.model.position,
           title: this.model.title,
-          description: this.model.description,
+          subtitle: this.model.subtitle,
+          content: this.model.content,
           active_at: this.model.active_at,
           expires_at: this.model.expires_at,
         },
@@ -98,8 +125,8 @@ export default {
       },
 
       routes: {
-        update: 'admin.system.communications.marketingsnippits.update',
-        store: 'admin.system.communications.marketingsnippits.store'
+        update: 'admin.system.communications.marketingpromos.update',
+        store: 'admin.system.communications.marketingpromos.store'
       }
 
     };
@@ -112,6 +139,7 @@ export default {
     },
 
     back() {
+      return;
       const params = this.getQueryParameters();
       if ("new" in params) {
         this.RefreshParent();
