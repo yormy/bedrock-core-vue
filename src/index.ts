@@ -51,7 +51,9 @@ import MarketingPromoIndex from "./System/Communications/MarketingPromo/Marketin
 import MarketingPromoShow from "./System/Communications/MarketingPromo/MarketingPromoShow.vue";
 import MarketingPromoEdit from "./System/Communications/MarketingPromo/MarketingPromoEdit.vue";
 
-import EmailTemplates from "./System/Communications/EmailTemplates.vue";
+import EmailTemplateIndex from "./System/Communications/EmailTemplates/EmailTemplateIndex.vue";
+import EmailTemplateShow from "./System/Communications/EmailTemplates/EmailTemplateShow.vue";
+import EmailTemplateEdit from "./System/Communications/EmailTemplates/EmailTemplateEdit.vue";
 
 import LoadGraph from "./Performance/LoadGraph.vue";
 import PerformanceCard from "./Performance/PerformanceCard.vue";
@@ -171,8 +173,10 @@ export {
   MarketingPromoIndex,
   MarketingPromoShow,
   MarketingPromoEdit,
-  EmailTemplates,
   DateTimePicker,
   UpdateModal,
   ViewModal,
+  EmailTemplateIndex,
+  EmailTemplateShow,
+  EmailTemplateEdit
 };

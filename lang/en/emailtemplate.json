@@ -3,14 +3,65 @@
     "subtitle": "",
     "description": "",
     "index": {
-        "title": "Email templates"
+        "title": "Email Templates"
+    },
+    "edit": {
+        "title": "Email Templates"
+    },
+    "show": {
+        "title": "Email Templates"
     },
     "field": {
         "name": {
-            "label": "Template Name"
+            "label": "Name"
         },
         "subject": {
-            "label": "Subject"
+            "label": "Subject",
+            "hint": ""
+        },
+        "to_admin_only": {
+            "label": "Subject",
+            "hint": ""
+        },
+        "for_roles": {
+            "label": "Subject",
+            "hint": ""
+        },
+        "summary": {
+            "label": "Subject",
+            "hint": ""
+        },
+        "text_template": {
+            "label": "Subject",
+            "hint": ""
+        },
+        "html_template": {
+            "label": "Subject",
+            "hint": ""
+        },
+        "placeholders": {
+            "label": "Subject",
+            "hint": ""
+        },
+        "note": {
+            "label": "Subject",
+            "hint": ""
+        },
+        "slack_preventable": {
+            "label": "Subject",
+            "hint": ""
+        },
+        "mail_preventable": {
+            "label": "Subject",
+            "hint": ""
+        },
+        "sms_preventable": {
+            "label": "Subject",
+            "hint": ""
+        },
+        "is_hidden": {
+            "label": "Subject",
+            "hint": ""
         }
     }
 }
