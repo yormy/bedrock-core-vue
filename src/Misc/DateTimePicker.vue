@@ -186,7 +186,6 @@ export default {
     setInitialDateTime(dateTime) {
       if (dateTime.trim() == '' || dateTime == undefined) {
         this.displayDate = '';
-        console.log('date was null');
         return;
       }
 
