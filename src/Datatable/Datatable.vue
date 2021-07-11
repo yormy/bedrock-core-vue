@@ -83,10 +83,16 @@ export default {
     },
 
     updateItemInTable(values, item, findOn) {
-      // NOTE: replacing the item in the array does not trigger a refresh of the table
-      this.table.backup = JSON.parse(JSON.stringify(values));
-      const withoutItem = this.deleteItemFromTable(values, item, findOn);
-      return this.addItemToTable(withoutItem, item);
+      const foundIndex = this.findIndex(values, item, findOn);
+      values[foundIndex] = item;
+      // return a new array to force repainting the datatable
+      const copy = JSON.parse(JSON.stringify(values));
+      return copy;
+      //
+      // // NOTE: replacing the item in the array does not trigger a refresh of the table
+      // this.table.backup = JSON.parse(JSON.stringify(values));
+      // const withoutItem = this.deleteItemFromTable(values, item, findOn);
+      // return this.addItemToTable(withoutItem, item);
     },
 
     deleteItemFromTable(values, item, findOn) {
