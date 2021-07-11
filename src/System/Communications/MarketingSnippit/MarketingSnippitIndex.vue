@@ -36,7 +36,7 @@
         </div>
 
 
-        <button-submit :is-loading="item.xid == currentItem.xid" @click="openUpdateModal(item)">
+        <button-submit :is-loading="item.xid == form.state.isSubmittingUpdate" @click="openUpdateModal(item)">
           <span class="fal fa-pencil"></span>
         </button-submit>
         <button class="btn btn-primary" @click="openViewModal(item)">

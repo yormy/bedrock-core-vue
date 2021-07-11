@@ -241,7 +241,7 @@ export default {
           this.form.apiErrors = error.response.data.data;
         })
         .finally(() => {
-          this.form.state.isSubmittingUpdate = false;
+          this.form.state.isSubmittingUpdate = '';
         });
     },
 

@@ -177,6 +177,16 @@ export default {
     },
   },
 
+  mounted() {
+    // Set the current date and time as default value
+    var d = new Date();
+    var currentHour = d.getHours() % 12; // AM,PM format
+    var minutes = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+    var currentTime = currentHour + ':' + minutes;
+    this.timeModel = "12:00";
+    this.dateModel = d.toISOString().substr(0, 10);
+  },
+
   methods: {
     allowedStep: m => m % 15 === 0,
 
@@ -231,24 +241,15 @@ export default {
       this.displayDate = this.formatDate(this.dateModel) + ' ' + selectedTime
       this.$emit('input', this.dateModel + ' ' + selectedTime);
     },
+
+    clearApiError() {
+      if (this.apiErrors && this.apiErrors.errors) {
+        // eslint-disable-next-line vue/no-mutating-props
+        this.apiErrors.errors[this.fieldname] = '';
+      }
+    },
   },
 
-  clearApiError() {
-    if (this.apiErrors && this.apiErrors.errors) {
-      // eslint-disable-next-line vue/no-mutating-props
-      this.apiErrors.errors[this.fieldname] = '';
-    }
-  },
-
-  mounted() {
-    // Set the current date and time as default value
-    var d = new Date();
-    var currentHour = d.getHours() % 12; // AM,PM format
-    var minutes = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
-    var currentTime = currentHour + ':' + minutes;
-    this.timeModel = "12:00";
-    this.dateModel = d.toISOString().substr(0, 10);
-  }
 };
 </script>
 <style scoped>
