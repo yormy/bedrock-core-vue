@@ -35,7 +35,6 @@
           </button-delete>
         </div>
 
-
         <button-submit :is-loading="item.xid == form.state.isSubmittingUpdate" @click="openUpdateModal(item)">
           <span class="fal fa-pencil"></span>
         </button-submit>
