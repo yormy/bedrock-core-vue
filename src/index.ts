@@ -8,6 +8,8 @@ import ButtonDelete from "./Buttons/ButtonDelete.vue";
 import ButtonConfirmModal from "./Buttons/ButtonConfirmModal.vue";
 import ButtonSubmit from "./Buttons/ButtonSubmit.vue";
 import ButtonAddModal from "./Buttons/ButtonAddModal.vue";
+import ButtonUpdateModal from "./Buttons/ButtonUpdateModal.vue";
+import ButtonViewModal from "./Buttons/ButtonViewModal.vue";
 
 import AppearingBullets from "./Misc/AppearingBullets.vue";
 import SecureChange from "./Misc/SecureChange.vue";
@@ -171,4 +173,6 @@ export {
   MarketingPromoEdit,
   EmailTemplates,
   DateTimePicker,
+  ButtonUpdateModal,
+  ButtonViewModal,
 };

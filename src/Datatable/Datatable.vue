@@ -17,6 +17,14 @@ export default {
 
   data() {
     return {
+
+      modals: {
+        showView: false,
+        showUpdate: false,
+        reshowUpdate: false,
+        reshowAdd: false,
+      },
+
       table: {
         searchInput: null,
         showFilters: false,
@@ -163,6 +171,107 @@ export default {
       this.form.messages.success = '';
       this.form.messages.error = '';
       this.form.messages.wearning = '';
+    },
+
+
+    openViewModal(item) {
+      this.setFormData(item);
+      this.form.data.apiErrors = {};
+      this.modals.showView = true;
+    },
+
+    openUpdateModal(item) {
+      this.setFormData(item);
+
+      this.form.data.apiErrors = {};
+      this.currentItem = item;
+      this.modals.showUpdate = true;
+    },
+
+
+    openNewTab(route, xid) {
+      // opening with javascript allows the child to reload the parent on close
+      window.open(this.route(route, xid) + '?new=1');
+    },
+
+    openSameTab(route, xid) {
+      window.location.href = this.route(route, xid);
+    },
+
+    deleteAgreed(item) {
+      this.table.values = this.deleteItemFromTable(this.table.values, item, 'xid');
+      this.deleteModal = false;
+      this.deleteItem(item);
+    },
+
+    deleteItem(item) {
+      this.clearformResult();
+      this.form.state.isSubmitting = true;
+
+      this.$http
+        .delete(this.route(this.routes.delete, item.xid))
+        .then(response => {
+          this.form.messages.success = response.data.message;
+        })
+        .catch(error => {
+          this.table.values = this.restoreTable();
+          this.form.messages.error = error.response.data.message;
+        })
+        .finally(() => {
+          this.form.state.isSubmitting = false;
+        });
+    },
+
+    updateItem(xid) {
+      this.clearformResult();
+      this.form.state.isSubmittingUpdate = xid;
+
+      const url = this.route(this.routes.update, xid);
+
+      this.$http
+        .post(url, this.form.data)
+        .then(success => {
+          this.table.values = this.updateItemInTable(this.table.values, success.data.data, 'xid');
+          this.form.messages.success = success.data.message;
+          this.form.data = {};
+        })
+        .catch(error => {
+          this.modals.reshowUpdate = !this.modals.reshowUpdate; // just triggering the reshowing
+          this.form.messages.error = error.response.data.message;
+          this.form.apiErrors = error.response.data.data;
+        })
+        .finally(() => {
+          this.form.state.isSubmittingUpdate = false;
+        });
+    },
+
+    addItem() {
+      this.clearformResult();
+      this.form.state.isSubmittingAdd = true;
+
+      const url = this.route(this.routes.store);
+
+      this.$http
+        .post(url, this.form.data)
+        .then(success => {
+          this.table.values = this.addItemToTable(this.table.values, success.data.data);
+          this.form.messages.success = success.data.message;
+          this.form.data = {};
+        })
+        .catch(error => {
+          this.modals.reshowAdd = !this.modals.reshowAdd; // just triggering the reshowing
+          this.form.messages.error = error.response.data.message;
+          this.form.apiErrors = error.response.data.data;
+        })
+        .finally(() => {
+          this.form.state.isSubmittingAdd = false;
+        });
+    },
+
+    modalCancelled() {
+      this.currentItem = {};
+      this.form.data = {};
+      this.form.data.apiErrors = {};
     },
   },
 };
