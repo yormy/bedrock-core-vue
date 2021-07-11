@@ -228,14 +228,20 @@ export default {
         });
     },
 
+    preProcessData(data) {
+      return data;
+    },
+
     updateItem(xid) {
       this.clearformResult();
       this.form.state.isSubmittingUpdate = xid;
 
       const url = this.route(this.routes.update, xid);
 
+      const postData = this.preProcessData(this.form.data)
+
       this.$http
-        .post(url, this.form.data)
+        .post(url, postData)
         .then(success => {
           this.table.values = this.updateItemInTable(this.table.values, success.data.data, 'xid');
           this.form.messages.success = success.data.message;
@@ -257,8 +263,10 @@ export default {
 
       const url = this.route(this.routes.store);
 
+      const postData = this.preProcessData(this.form.data)
+
       this.$http
-        .post(url, this.form.data)
+        .post(url, postData)
         .then(success => {
           this.table.values = this.addItemToTable(this.table.values, success.data.data);
           this.form.messages.success = success.data.message;

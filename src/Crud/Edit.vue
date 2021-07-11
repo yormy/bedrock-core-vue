@@ -19,6 +19,7 @@ export default {
     },
 
     back() {
+      return;
       const params = this.getQueryParameters();
       if ("new" in params) {
         this.RefreshParent();
@@ -32,6 +33,10 @@ export default {
       if (window.opener != null && !window.opener.closed) {
         window.opener.location.reload();
       }
+    },
+
+    preProcessData(data) {
+      return data;
     },
 
     getSaveUrl() {
@@ -54,15 +59,17 @@ export default {
       this.form.state.isSubmitting = true;
       this.clearResponses();
 
+      const postData = this.preProcessData(this.form.data)
+
       const url = this.getSaveUrl()
       this.$http
-        .post(url, this.form.data)
-        .then((success) => {
-          this.form.messages.success = success.data.message;
-          this.back();
-        })
-        .catch((error) => {
-          this.form.messages.error = error.response.data.message;
+          .post(url, postData)
+          .then((success) => {
+            this.form.messages.success = success.data.message;
+            this.back();
+          })
+          .catch((error) => {
+            this.form.messages.error = error.response.data.message;
           this.form.apiErrors = error.response.data.data;
           this.resetLoadingState();
         })
