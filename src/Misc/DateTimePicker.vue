@@ -176,10 +176,14 @@ methods: {
   allowedStep: m => m % 15 === 0,
 
   resetTime() {
-    console.log('reset');
   },
 
   setInitialDateTime(dateTime) {
+    if (dateTime.trim() == '' || dateTime == undefined) {
+      this.displayDate = '';
+      return;
+    }
+
     const [date, time] = dateTime.split(' ')
 
     // set the internal value to the parsed value without seconds
@@ -200,13 +204,10 @@ methods: {
   },
 
   formatTime(time) {
-    console.log('t:' + time);
     if (time != '') {
-      console.log('parse');
       const [hours, minutes, seconds] = time.split(':')
       const hoursPadded = hours.padStart(2, '0'); // always 2 digits for consistency and validation
       const minutesPadded = minutes.padStart(2, '0'); // always 2 digits for consistency and validation
-      console.log('pad' + hoursPadded);
       return `${hoursPadded}:${minutesPadded}`;
     }
   },
