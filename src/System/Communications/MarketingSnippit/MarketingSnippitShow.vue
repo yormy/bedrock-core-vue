@@ -42,18 +42,14 @@
 <script>
 import CardHeader from "../../../Pages/CardHeader.vue";
 import CardFooter from "../../../Pages/CardFooter.vue";
+import View from "../../../Crud/View.vue";
 
 export default {
+  extends: View,
+
   components: {
     CardFooter,
     CardHeader
-  },
-
-  props: {
-    model: {
-      type: Object,
-      required: true,
-    },
   },
 
   data() {
@@ -74,19 +70,7 @@ export default {
   },
 
   methods: {
-    getQueryParameters() {
-      const urlParams = new URLSearchParams(window.location.search);
-      return Object.fromEntries(urlParams.entries());
-    },
-
-    back() {
-      const params = this.getQueryParameters();
-      if ("new" in params) {
-        window.close();
-      }
-
-      window.history.back();
-    },
+    //
   },
 };
 </script>
