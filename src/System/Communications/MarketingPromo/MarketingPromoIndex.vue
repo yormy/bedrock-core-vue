@@ -95,39 +95,6 @@ export default {
 
 
   methods: {
-    openNewTab(route, xid) {
-      // opening with javascript allows the child to reload the parent on close
-      window.open(this.route(route, xid) + '?new=1');
-    },
-
-    openSameTab(route, xid) {
-      window.location.href = this.route(route, xid);
-    },
-
-    deleteAgreed(item) {
-      this.table.values = this.deleteItemFromTable(this.table.values, item, 'xid');
-      this.deleteModal = false;
-      this.deleteItem(item);
-    },
-
-    deleteItem(item) {
-      this.clearformResult();
-      this.form.state.isSubmitting = true;
-
-      this.$http
-        .delete(this.route(this.routes.delete, item.xid))
-        .then(response => {
-          this.form.messages.success = response.data.message;
-        })
-        .catch(error => {
-          this.table.values = this.restoreTable();
-          this.form.messages.error = error.response.data.message;
-        })
-        .finally(() => {
-          this.form.state.isSubmitting = false;
-        });
-    },
-
     createHeaders() {
       this.makeSearchable();
 

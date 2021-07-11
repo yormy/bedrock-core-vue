@@ -139,7 +139,6 @@ export default {
     },
 
     back() {
-      return;
       const params = this.getQueryParameters();
       if ("new" in params) {
         this.RefreshParent();
