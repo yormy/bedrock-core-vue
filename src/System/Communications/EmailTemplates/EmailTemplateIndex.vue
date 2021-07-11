@@ -100,10 +100,6 @@ export default {
 
       this.table.headers.push(
         {
-          text: '#',
-          value: 'xid',
-        },
-        {
           text: this.$t('bedrock-core.emailtemplate.field.name.label'),
           value: 'name',
         },

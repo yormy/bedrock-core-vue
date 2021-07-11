@@ -261,10 +261,6 @@ export default {
 
       this.table.headers.push(
         {
-          text: '#',
-          value: 'xid',
-        },
-        {
           text: this.$t('bedrock-core.marketingsnippit.field.title.label'),
           value: 'title',
         },

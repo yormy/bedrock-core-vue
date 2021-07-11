@@ -100,10 +100,6 @@ export default {
 
       this.table.headers.push(
         {
-          text: '#',
-          value: 'xid',
-        },
-        {
           text: this.$t('bedrock-core.marketingpromo.field.position.label'),
           value: 'position',
         },
