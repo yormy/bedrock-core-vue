@@ -57,14 +57,11 @@
 <script>
 import CardHeader from "../../../Pages/CardHeader.vue";
 import CardFooter from "../../../Pages/CardFooter.vue";
-import DateTimePicker from "../../../Misc/DateTimePicker.vue";
-
 
 export default {
   components: {
     CardFooter,
     CardHeader,
-    DateTimePicker
   },
 
   props: {
