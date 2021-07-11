@@ -5,8 +5,7 @@
       tabindex="0"
       width="auto "
       @click:outside="doCancelled"
-      @keydown.esc="doCancelled"
-    >
+      @keydown.esc="doCancelled">
 
       <div class="card">
         <slot name="modal">
@@ -25,7 +24,7 @@
               {{ $t('bedrock-core.general.cancel') }}
             </button>
 
-            <button class="btn btn-success" @click="doAddItem">
+            <button class="btn btn-success" @click="doUpdateItem">
               {{ confirmButtonText }}
             </button>
           </div>
@@ -34,14 +33,6 @@
       </div>
     </v-dialog>
 
-    <button-submit :btn-class="btnClass" :is-loading="isLoading" @click="showForm">
-      <slot name="button-content">
-        <span class="fal fa-plus"></span>
-        <span v-if="withText">
-          {{ confirmButtonText }}
-        </span>
-      </slot>
-    </button-submit>
   </div>
 </template>
 
@@ -72,19 +63,6 @@ export default {
       type: Boolean,
     },
 
-    isLoading: {
-      type: Boolean,
-    },
-
-    withText: {
-      type: Boolean,
-      default: false,
-    },
-
-    btnClass: {
-      type: String,
-    },
-
     headerClass: {
       type: String,
     },
@@ -95,37 +73,33 @@ export default {
     },
 
     reShowModal: false,
+
+    showModal: false,
   },
 
   data() {
     return {
-      showModal: false,
       headerText: this.header ? this.header : this.$t('bedrock-core.action.add'),
       confirmButtonText: this.confirmButton ? this.confirmButton : this.$t('bedrock-core.action.add'),
+      showModalData: this.showModal
     };
   },
 
   watch: {
     reShowModal() {
-      this.showModal = true;
+      this.showModalData = true;
     }
   },
 
   methods: {
-    showForm() {
-      this.showModal = true;
-      this.$emit('showForm');
-      this.syncData();
-    },
-
     doCancelled() {
-      this.showModal = false;
+      this.showModalData = false;
       this.$emit('cancelled');
       this.syncData();
     },
 
-    doAddItem() {
-      this.showModal = false;
+    doUpdateItem() {
+      this.showModalData = false;
       this.$emit('confirmed');
       this.syncData();
     },

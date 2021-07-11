@@ -32,7 +32,7 @@
           :header="$t('bedrock-core.blacklisted_ip.create.title')"
           :isLoading="form.state.isSubmittingAdd"
           :re-show-modal="reShowModal"
-          @addItem="addItem"
+          @confirmed="addItem"
         >
           <template v-slot:form>
 
@@ -157,7 +157,7 @@ export default {
         .catch(error => {
           this.reShowModal = !this.reShowModal; // just triggering the reshowing
           this.form.messages.error = error.response.data.message;
-          this.form.apiErrors = error.response.data.errors;
+          this.form.apiErrors = error.response.data.data;
         })
         .finally(() => {
           this.form.state.isSubmittingAdd = false;
