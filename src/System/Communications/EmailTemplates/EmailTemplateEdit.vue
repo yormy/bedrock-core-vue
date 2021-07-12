@@ -32,6 +32,19 @@
         <!--          v-model="form.data.html_template"-->
         <!--        ></text-area>-->
 
+        <span
+          v-for="(placeholder, index) in JSON.parse(
+                    form.data.placeholders,
+                  )"
+          :key="index"
+        >
+          <v-chip class="ma-1" color="primary" outlined pill @click="insertPlaceholderAtCursor(placeholder)">
+            <span v-pre>{{</span>
+            {{ placeholder }}
+            <span v-pre>}}</span>
+          </v-chip>
+        </span>
+
         <quill-editor
           ref="myQuillEditor"
           v-model="form.data.html_template"
@@ -186,7 +199,15 @@ export default {
     // onEditorReady(quill) {
     //   //
     // },
+    insertAtCursor(text) {
+      const selection = this.editor.getSelection(true);
+      this.editor.insertText(selection.index, text)
+    },
 
+    insertPlaceholderAtCursor(placeholder) {
+      const text = '{{' + placeholder + '}}';
+      this.insertAtCursor(text);
+    },
 
     onEditorChange({quill, html, text}) { /* eslint-disable-line */
       if (this.autoSyncTxtWithHtml) {
