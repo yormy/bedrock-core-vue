@@ -9,6 +9,7 @@
       <ValidationObserver ref="form">
 
         <text-field
+          v-show="!isFullScreen()"
           :api-errors="form.apiErrors"
           :hint="$t('bedrock-core.emailtemplate.field.subject.hint')"
           :label="$t('bedrock-core.emailtemplate.field.subject.label')"
@@ -17,6 +18,7 @@
         ></text-field>
 
         <text-area
+          v-show="!isFullScreen()"
           v-model="form.data.summary"
           :api-errors="form.apiErrors"
           :hint="$t('bedrock-core.emailtemplate.field.summary.hint')"
@@ -32,46 +34,78 @@
         <!--          v-model="form.data.html_template"-->
         <!--        ></text-area>-->
 
-        <span
-          v-for="(placeholder, index) in JSON.parse(
-                    form.data.placeholders,
-                  )"
-          :key="index"
-        >
-          <v-chip class="ma-1" color="primary" outlined pill @click="insertPlaceholderAtCursor(placeholder)">
-            <span v-pre>{{</span>
-            {{ placeholder }}
-            <span v-pre>}}</span>
-          </v-chip>
-        </span>
+        <div class="d-flex justify-content-between">
+          <div v-show="!fullscreenText">
+            <span
+              v-for="(placeholder, index) in JSON.parse(
+                        form.data.placeholders,
+                      )"
+              :key="index"
+            >
+              <chip class="ma-1" @click="insertPlaceholderAtCursor(placeholder)">
+                <span v-pre>{{</span>
+                {{ placeholder }}
+                <span v-pre>}}</span>
+              </chip>
+            </span>
+          </div>
+          <div v-show="!fullscreenText" class="float-right">
+            <button class="btn btn-link btn-xs" @click="clickHtmlFullscreen()">
+              <div v-if="!fullscreenHtml">Esc for fullscreen</div>
+              <div v-else>Exit Fullscreen</div>
+            </button>
+          </div>
+        </div>
 
-        <quill-editor
-          ref="myQuillEditor"
-          v-model="form.data.html_template"
-          :name="$t('bedrock-core.emailtemplate.field.html_template.label')"
-          :options="editorOption"
-          @change="onEditorChange($event)"
-        />
-        <!--      @blur="onEditorBlur($event)"-->
-        <!--      @focus="onEditorFocus($event)"-->
-        <!--      @ready="onEditorReady($event)"-->
-        <v-checkbox
-          v-model="autoSyncTxtWithHtml"
-          :label="$t('multilingual-admin.autoSyncHtmlTxt')"
-          class="mt-0"
-          @change="clickedAutoSync"
-        >
-        </v-checkbox>
+        <div @keydown.esc="clickHtmlFullscreen()">
+          <quill-editor
+            v-show="!fullscreenText"
+            ref="myQuillEditor"
+            v-model="form.data.html_template"
+            :name="$t('bedrock-core.emailtemplate.field.html_template.label')"
+            :options="editorOption"
+            @change="onEditorChange($event)"
+          />
+          <!--      @blur="onEditorBlur($event)"-->
+          <!--      @focus="onEditorFocus($event)"-->
+          <!--      @ready="onEditorReady($event)"-->
+          <v-checkbox
+            v-show="!fullscreenText"
+            v-model="autoSyncTxtWithHtml"
+            :label="$t('multilingual-admin.autoSyncHtmlTxt')"
+            class="mt-0"
+            @change="clickedAutoSync"
+          >
+          </v-checkbox>
+        </div>
+
+        <div v-show="!fullscreenHtml" class="d-flex-column">
+          <div class="d-flex justify-content-between">
+            <div>
+              <!--              //-->
+            </div>
+            <div>
+              <button class="btn btn-link btn-xs float-right" @click="clickPlainFullscreen()">
+                <div v-if="!fullscreenText">Esc for fullscreen</div>
+                <div v-else>Exit Fullscreen</div>
+              </button>
+            </div>
+          </div>
+          <div>
+            <text-area
+              v-show="!fullscreenHtml"
+              v-model="form.data.text_template"
+              :api-errors="form.apiErrors"
+              :hint="$t('bedrock-core.emailtemplate.field.text_template.hint')"
+              :label="$t('bedrock-core.emailtemplate.field.text_template.label')"
+              fieldname="text_template"
+              @keydown.esc="clickPlainFullscreen()"
+            ></text-area>
+          </div>
+        </div>
 
         <text-area
-          v-model="form.data.text_template"
-          :api-errors="form.apiErrors"
-          :hint="$t('bedrock-core.emailtemplate.field.text_template.hint')"
-          :label="$t('bedrock-core.emailtemplate.field.text_template.label')"
-          fieldname="text_template"
-        ></text-area>
-
-        <text-area
+          v-show="!isFullScreen()"
           v-model="form.data.note"
           :api-errors="form.apiErrors"
           :hint="$t('bedrock-core.emailtemplate.field.note.hint')"
@@ -119,6 +153,9 @@ export default {
 
   data() {
     return {
+      fullscreenHtml: false,
+      fullscreenText: false,
+
       form: {
         data: {
           name: this.model.name,
@@ -177,7 +214,16 @@ export default {
 
 
   methods: {
+    isFullScreen() {
+      return this.fullscreenHtml || this.fullscreenText;
+    },
 
+    clickHtmlFullscreen() {
+      this.fullscreenHtml = !this.fullscreenHtml;
+    },
+    clickPlainFullscreen() {
+      this.fullscreenText = !this.fullscreenText;
+    },
 
     init() {
       this.translated = this.inputData;
