@@ -32,7 +32,7 @@
         },
         "for_roles": {
             "label": "Only for roles",
-            "hint": ""
+            "hint": "This will only be displayed to the specific roles for unsubscriptions"
         },
         "summary": {
             "label": "Summary",

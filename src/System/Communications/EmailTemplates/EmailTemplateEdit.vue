@@ -32,6 +32,18 @@
             @changed="flipChanged('is_hidden', $event)"
           ></flip-switch>
         </div>
+
+        <select-multiple-chips
+          v-show="!isFullScreen()"
+          v-model="form.data.for_roles"
+          :api-errors="form.apiErrors"
+          :hint="$t('bedrock-core.emailtemplate.field.subject.hint')"
+          :items="options.for_roles"
+          :label="$t('bedrock-core.emailtemplate.field.subject.label')"
+          fieldname="for_roles"
+          @change="formChanged()"
+        ></select-multiple-chips>
+
         <text-field
           v-show="!isFullScreen()"
           :api-errors="form.apiErrors"
@@ -207,7 +219,7 @@ export default {
           sms_preventable: this.model.sms_preventable,
           is_hidden: this.model.is_hidden,
 
-          roles: this.model.roles,
+          for_roles: this.model.for_roles,
           to_admin_only: this.model.to_admin_only,
         },
 
