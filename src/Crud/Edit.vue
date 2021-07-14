@@ -12,6 +12,12 @@ export default {
     },
   },
 
+  data() {
+    return {
+      isDirty: false,
+    }
+  },
+
   methods: {
     getQueryParameters() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -19,6 +25,7 @@ export default {
     },
 
     back() {
+      this.form.state.isSubmitting = false; /// to test
       return;
       const params = this.getQueryParameters();
       if ("new" in params) {
@@ -66,6 +73,8 @@ export default {
           .post(url, postData)
           .then((success) => {
             this.form.messages.success = success.data.message;
+            this.isDirty = false;
+            this.$emit('saved');
             this.back();
           })
           .catch((error) => {

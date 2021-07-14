@@ -8,7 +8,8 @@
             v-on="$listeners"
             :label="getLabel()"
             :persistent-hint="true"
-            :value="true"
+            :false-value="false"
+            :true-value="true"
           ></v-switch>
       </div>
       <info-icon

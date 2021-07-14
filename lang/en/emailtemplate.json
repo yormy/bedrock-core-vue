@@ -6,7 +6,14 @@
         "title": "Email Templates"
     },
     "edit": {
-        "title": "Email Template: {template_name}"
+        "title": "Email Template: {template_name}",
+        "autosyncHtml": {
+            "label": "Automatically sync html to plain text version"
+        },
+        "esc_fullscreen": "Esc to expand",
+        "exit_fullscreen": "Exit expand",
+        "preview": "Preview",
+        "save_before_preview": "(first save)"
     },
     "show": {
         "title": "Email Templates"
