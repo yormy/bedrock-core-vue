@@ -21,7 +21,7 @@
 
       <template v-slot:[`item.actions`]="{ item }">
         <div class="d-flex float-right">
-          <button class="btn btn-primary mx-1" @click="openSameTab(routes.show, item.xid)">
+          <button class="btn btn-primary mx-1" @click="openNewTab(routes.preview, item.xid)">
             <span class="fal fa-eye"></span>
           </button>
           <button class="btn btn-primary mx-1" @click="openNewTab(routes.edit, item.xid)">
@@ -37,15 +37,6 @@
       </template>
 
     </v-data-table>
-    <datatable-footer>
-      <template v-slot:buttons>
-        <a :href="route(routes.create)">
-          <button class="btn btn-success">
-            <span class="fal fa-plus">{{ $t('bedrock-core.action.add') }}</span>
-          </button>
-        </a>
-      </template>
-    </datatable-footer>
 
   </v-card>
 </template>
@@ -82,8 +73,7 @@ export default {
 
       routes: {
         edit: 'admin.system.communications.emailtemplates.edit',
-        show: 'admin.system.communications.emailtemplates.show',
-        create: 'admin.system.communications.emailtemplates.create',
+        preview: 'admin.system.communications.emailtemplates.preview',
         delete: 'admin.system.communications.emailtemplates.delete',
       }
     };
