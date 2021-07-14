@@ -23,20 +23,20 @@
             "label": "Name"
         },
         "subject": {
-            "label": "Subject",
-            "hint": ""
+            "label": "Subject and header of notification",
+            "hint": "This is the email subject, and the main header of the notification"
         },
         "to_admin_only": {
             "label": "Only for admins",
             "hint": ""
         },
         "for_roles": {
-            "label": "Only for roles",
+            "label": "Only for roles (or empty for all)",
             "hint": "This will only be displayed to the specific roles for unsubscriptions"
         },
         "summary": {
-            "label": "Summary",
-            "hint": ""
+            "label": "Notification summary",
+            "hint": "This will be displayed as the main content of the notification in the users screen"
         },
         "text_template": {
             "label": "Plain text version",

@@ -37,9 +37,9 @@
           v-show="!isFullScreen()"
           v-model="form.data.for_roles"
           :api-errors="form.apiErrors"
-          :hint="$t('bedrock-core.emailtemplate.field.subject.hint')"
+          :hint="$t('bedrock-core.emailtemplate.field.for_roles.hint')"
           :items="options.for_roles"
-          :label="$t('bedrock-core.emailtemplate.field.subject.label')"
+          :label="$t('bedrock-core.emailtemplate.field.for_roles.label')"
           fieldname="for_roles"
           @change="formChanged()"
         ></select-multiple-chips>
