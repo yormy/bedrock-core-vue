@@ -48,7 +48,8 @@
         },
         "placeholders": {
             "label": "Placeholders",
-            "hint": ""
+            "hint": "",
+            "info": "Place the placeholder between {{ }} or {!! !!} to render html"
         },
         "note": {
             "label": "Internal notes",

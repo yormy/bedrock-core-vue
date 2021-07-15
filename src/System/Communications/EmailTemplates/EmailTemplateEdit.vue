@@ -78,11 +78,20 @@
             </span>
           </div>
           <div v-show="!fullscreenText" class="float-right">
-            <button class="btn btn-link btn-xs" @click="clickHtmlFullscreen()">
-              <div v-if="!fullscreenHtml">{{ $t('bedrock-core.emailtemplate.edit.esc_fullscreen') }}</div>
-              <div v-else>{{ $t('bedrock-core.emailtemplate.edit.exit_fullscreen') }}</div>
-            </button>
+            <div class="d-flex">
+              <button class="btn btn-link btn-xs" @click="clickHtmlFullscreen()">
+                <div v-if="!fullscreenHtml">{{ $t('bedrock-core.emailtemplate.edit.esc_fullscreen') }}</div>
+                <div v-else>{{ $t('bedrock-core.emailtemplate.edit.exit_fullscreen') }}</div>
+              </button>
+              <info-icon
+                :content="$t('bedrock-core.emailtemplate.field.placeholders.info')"
+                :title="$t('bedrock-core.emailtemplate.field.placeholders.label')"
+              >
+              </info-icon>
+            </div>
           </div>
+
+
         </div>
 
         <div @keydown.esc="clickHtmlFullscreen()">
@@ -176,6 +185,7 @@ import Edit from "../../../Crud/Edit.vue";
 // import 'quill/dist/quill.snow.css'; /* eslint-disable-line */
 // import 'quill/dist/quill.bubble.css'; /* eslint-disable-line */
 import {quillEditor} from 'vue-quill-editor';
+import InfoIcon from "../../../Buttons/InfoIcon.vue";
 
 const {htmlToText} = require('html-to-text');
 
@@ -183,6 +193,7 @@ export default {
   extends: Edit,
 
   components: {
+    InfoIcon,
     CardFooter,
     CardHeader,
     DateTimePicker,
