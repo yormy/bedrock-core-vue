@@ -87,7 +87,7 @@ import InfoIcon from "./Buttons/InfoIcon.vue";
 import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 
 import DateTimePicker from "./Misc/DateTimePicker.vue";
-
+import EmailContent from './Components/EmailContent.vue';
 
 // @ts-ignore
 import {
@@ -180,5 +180,6 @@ export {
   EmailTemplateIndex,
   EmailTemplateShow,
   EmailTemplateEdit,
-  BSelectMultipleChips
+  BSelectMultipleChips,
+  EmailContent
 };
