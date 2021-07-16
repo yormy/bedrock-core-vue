@@ -1,6 +1,5 @@
 <template>
   <v-dialog
-    v-model="show"
     v-bind="$attrs"
     v-on="$listeners"
     persistent
@@ -42,9 +41,15 @@ export default {
     },
   },
 
+  data() {
+    return {
+      showModal: this.show,
+    }
+  },
+
   methods: {
     closed() {
-      this.show = false
+      this.value = false
       this.$emit('closed');
     }
   }

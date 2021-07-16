@@ -38,11 +38,12 @@
             "label": "Notification summary",
             "hint": "This will be displayed as the main content of the notification in the users screen"
         },
-        "text_template": {
+        "text": {
             "label": "Plain text version",
-            "hint": ""
+            "hint": "",
+            "copied": "Copied from html"
         },
-        "html_template": {
+        "html": {
             "label": "Html version",
             "hint": ""
         },
