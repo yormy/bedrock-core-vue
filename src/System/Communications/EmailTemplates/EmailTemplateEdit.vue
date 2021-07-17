@@ -5,6 +5,8 @@
     <div class="m-3">
       <card-header :title="$t('bedrock-core.emailtemplate.edit.title', {template_name: form.data.name})"></card-header>
 
+      <messages :messages="form.messages"></messages>
+
       <ValidationObserver ref="form">
         <div class="d-flex">
           <flip-switch
@@ -115,8 +117,8 @@ export default {
           name: this.model.name,
           subject: this.model.subject,
           summary: this.model.summary,
-          text: this.model.text_template,
-          html: this.model.html_template,
+          text_template: this.model.text_template,
+          html_template: this.model.html_template,
           note: this.model.note,
 
           mail_preventable: this.model.mail_preventable,
@@ -178,15 +180,11 @@ export default {
       const encoded = {
         subject: this.utoa(data.subject),
         summary: this.utoa(data.summary),
-        text_template: this.utoa(data.text),
-        html_template: this.utoa(data.html),
+        text_template: this.utoa(data.text_template),
+        html_template: this.utoa(data.html_template),
       };
 
-      const stripped = this.form.data
-      delete stripped.text;
-      delete stripped.html;
-
-      return {...stripped, ...encoded};
+      return {...data, ...encoded};
     },
   },
 };

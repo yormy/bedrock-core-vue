@@ -51,7 +51,7 @@
       <quill-editor
         v-show="!fullscreenText"
         ref="myQuillEditor"
-        v-model="form.data.html"
+        v-model="form.data.html_template"
         :class="htmlEditorClass"
         :name="$t('bedrock-core.emailtemplate.field.html.label')"
         :options="editorOption"
@@ -60,6 +60,10 @@
       <!--      @blur="onEditorBlur($event)"-->
       <!--      @focus="onEditorFocus($event)"-->
       <!--      @ready="onEditorReady($event)"-->
+
+      <error-message v-if="form.apiErrors.errors && form.apiErrors.errors.html_template"
+                     :message="form.apiErrors.errors.html_template[0]"></error-message>
+
       <v-checkbox
 
         v-show="!fullscreenText"
@@ -96,13 +100,13 @@
             <div>
               <text-area
                 v-show="!fullscreenHtml"
-                v-model="form.data.text"
+                v-model="form.data.text_template"
                 :api-errors="form.apiErrors"
                 :disabled="autoSyncTxtWithHtml"
                 :hint="$t('bedrock-core.emailtemplate.field.text.hint')"
                 :label="$t('bedrock-core.emailtemplate.field.text.label')"
                 :rows="textRowsCurrent"
-                fieldname="text"
+                fieldname="text_template"
                 @change="formChanged()"
                 @keydown.esc="clickPlainFullscreen()"
               ></text-area>
@@ -118,6 +122,7 @@
 <script>
 import {quillEditor} from 'vue-quill-editor';
 import InfoIcon from "../Buttons/InfoIcon.vue";
+import ErrorMessage from "../Alerts/ErrorMessage.vue";
 
 const {htmlToText} = require('html-to-text');
 
@@ -126,6 +131,7 @@ export default {
   fullscreenText: false,
 
   components: {
+    ErrorMessage,
     quillEditor,
     InfoIcon
   },
@@ -181,7 +187,7 @@ export default {
 
   methods: {
     inputChanged() {
-      this.$emit('update:inputData', this.form.data.html);
+      this.$emit('update:inputData', this.form.data.html_template);
       this.$emit('updated');
     },
 
@@ -231,7 +237,7 @@ export default {
     onEditorChange({quill, html, text}) { /* eslint-disable-line */
       this.formChanged();
       if (this.autoSyncTxtWithHtml) {
-        const plain = htmlToText(this.form.data.html, {
+        const plain = htmlToText(this.form.data.html_template, {
           wordwrap: 130,
           tags: {
             'h1': {options: {uppercase: false}},
@@ -246,7 +252,7 @@ export default {
         //   resultPlainText += '...';
         // }
         // console.log(plain);
-        this.form.data.text = fixedDoubleReturns;
+        this.form.data.text_template = fixedDoubleReturns;
         //this.$emit('updatedPlainText', fixedDoubleReturns, resultPlainText);
       }
       this.inputChanged();
