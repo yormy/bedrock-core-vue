@@ -18,6 +18,7 @@ import CodeInput from "./Misc/CodeInput.vue";
 import LocaleSwitcher from "./Misc/LocaleSwitcher.vue";
 import EmailInput from "./Inputs/EmailInput/EmailInput.vue";
 import PasswordInput from "./Inputs/PasswordInput.vue";
+import HtmlArea from "./Inputs/HtmlArea.vue";
 
 //import BaseList from "./Base/BaseList.vue";
 //import ListSearchComponent from "./Base/ListSearchComponent.vue";
@@ -88,6 +89,7 @@ import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 
 import DateTimePicker from "./Misc/DateTimePicker.vue";
 import EmailContent from './Components/EmailContent.vue';
+import Edit from './Crud/Edit.vue';
 
 // @ts-ignore
 import {
@@ -181,5 +183,7 @@ export {
   EmailTemplateShow,
   EmailTemplateEdit,
   BSelectMultipleChips,
-  EmailContent
+  EmailContent,
+  Edit,
+  HtmlArea
 };

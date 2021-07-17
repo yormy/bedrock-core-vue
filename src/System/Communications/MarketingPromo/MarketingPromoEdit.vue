@@ -5,10 +5,7 @@
     <div class="m-3">
       <card-header :title="$t('bedrock-core.marketingpromo.edit.title')"></card-header>
 
-      this IS PROMO:
       <ValidationObserver ref="form">
-
-        {{ form.data.position }}
         <dropdown
           v-model="form.data.position"
           :api-errors="form.apiErrors"

@@ -8,7 +8,7 @@ export default {
 
     options: {
       type: Object,
-      required: true,
+      required: false,
     },
   },
 
