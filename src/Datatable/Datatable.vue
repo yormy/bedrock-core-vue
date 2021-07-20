@@ -1,4 +1,5 @@
 <script>
+
 export default {
   props: {
     title: {
@@ -201,7 +202,8 @@ export default {
     },
 
     openSameTab(route, xid) {
-      window.location.href = this.route(route, xid);
+      //window.location.href = this.route(route, xid);
+      this.$inertia.get(this.route(route, xid));
     },
 
     deleteAgreed(item) {
