@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <span v-if="messages">
     <success-message :message="messages.success"></success-message>
     <error-message :message="messages.error"></error-message>
     <warning-message :message="messages.warning"></warning-message>

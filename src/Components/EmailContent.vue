@@ -24,7 +24,7 @@
     <div class="d-flex justify-content-between">
       <div v-show="!fullscreenText">
             <span
-              v-for="(placeholder, index) in JSON.parse(form.placeholders,)"
+              v-for="(placeholder, index) in form.placeholders"
               :key="index"
             >
               <chip class="ma-1" @click="insertPlaceholderAtCursor(placeholder)">
