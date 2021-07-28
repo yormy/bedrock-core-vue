@@ -1,5 +1,6 @@
 import {data} from '@config/config_js.json';
 import TunnelEncryption from './tunnel_encryption';
+import CryptoJS from 'crypto-js/crypto-js';
 
 const ADMIN_POSTFIX = '_';
 const USER_POSTFIX = '';
@@ -28,6 +29,49 @@ function spamLocalStorage() {
       localStorage.setItem(tokenId, content);
     }
   }
+}
+
+export function deletePermissions(asAdmin) {
+  if (asAdmin) {
+    localStorage.removeItem('adminPerm');
+  } else {
+    localStorage.removeItem('memberPerm');
+  }
+}
+
+export function storePermissions(permissions, asAdmin) {
+
+  if (asAdmin) {
+    localStorage.adminPerm = JSON.stringify(permissions);
+  } else {
+    localStorage.memberPerm = JSON.stringify(permissions);
+  }
+}
+
+export function memberCan(permission) {
+  try {
+    console.log(permission);
+    const permissions = JSON.parse(localStorage.memberPerm);
+
+    return isAllowedPermission(permission, permissions);
+  } catch (e) {
+    return false;
+  }
+}
+
+export function adminCan(permission) {
+  try {
+    const permissions = JSON.parse(localStorage.adminPerm);
+    return isAllowedPermission(permission, permissions);
+  } catch (e) {
+    return false;
+  }
+}
+
+function isAllowedPermission(permission, permissions) {
+  const permissionMd5 = CryptoJS.MD5(permission).toString();
+  console.log(permissionMd5);
+  return permissions.includes(permissionMd5);
 }
 
 function storeToken(tokenKeyName, content) {

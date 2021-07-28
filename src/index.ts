@@ -65,9 +65,7 @@ import WeightedPages from "./Performance/WeightedPages.vue";
 
 //import ButtonAjax from "./Buttons/ButtonAjax.vue";
 import LoadingOverlay from "./Misc/LoadingOverlay.vue";
-import RbacLink from "./Misc/RbacLink.vue";
-
-
+//import RbacLink from "./Misc/RbacLink.vue";
 import TopbarDropdownItem from "./Misc/TopbarDropdownItem.vue";
 import FileDropzoneUpload from "./Misc/FileDropzoneUpload.vue";
 
@@ -93,11 +91,15 @@ import Edit from './Crud/Edit.vue';
 
 // @ts-ignore
 import {
+  adminCan,
+  deletePermissions,
   doLogout,
   isLoggedIn,
+  memberCan,
   removeTokensAdmin,
   removeTokensUser,
-  storeTokens
+  storePermissions,
+  storeTokens,
 } from "./Plugins/loginhelper.js";
 
 // @ts-ignore
@@ -127,6 +129,10 @@ export {
   EmailInput,
   PasswordInput,
   isLoggedIn, doLogout, removeTokensUser, removeTokensAdmin, storeTokens,
+  storePermissions,
+  deletePermissions,
+  memberCan,
+  adminCan,
   getLocale,
   getFirstValidationError,
   axios,
@@ -150,7 +156,7 @@ export {
   WeightedPages,
 //  ButtonAjax,
   LoadingOverlay,
-  RbacLink,
+  //RbacLink,
   TopbarDropdownItem,
   FileDropzoneUpload,
   ServerLogAccess,
