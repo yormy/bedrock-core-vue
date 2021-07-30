@@ -68,7 +68,6 @@ export function adminCan(permission) {
 
 function isAllowedPermission(permission, permissions) {
   const permissionMd5 = CryptoJS.MD5(permission).toString();
-  console.log(permissionMd5);
   return permissions.includes(permissionMd5);
 }
 
