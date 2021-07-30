@@ -50,9 +50,7 @@ export function storePermissions(permissions, asAdmin) {
 
 export function memberCan(permission) {
   try {
-    console.log(permission);
     const permissions = JSON.parse(localStorage.memberPerm);
-
     return isAllowedPermission(permission, permissions);
   } catch (e) {
     return false;
