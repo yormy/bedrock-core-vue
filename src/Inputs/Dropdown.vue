@@ -4,6 +4,7 @@
       v-bind="$attrs"
       v-on="$listeners"
       :items="items"
+      :value="value"
     >
     </v-select>
   </div>
