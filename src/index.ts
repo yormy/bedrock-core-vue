@@ -80,7 +80,9 @@ import InfoMessage from "./Alerts/InfoMessage.vue";
 
 import MessageModal from "./Modals/MessageModal.vue";
 
+import BaseSettings from "./Misc/Settings/BaseSettings.vue";
 import BrandingSettings from "./Misc/Settings/BrandingSettings.vue";
+import BillingSettings from "./Misc/Settings/BillingSettings.vue";
 import InfoIcon from "./Buttons/InfoIcon.vue";
 
 import 'vue2-dropzone/dist/vue2Dropzone.min.css';
@@ -172,7 +174,9 @@ export {
   BDropdown,
   BAutocomplete,
   MessageModal,
+  BaseSettings,
   BrandingSettings,
+  BillingSettings,
   InfoIcon,
   BSwitch,
   BSwitchMultiple,

@@ -5,5 +5,22 @@
             "hint": "The full name of the site, displayed in the titlebar and emails",
             "description": "The full name of the site, displayed in the titlebar and emails<br>Used for seo and other purposes "
         }
+    },
+    "billing": {
+        "enabled": {
+            "label": "Billing",
+            "hint": "This will allow the user to pay. If disabled, all visuals of paid membership are hidden",
+            "description": ""
+        },
+        "discount_enabled": {
+            "label": "Discounts",
+            "hint": "Allow for discount codes in the checkout or not",
+            "description": ""
+        },
+        "invoices_enabled": {
+            "label": "Invoices",
+            "hint": "Allow the member to download their invoices or not",
+            "description": ""
+        }
     }
 }
