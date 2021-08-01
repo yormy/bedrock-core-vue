@@ -6,7 +6,7 @@
       :items="items"
       :value="value"
       :color="isValid"
-      :error-messages="apiError ? apiError : errors"
+      :error-messages="apiError ? apiError : ''"
     >
     </v-autocomplete>
   </div>
