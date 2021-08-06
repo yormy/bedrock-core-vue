@@ -55,6 +55,7 @@ export default {
     formChanged() {
       this.form.state.isDirty = true;
       this.resetErrorState();
+      this.save()
     },
 
     resetErrorState() {
