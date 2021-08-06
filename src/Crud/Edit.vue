@@ -31,8 +31,7 @@ export default {
         this.RefreshParent();
         window.close();
       }
-
-      window.history.back();
+      window.location.href = (this.route(this.routes.index));
     },
 
     RefreshParent() {
