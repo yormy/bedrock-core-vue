@@ -1,8 +1,8 @@
 <template>
   <v-dialog
-    v-bind="$attrs"
-    v-on="$listeners"
-    persistent
+    v-model="showModal"
+    :max-width="maxWidth"
+    @click:outside="close()"
   >
     <div class="card">
       <v-card-title :class="'modal-header header-'+ type">
@@ -15,7 +15,7 @@
 
       <div class="card-footer">
         <slot name="actions">
-          <button class="btn btn-success float-right" @click="closed">
+          <button class="btn btn-success float-right" @click="close()">
             {{ $t('bedrock-core.action.close') }}
           </button>
         </slot>
@@ -39,6 +39,10 @@ export default {
       type: String,
       default: 'success',
     },
+    maxWidth: {
+      type: Number,
+      default: 200,
+    },
   },
 
   data() {
@@ -47,9 +51,15 @@ export default {
     }
   },
 
+  watch: {
+    show() {
+      return this.showModal = this.show;
+    },
+  },
+
   methods: {
-    closed() {
-      this.value = false
+    close() {
+      console.log('close-event');
       this.$emit('closed');
     }
   }

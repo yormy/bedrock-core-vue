@@ -25,10 +25,9 @@ export default {
     },
 
     back() {
-      this.form.state.isSubmitting = false; /// to test
-      return;
       const params = this.getQueryParameters();
       if ("new" in params) {
+        this.form.state.isSubmitting = false;
         this.RefreshParent();
         window.close();
       }
@@ -78,10 +77,11 @@ export default {
             this.back();
           })
           .catch((error) => {
+            console.log(error);
             this.form.messages.error = error.response.data.message;
-          this.form.apiErrors = error.response.data.data;
-          this.resetLoadingState();
-        })
+            this.form.apiErrors = error.response.data.data;
+            this.resetLoadingState();
+          })
         .finally(() => {
         });
 

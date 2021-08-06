@@ -17,7 +17,7 @@
         fieldname="email"
         :required="required"
         v-model="form.email"
-        validation-rules="required|email|min:5"
+        :validation-rules="validationRules"
       >
       </text-field>
   </div>
@@ -48,6 +48,11 @@ export default {
       required: false,
     },
 
+    error: {
+      type: String,
+      required: false,
+    },
+
     validateNow: {
       type: Boolean,
       required: false,
@@ -62,6 +67,12 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+
+    validationRules: {
+      type: String,
+      required: false,
+      default: 'required|email|min:5',
     }
   },
 
@@ -75,7 +86,7 @@ export default {
       emailField: {
         persistentHint: false,
         className: '',
-        hint: '',
+        hint: this.hint,
         type: '',
       },
       skipWarnings: false,
@@ -146,7 +157,7 @@ export default {
 
       this.emailField.persistentHint = false;
       this.emailField.className = '';
-      this.emailField.hint = '';
+      this.emailField.hint = this.hint;
       this.emailField.type = '';
     },
   },

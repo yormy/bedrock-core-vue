@@ -2,8 +2,9 @@
   <div>
     <message-modal
       :show="deleteModal"
-      max-width="290"
+      :max-width="maxWidth"
       type="danger"
+      @closed="doCancelled()"
     >
       <template v-slot:title>
         {{ headerText }}
@@ -28,7 +29,7 @@
     </message-modal>
 
 
-    <button-submit :btnClass="btnClass" :is-loading="isLoading" @click="askConfirmation">
+    <button-submit :btnClass="btnClass" :is-loading="state.isLoading" @click="askConfirmation">
       <slot name="button-content">
         <span class="fal fa-fw fa-trash"></span>
         <span v-if="showText">{{ $t('bedrock-core.general.delete') }}</span>
@@ -94,10 +95,20 @@ export default {
       type: String,
       default: 'btn btn-danger',
     },
+
+    maxWidth: {
+      type: Number,
+      default: 200
+    }
   },
 
   data() {
     return {
+      state: {
+        isLoading: this.isLoading,
+      },
+
+
       deleteModal: false,
 
       headerText: this.header ? this.header : this.$t('bedrock-core.general.delete'),
@@ -105,13 +116,21 @@ export default {
     };
   },
 
+  watch: {
+    isLoading() {
+      this.state.isLoading = this.isLoading;
+    },
+  },
+
   methods: {
     askConfirmation() {
       this.deleteModal = true;
+      this.state.isLoading = true;
     },
 
     doCancelled() {
       this.deleteModal = false;
+      this.state.isLoading = false;
     },
 
     doAgreed() {

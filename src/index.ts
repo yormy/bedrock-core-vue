@@ -87,6 +87,7 @@ import InfoIcon from "./Buttons/InfoIcon.vue";
 import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 
 import DateTimePicker from "./Misc/DateTimePicker.vue";
+import DatePicker from "./Misc/DatePicker.vue";
 import EmailContent from './Components/EmailContent.vue';
 import Edit from './Crud/Edit.vue';
 
@@ -185,6 +186,7 @@ export {
   MarketingPromoShow,
   MarketingPromoEdit,
   DateTimePicker,
+  DatePicker,
   UpdateModal,
   ViewModal,
   EmailTemplateIndex,
