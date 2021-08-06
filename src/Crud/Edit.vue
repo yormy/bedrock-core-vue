@@ -24,6 +24,15 @@ export default {
       return Object.fromEntries(urlParams.entries());
     },
 
+    cancel() {
+      const params = this.getQueryParameters();
+      if ("new" in params) {
+        this.form.state.isSubmitting = false;
+        window.close();
+      }
+      window.history.back();
+    },
+
     back() {
       const params = this.getQueryParameters();
       if ("new" in params) {
@@ -61,7 +70,7 @@ export default {
         return;
       }
 
-      this.form.state.isSubmitting = true;
+      //  this.form.state.isSubmitting = true;
       this.clearResponses();
 
       const postData = this.preProcessData(this.form.data)
@@ -76,7 +85,6 @@ export default {
             this.back();
           })
           .catch((error) => {
-            console.log(error);
             this.form.messages.error = error.response.data.message;
             this.form.apiErrors = error.response.data.data;
             this.resetLoadingState();
