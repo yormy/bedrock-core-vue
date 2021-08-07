@@ -4,6 +4,26 @@
             "label": "Site Title",
             "hint": "The full name of the site, displayed in the titlebar and emails",
             "description": "The full name of the site, displayed in the titlebar and emails<br>Used for seo and other purposes "
+        },
+        "abbreviation": {
+            "label": "Abbreviation",
+            "hint": "A short name for sms and other situations",
+            "description": ""
+        },
+        "description": {
+            "label": "Description",
+            "hint": "Description of the site, mainly for seo purposes",
+            "description": ""
+        },
+        "sms_prefix": {
+            "label": "SMS Prefix",
+            "hint": "Every outgoing sms start with this text",
+            "description": ""
+        },
+        "sms_postfix": {
+            "label": "SMS Postfix",
+            "hint": "Every outgoing sms ends with this text",
+            "description": ""
         }
     }
 }

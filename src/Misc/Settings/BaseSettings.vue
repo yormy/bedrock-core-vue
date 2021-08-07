@@ -55,7 +55,7 @@ export default {
     formChanged() {
       this.form.state.isDirty = true;
       this.resetErrorState();
-      this.save()
+      //this.save(); Do not autosave, as this is annoying when typing text
     },
 
     resetErrorState() {
