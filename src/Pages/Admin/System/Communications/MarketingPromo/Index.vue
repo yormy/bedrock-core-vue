@@ -9,7 +9,14 @@
 </template>
 
 <script>
+import MarketingPromoIndex
+  from "../../../../../System/Communications/MarketingPromo/MarketingPromoIndex";
+
 export default {
+  components: {
+    MarketingPromoIndex
+  },
+
   props: {
     marketingPromos: Array,
   },

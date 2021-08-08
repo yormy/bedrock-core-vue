@@ -9,7 +9,14 @@
 </template>
 
 <script>
+import EmailTemplateIndex
+  from "../../../../../System/Communications/EmailTemplates/EmailTemplateIndex";
+
 export default {
+  components: {
+    EmailTemplateIndex
+  },
+
   props: {
     emailTemplates: Array,
   },

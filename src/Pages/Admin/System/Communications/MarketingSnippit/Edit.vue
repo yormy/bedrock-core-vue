@@ -12,7 +12,14 @@
 </template>
 
 <script>
+import MarketingSnippitEdit
+  from "../../../../../System/Communications/MarketingSnippit/MarketingSnippitEdit";
+
 export default {
+  components: {
+    MarketingSnippitEdit
+  },
+
   props: {
     marketingSnippit: Object,
     options: Object,

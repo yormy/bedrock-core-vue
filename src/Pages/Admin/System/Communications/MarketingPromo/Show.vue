@@ -9,7 +9,13 @@
 </template>
 
 <script>
+import MarketingPromoShow
+  from "../../../../../System/Communications/MarketingPromo/MarketingPromoShow";
+
 export default {
+  components: {
+    MarketingPromoShow
+  },
   props: {
     marketingPromo: Object,
     options: Object,

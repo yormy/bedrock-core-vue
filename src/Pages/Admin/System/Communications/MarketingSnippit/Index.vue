@@ -9,7 +9,13 @@
 </template>
 
 <script>
+import MarketingSnippitIndex
+  from "../../../../../System/Communications/MarketingSnippit/MarketingSnippitIndex";
+
 export default {
+  components: {
+    MarketingSnippitIndex
+  },
   props: {
     marketingSnippits: Array,
   },

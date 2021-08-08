@@ -9,7 +9,14 @@
 </template>
 
 <script>
+import EmailTemplateEdit
+  from "../../../../../System/Communications/EmailTemplates/EmailTemplateEdit";
+
 export default {
+  components: {
+    EmailTemplateEdit
+  },
+
   props: {
     emailTemplate: Object,
     options: Object,
