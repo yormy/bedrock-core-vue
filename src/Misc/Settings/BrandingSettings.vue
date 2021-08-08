@@ -49,6 +49,17 @@
               </text-field>
 
               <text-field
+                v-model="form.data.footer_copyright"
+                :api-errors="form.apiErrors"
+                :hint="$t('bedrock-core.settings.branding.footer_copyright.hint')"
+                :label="$t('bedrock-core.settings.branding.footer_copyright.label')"
+                fieldname="footer_copyright"
+                validation-rules="required"
+                @keydown="formChanged()"
+              >
+              </text-field>
+
+              <text-field
                 v-model="form.data.sms_prefix"
                 :api-errors="form.apiErrors"
                 :hint="$t('bedrock-core.settings.branding.sms_prefix.hint')"
@@ -105,6 +116,7 @@ export default {
           description: this.settings.site_description,
           sms_prefix: this.settings.sms_prefix,
           sms_postfix: this.settings.sms_postfix,
+          footer_copyright: this.settings.footer_copyright,
         },
 
         state: {

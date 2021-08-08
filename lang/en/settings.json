@@ -15,6 +15,11 @@
             "hint": "Description of the site, mainly for seo purposes",
             "description": ""
         },
+        "footer_copyright": {
+            "label": "Copyright statement",
+            "hint": "Something like: Copyright © 2021 XXX. All rights reserved",
+            "description": ""
+        },
         "sms_prefix": {
             "label": "SMS Prefix",
             "hint": "Every outgoing sms start with this text",
