@@ -31,8 +31,10 @@
           :description="$t('bedrock-core.blacklisted_ip.create.description')"
           :header="$t('bedrock-core.blacklisted_ip.create.title')"
           :isLoading="form.state.isSubmittingAdd"
-          :re-show-modal="reShowModal"
+          :re-show-modal="modals.reshowAdd"
           @confirmed="addItem"
+          @cancelled="modalCancelled()"
+          @click="openUpdateModal(item)"
         >
           <template v-slot:form>
 
@@ -79,8 +81,6 @@ export default {
 
   data() {
     return {
-      reShowModal: false,
-
       form: {
         data: {
           ip: '',
@@ -101,10 +101,10 @@ export default {
         apiErrors: {},
       },
 
-      urls: {
-        create: this.route('api.v1.admin.system.blacklist.ip.add'),
-        delete: this.route('api.v1.admin.system.blacklist.ip.delete'),
-      },
+      routes: {
+        delete: 'api.v1.admin.system.blacklist.ip.delete',
+        store: 'api.v1.admin.system.blacklist.ip.add',
+      }
     };
   },
 
@@ -113,6 +113,11 @@ export default {
   },
 
   methods: {
+    setFormData(item) {
+      this.form.data.ip_address = item.ip_address;
+      this.form.data.comment = item.comment;
+    },
+
     createHeaders() {
       this.makeSearchable();
 
@@ -139,57 +144,6 @@ export default {
           sortable: false,
         }
       );
-    },
-
-    addItem() {
-      this.clearformResult();
-      this.form.state.isSubmittingAdd = true;
-
-      const payload = this.form.data;
-
-      this.$http
-        .post(this.urls.create, payload)
-        .then(response => {
-          this.table.values = this.addItemToTable(this.table.values, response.data.data);
-          this.form.messages.success = response.data.message;
-          this.form.data = {};
-        })
-        .catch(error => {
-          this.reShowModal = !this.reShowModal; // just triggering the reshowing
-          this.form.messages.error = error.response.data.message;
-          this.form.apiErrors = error.response.data.data;
-        })
-        .finally(() => {
-          this.form.state.isSubmittingAdd = false;
-        });
-    },
-
-    deleteAgreed(item) {
-      this.table.values = this.deleteItemFromTable(this.table.values, item, 'xid');
-      this.deleteModal = false;
-      this.deleteItem(item);
-    },
-
-    deleteItem(item) {
-      this.clearformResult();
-      this.form.state.isSubmittingRemove = true;
-
-      const payload = {
-        xid: item.xid,
-      };
-
-      this.$http
-        .delete(this.urls.delete, {data: payload})
-        .then(response => {
-          this.form.messages.success = response.data.message;
-        })
-        .catch(error => {
-          this.table.values = this.restoreTable();
-          this.form.messages.error = error.response.data.message;
-        })
-        .finally(() => {
-          this.form.state.isSubmittingRemove = false;
-        });
     },
   },
 };
