@@ -14,8 +14,12 @@
 </template>
 
 <script>
+import ServerLogAccess from '../../../../Logs/ServerLogAccess.vue';
 
 export default {
+  components: {
+    ServerLogAccess
+  },
   props: {
     accessLogs: Array,
   },

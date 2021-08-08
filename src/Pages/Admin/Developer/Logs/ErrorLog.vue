@@ -21,8 +21,12 @@
 </template>
 
 <script>
+import ServerLogErrors from '../../../../Logs/ServerLogErrors.vue';
 
 export default {
+  components: {
+    ServerLogErrors
+  },
 
   props: {
     errorLogs: Array,
