@@ -115,9 +115,18 @@
 
 <script>
 import DatePopup from '../Inputs/DatePopup.vue';
+import TopPages from '../Performance/TopPages.vue';
+import SlowPages from '../Performance/SlowPages.vue';
+import WeightedPages from '../Performance/WeightedPages.vue';
+import LoadGraph from '../Performance/LoadGraph.vue';
+
 
 export default {
   components: {
+    TopPages,
+    SlowPages,
+    WeightedPages,
+    LoadGraph,
     DatePopup,
   },
 
