@@ -20,6 +20,15 @@ import EmailInput from "./Inputs/EmailInput/EmailInput.vue";
 import PasswordInput from "./Inputs/PasswordInput.vue";
 import HtmlArea from "./Inputs/HtmlArea.vue";
 
+import LayoutAdminCenter from "./Layouts/Admin/Center.vue";
+import LayoutAdminLogin from "./Layouts/Admin/Center.vue";
+import LayoutAdminMain from "./Layouts/Admin/Main.vue";
+
+import LayoutMemberMain from "./Layouts/Member/Main.vue";
+import LayoutMemberLogin from "./Layouts/Member/Login.vue";
+import LayoutMemberRight from "./Layouts/Member/Right.vue";
+
+
 //import BaseList from "./Base/BaseList.vue";
 //import ListSearchComponent from "./Base/ListSearchComponent.vue";
 import ButtonConfirmWithNote from "./Buttons/ButtonConfirmWithNote.vue";
@@ -126,6 +135,12 @@ export {
   //BaseList,
   //ListSearchComponent,
   //RbacLink,
+  LayoutAdminCenter,
+  LayoutAdminMain,
+  LayoutMemberMain,
+  LayoutMemberLogin,
+  LayoutMemberRight,
+  LayoutAdminLogin,
   ActionTarpits,
   AdminJobDetails,
   AppearingBullets,
