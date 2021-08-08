@@ -72,8 +72,8 @@
 </template>
 
 <script>
-import CardHeader from "../../../Pages/CardHeader.vue";
-import CardFooter from "../../../Pages/CardFooter.vue";
+import CardHeader from "../../../PageDesign/CardHeader.vue";
+import CardFooter from "../../../PageDesign/CardFooter.vue";
 import DateTimePicker from "../../../Misc/DateTimePicker.vue";
 import Edit from "../../../Crud/Edit.vue";
 

@@ -23,9 +23,9 @@ import HtmlArea from "./Inputs/HtmlArea.vue";
 //import BaseList from "./Base/BaseList.vue";
 //import ListSearchComponent from "./Base/ListSearchComponent.vue";
 import ButtonConfirmWithNote from "./Buttons/ButtonConfirmWithNote.vue";
-import PageHeader from "./Pages/PageHeader.vue";
-import CardHeader from "./Pages/CardHeader.vue";
-import CardFooter from "./Pages/CardFooter.vue";
+import PageHeader from "./PageDesign/PageHeader.vue";
+import CardHeader from "./PageDesign/CardHeader.vue";
+import CardFooter from "./PageDesign/CardFooter.vue";
 
 import DatePopup from "./Inputs/DatePopup.vue";
 import BTextField from "./Inputs/TextField.vue";
@@ -37,7 +37,7 @@ import BDropdown from "./Inputs/Dropdown.vue";
 import BAutocomplete from "./Inputs/Autocomplete.vue";
 import BChip from "./Inputs/Chip.vue";
 
-import PerformancePage from "./Pages/PerformancePage.vue";
+import PerformancePage from "./PageDesign/PerformancePage.vue";
 
 import BlacklistedIps from "./Security/BlacklistedIps.vue";
 import ActionTarpits from "./Security/ActionTarpits.vue";
