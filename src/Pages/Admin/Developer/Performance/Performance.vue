@@ -46,5 +46,12 @@ export default {
     sqlWeightedAvg: Array,
     until: String,
   },
+
+  metaInfo() {
+    return {
+      title: this.$t('bedrock-core.performance.title'),
+    }
+  }
+
 };
 </script>
