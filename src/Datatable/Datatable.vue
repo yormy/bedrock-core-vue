@@ -212,12 +212,16 @@ export default {
       this.deleteItem(item);
     },
 
+    getRoutes() {
+      return this.routes;
+    },
+
     deleteItem(item) {
       this.clearformResult();
       this.form.state.isSubmitting = true;
 
       this.$http
-        .delete(this.route(this.routes.delete, item.xid))
+        .delete(this.route(this.getRoutes().delete, item.xid))
         .then(response => {
           this.form.messages.success = response.data.message;
         })
