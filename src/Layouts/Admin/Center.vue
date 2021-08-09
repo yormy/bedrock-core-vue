@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       switch1: true,
-      background: this.$page.props.shared.branding.images.background,
+      background: this.$page.props.shared.images.background,
       logo: this.$page.props.shared.images.logo,
     };
   },
