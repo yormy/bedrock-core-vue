@@ -3,7 +3,7 @@
     <message-modal
       :show="deleteModal"
       :type="actionType"
-      max-width="290"
+      :max-width="290"
     >
       <template v-slot:title>
         {{ headerText }}

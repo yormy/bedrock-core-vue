@@ -3,7 +3,7 @@
     <message-modal
       :show="confirmModal"
       :type="type"
-      max-width="290"
+      :max-width="290"
     >
       <template v-slot:title>
         <slot name="title">Confirm</slot>
