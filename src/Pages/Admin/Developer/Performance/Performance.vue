@@ -22,9 +22,12 @@
 </template>
 
 <script>
+import BasePage from '../../../BasePage.vue';
 import PerformancePage from '../../../../PageDesign/PerformancePage';
 
 export default {
+  extends: BasePage,
+
   components: {
     PerformancePage,
   },
@@ -47,11 +50,12 @@ export default {
     until: String,
   },
 
-  metaInfo() {
+  data() {
     return {
-      title: this.$t('bedrock-core.performance.title'),
+      page: {
+        title: this.$t('bedrock-core.performance.title'),
+      }
     }
-  }
-
+  },
 };
 </script>
