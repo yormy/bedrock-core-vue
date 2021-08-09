@@ -72,7 +72,6 @@ export default {
   data() {
     return {
       admin: this.$page.props.shared.admin,
-      viewsettings: this.$page.props.viewsettings,
     };
   },
 };
