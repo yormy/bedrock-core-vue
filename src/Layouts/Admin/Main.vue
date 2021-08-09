@@ -47,7 +47,7 @@ export default {
   },
   data() {
     return {
-      config: this.$page.props.config,
+      config: this.$page.props.shared.config,
     };
   },
 };

@@ -58,7 +58,7 @@ export default {
 
   data() {
     return {
-      admin: this.$page.props.admin,
+      admin: this.$page.props.shared.admin,
     };
   },
 };

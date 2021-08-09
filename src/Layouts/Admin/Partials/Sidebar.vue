@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       menu: this.$page.props.menu,
-      admin: this.$page.props.admin,
+      admin: this.$page.props.shared.admin,
     };
   },
 };

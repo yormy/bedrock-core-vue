@@ -14,8 +14,8 @@ export default {
 
   data() {
     return {
-      admin: this.$page.props.admin,
-      member: this.$page.props.member,
+      admin: this.$page.props.shared.admin,
+      member: this.$page.props.shared.member,
     };
   },
 };

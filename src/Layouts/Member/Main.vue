@@ -9,9 +9,11 @@
 
         <div class="main-panel">
           <top-warnings-spacer></top-warnings-spacer>
+          <impersonated-spacer></impersonated-spacer>
           <div class="content-wrapper">
             <v-app>
               <div style="min-height: auto !important; width: inherit">
+                <impersonated-spacer></impersonated-spacer>
                 member-layout == topbar vue You are logged in as
                 <!--                <sidebar-mini></sidebar-mini>-->
                 <breadcrumb></breadcrumb>
@@ -35,10 +37,12 @@ import TopWarningsSpacer from './Partials/TopWarningsSpacer.vue';
 import Sidebar from './Partials/Sidebar.vue';
 import FooterBar from './Partials/FooterBar.vue';
 import Breadcrumb from './Partials/Breadcrumb.vue';
+import ImpersonatedSpacer from "./Partials/ImpersonatedSpacer.vue";
 // import SidebarMini from './Partials/SidebarMini.vue';
 
 export default {
   components: {
+    ImpersonatedSpacer,
     Breadcrumb,
     Topbar,
     TopWarningsSpacer,
@@ -48,7 +52,7 @@ export default {
   },
   data() {
     return {
-      config: this.$page.props.config,
+      config: this.$page.props.shared.config,
     };
   },
 };

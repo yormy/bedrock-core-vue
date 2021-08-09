@@ -10,7 +10,7 @@
 export default {
   data() {
     return {
-      branding: this.$page.props.branding,
+      branding: this.$page.props.shared.branding,
     };
   },
 };

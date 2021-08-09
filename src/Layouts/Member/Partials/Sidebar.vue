@@ -58,7 +58,7 @@ export default {
   data() {
     return {
       menu: this.$page.props.menu,
-      member: this.$page.props.member,
+      member: this.$page.props.shared.member,
     };
   },
 };

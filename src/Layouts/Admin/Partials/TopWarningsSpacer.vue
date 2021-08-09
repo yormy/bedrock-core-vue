@@ -25,9 +25,9 @@
 export default {
   data() {
     return {
-      config: this.$page.props.config,
-      impersonated: this.$page.props.impersonated,
-      marketingpromo_top: this.$page.props.notifications.marketingpromo_top,
+      config: this.$page.props.shared.config,
+      impersonated: this.$page.props.shared.impersonated,
+      marketingpromo_top: this.$page.props.shared.notifications.marketingpromo_top,
     };
   },
 };
