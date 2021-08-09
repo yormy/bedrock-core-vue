@@ -44,12 +44,6 @@ import FileDropzoneUpload from "./Misc/FileDropzoneUpload.vue";
 import HtmlArea from "./Inputs/HtmlArea.vue";
 import InfoIcon from "./Buttons/InfoIcon.vue";
 import InfoMessage from "./Alerts/InfoMessage.vue";
-import LayoutAdminCenter from "./Layouts/Admin/Center.vue";
-import LayoutAdminLogin from "./Layouts/Admin/Center.vue";
-import LayoutAdminMain from "./Layouts/Admin/Main.vue";
-import LayoutMemberLogin from "./Layouts/Member/Login.vue";
-import LayoutMemberMain from "./Layouts/Member/Main.vue";
-import LayoutMemberRight from "./Layouts/Member/Right.vue";
 import LoadGraph from "./Performance/LoadGraph.vue";
 import LoadingOverlay from "./Misc/LoadingOverlay.vue";
 import LocaleSwitcher from "./Misc/LocaleSwitcher.vue";
@@ -81,6 +75,7 @@ import UpdateModal from "./Modals/UpdateModal.vue";
 import ViewModal from "./Modals/ViewModal.vue";
 import WarningMessage from "./Alerts/WarningMessage.vue";
 import WeightedPages from "./Performance/WeightedPages.vue";
+import ImpersonatedWarning from "./Alerts/ImpersonatedWarning.vue";
 
 // @ts-ignore
 import {
@@ -111,6 +106,7 @@ export {
   //BaseList,
   //ListSearchComponent,
   //RbacLink,
+  ImpersonatedWarning,
   ActionTarpits,
   AdminJobDetails,
   AppearingBullets,
@@ -152,12 +148,6 @@ export {
   HtmlArea,
   InfoIcon,
   InfoMessage,
-  LayoutAdminCenter,
-  LayoutAdminLogin,
-  LayoutAdminMain,
-  LayoutMemberLogin,
-  LayoutMemberMain,
-  LayoutMemberRight,
   LoadGraph,
   LoadingOverlay,
   LocaleSwitcher,
