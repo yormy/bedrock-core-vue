@@ -216,12 +216,16 @@ export default {
       return this.routes;
     },
 
+    destroyItemRouteParameters() {
+      return item.xid; // override in child to pass additional parameters
+    },
+
     deleteItem(item) {
       this.clearformResult();
       this.form.state.isSubmitting = true;
 
       this.$http
-        .delete(this.route(this.getRoutes().delete, item.xid))
+        .delete(this.route(this.getRoutes().delete, this.destroyItemRouteParameters()))
         .then(response => {
           this.form.messages.success = response.data.message;
         })
@@ -263,13 +267,17 @@ export default {
         });
     },
 
+    addItemRouteParameters() {
+      return {} // override in child to pass additional parameters
+    },
+
     addItem() {
       this.clearformResult();
       this.form.state.isSubmittingAdd = true;
 
-      const url = this.route(this.routes.store);
+      const url = this.route(this.routes.store, this.addItemRouteParameters());
 
-      const postData = this.preProcessData(this.form.data)
+      const postData = this.preProcessData(this.form.data,)
 
       this.$http
         .post(url, postData)
