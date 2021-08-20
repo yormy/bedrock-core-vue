@@ -55,6 +55,12 @@ export default {
     },
   },
 
+  watch: {
+    datatableValues() {
+      this.table.values = this.datatableValues;
+    }
+  },
+
   methods: {
     makeSearchable() {
       // add dummy column to be able to additional default filtering on status
@@ -103,6 +109,19 @@ export default {
       const copy = JSON.parse(JSON.stringify(values));
       copy.splice(foundIndex, 1);
       return copy;
+    },
+
+    getNextItem(values, item, findOn) {
+      const currentIndex = this.findIndex(values, item, findOn);
+
+      const nextIndex = currentIndex + 1;
+
+      if (nextIndex > values.length - 1) {
+        return values[currentIndex];
+      }
+
+      return values[nextIndex];
+
     },
 
     copyTableTo(fromValues, toValues) {
