@@ -24,17 +24,16 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="mx-3 col col-md-3">
+    <div class="row mt-0 pt-0">
+      <div class="mx-3 col col-md-3 pt-0">
         <slot name="filter_01"></slot>
       </div>
-      <div class="mx-3 col col-md-3">
+      <div class="mx-3 col col-md-3 pt-0">
         <slot name="filter_02"></slot>
       </div>
     </div>
 
   </div>
-
 </template>
 
 <script>

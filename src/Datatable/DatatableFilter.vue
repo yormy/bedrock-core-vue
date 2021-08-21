@@ -1,5 +1,4 @@
 <template>
-  <div>
     <v-select
       v-if="show"
       v-model="selected"
@@ -13,9 +12,9 @@
       return-object
       single-line
       @click:append="reset"
+      dense
     >
     </v-select>
-  </div>
 </template>
 
 <script>
