@@ -66,7 +66,7 @@ export default {
 
     item: {
       type: Object,
-      required: true,
+      required: false,
     },
 
     confirmButton: {

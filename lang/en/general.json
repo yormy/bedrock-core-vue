@@ -3,6 +3,7 @@
     "created_at": "created at",
     "active_at": "Active at",
     "expires_at": "Expires at",
+    "no_items_found": "No items found",
     "date": "Date",
     "ip": "IP",
     "ip_address": "IP Address",
