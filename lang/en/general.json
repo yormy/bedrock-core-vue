@@ -9,6 +9,7 @@
     "ip_address": "IP Address",
     "since": "Since",
     "disable": "Disable",
+    "disabled": "Disabled",
     "enable": "Enable",
     "cancel": "Cancel",
     "delete": "Delete",
