@@ -92,6 +92,10 @@ export default {
   },
 
   watch: {
+    value() {
+      this.switchValue = this.value;
+    },
+
     switchValue() {
       this.$emit('changed', this.switchValue);
     },
