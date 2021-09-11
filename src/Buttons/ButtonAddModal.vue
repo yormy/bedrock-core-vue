@@ -3,7 +3,7 @@
     <v-dialog
       v-model="showModal"
       tabindex="0"
-      width="auto "
+      :width="widthSpaced"
       @click:outside="doCancelled"
       @keydown.esc="doCancelled"
     >
@@ -94,6 +94,11 @@ export default {
       required: false,
     },
 
+    width: {
+      type: String,
+      default: 'auto',
+    },
+
     reShowModal: false,
   },
 
@@ -102,10 +107,16 @@ export default {
       showModal: false,
       headerText: this.header ? this.header : this.$t('bedrock-core.action.add'),
       confirmButtonText: this.confirmButton ? this.confirmButton : this.$t('bedrock-core.action.add'),
+
+      widthSpaced: this.width + " ",
     };
   },
 
   watch: {
+    width() {
+      this.widthSpaced = this.width + " ";
+    },
+
     reShowModal() {
       this.showModal = true;
     }
