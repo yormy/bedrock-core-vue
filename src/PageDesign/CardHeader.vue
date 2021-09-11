@@ -6,6 +6,9 @@
       </div>
       <div v-if="subtitle" class="table_subtitle">{{ subtitle }}</div>
     </div>
+    <div>
+      <slot name="right"></slot>
+    </div>
   </div>
 </template>
 
