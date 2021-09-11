@@ -35,6 +35,7 @@ import DatePopup from "./Inputs/DatePopup.vue";
 import DateTimePicker from "./Misc/DateTimePicker.vue";
 import Edit from './Crud/Edit.vue';
 import EmailContent from './Components/EmailContent.vue';
+import CopyClipboardItem from './Components/CopyClipboardItem.vue';
 import EmailInput from "./Inputs/EmailInput/EmailInput.vue";
 import EmailTemplateEdit from "./System/Communications/EmailTemplates/EmailTemplateEdit.vue";
 import EmailTemplateIndex from "./System/Communications/EmailTemplates/EmailTemplateIndex.vue";
@@ -190,4 +191,5 @@ export {
   storeTokens,
   translations,
 //  ButtonAjax,
+  CopyClipboardItem,
 };
