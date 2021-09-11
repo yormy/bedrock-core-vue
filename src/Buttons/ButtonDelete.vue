@@ -3,6 +3,7 @@
     <message-modal
       :show="deleteModal"
       :max-width="maxWidth"
+      :width="width"
       type="danger"
       @closed="doCancelled()"
     >
@@ -98,8 +99,14 @@ export default {
 
     maxWidth: {
       type: Number,
-      default: 200
-    }
+      default: 1000
+    },
+
+    width: {
+      type: String,
+      default: 'auto',
+    },
+
   },
 
   data() {
@@ -108,6 +115,7 @@ export default {
         isLoading: this.isLoading,
       },
 
+      widthSpaced: this.width + " ",
 
       deleteModal: false,
 
@@ -117,6 +125,10 @@ export default {
   },
 
   watch: {
+    width() {
+      this.widthSpaced = this.width + " ";
+    },
+
     isLoading() {
       this.state.isLoading = this.isLoading;
     },

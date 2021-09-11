@@ -2,6 +2,7 @@
   <v-dialog
     v-model="showModal"
     :max-width="maxWidth"
+    :width="widthSpaced"
     @click:outside="close()"
   >
     <div class="card">
@@ -39,19 +40,31 @@ export default {
       type: String,
       default: 'success',
     },
+
     maxWidth: {
       type: Number,
-      default: 200,
+      default: 1000,
+    },
+
+    width: {
+      type: String,
+      default: 'auto',
     },
   },
 
   data() {
     return {
       showModal: this.show,
+      widthSpaced: this.width + " ",
     }
   },
 
   watch: {
+
+    width() {
+      this.widthSpaced = this.width + " ";
+    },
+
     show() {
       return this.showModal = this.show;
     },
