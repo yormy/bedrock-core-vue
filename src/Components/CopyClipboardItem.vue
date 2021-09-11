@@ -33,7 +33,7 @@ export default {
 
       const self = this;
       navigator.clipboard.writeText(this.value).then(function () {
-        self.valueOnClipboard = this.value;
+        self.valueOnClipboard = self.value;
       }, function (err) {
         console.error('Could not copy text: ', err);
       });
