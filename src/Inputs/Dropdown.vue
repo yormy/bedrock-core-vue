@@ -1,14 +1,16 @@
 <template>
   <div>
-    <v-select
-      v-bind="$attrs"
-      v-on="$listeners"
-      :items="items"
-      :value="value"
-      :color="isValid"
-      :error-messages="apiError ? apiError : errors"
-    >
-    </v-select>
+    <ValidationProvider v-slot="{ errors }" :name="fieldname" :rules="validationRules">
+      <v-select
+        :color="isValid"
+        :error-messages="apiError ? apiError : errors"
+        :items="items"
+        :value="value"
+        v-bind="$attrs"
+        v-on="$listeners"
+      >
+      </v-select>
+    </ValidationProvider>
   </div>
 </template>
 
@@ -27,6 +29,11 @@ export default {
 
     items: {
       type: Array,
+      required: false,
+    },
+
+    validationRules: {
+      type: String,
       required: false,
     },
 
