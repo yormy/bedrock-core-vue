@@ -10,8 +10,8 @@
         :error-messages="apiError ? apiError : errors"
         :value="value"
         @keydown="clearApiError()"
-        :append-outer-icon="description != null ? 'fal fa-info-circle fa-xs': ''"
-        @click:append-outer="() => (infoDialog = !infoDialog)"
+        :append-outer-icon="getOuterIcon()"
+        @click:append-outer="outerIconClicked"
       >
       </v-text-field>
 
@@ -72,6 +72,12 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+
+    outerIcon: {
+      type: String,
+      required: false,
+      default: '',
     }
 
   },
@@ -103,6 +109,25 @@ export default {
   },
 
   methods: {
+    getOuterIcon() {
+      if (this.outerIcon != null) {
+        return this.outerIcon;
+      }
+
+      if (this.description != null) {
+        return 'fal fa-info-circle fa-xs';
+      }
+      return '';
+    },
+
+    outerIconClicked() {
+      if (this.description != null) {
+        this.infoDialog = !this.infoDialog
+      }
+
+      this.$emit('outerClicked', this.fieldname);
+    },
+
     getLabel() {
       let append = '';
       if (this.required) {
