@@ -103,6 +103,10 @@ export default {
     validateNow() {
       this.checkEmail();
     },
+
+    emailAddress() {
+      this.form.email = this.emailAddress;
+    }
   },
 
   computed: {
