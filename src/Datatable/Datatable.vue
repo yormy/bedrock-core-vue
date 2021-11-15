@@ -294,6 +294,10 @@ export default {
       this.clearformResult();
       this.form.state.isSubmittingAdd = true;
 
+      if (this.routes.store === undefined || this.routes.store.length < 3) {
+        throw new Error('this.routes.store not defined');
+      }
+
       const url = this.route(this.routes.store, this.addItemRouteParameters());
 
       const postData = this.preProcessData(this.form.data,)
