@@ -3,6 +3,7 @@
     "created_at": "created at",
     "active_at": "Active at",
     "expires_at": "Expires at",
+    "expired": "Expired",
     "no_items_found": "No items found",
     "date": "Date",
     "details": "Details",
