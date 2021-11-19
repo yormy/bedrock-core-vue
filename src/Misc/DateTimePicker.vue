@@ -240,6 +240,7 @@ export default {
       let selectedTime = this.formatTime(this.timeModel);
       this.displayDate = this.formatDate(this.dateModel) + ' ' + selectedTime
       this.$emit('input', this.dateModel + ' ' + selectedTime);
+      this.$emit('change', this.dateModel + ' ' + selectedTime);
     },
 
     clearApiError() {
