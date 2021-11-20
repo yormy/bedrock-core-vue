@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-between">
       <div>{{ label }}</div>
           <info-icon
-            :content="description"
+            :content-html="description"
             :show="infoDialog"
             :title="label"
           >

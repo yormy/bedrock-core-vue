@@ -39,7 +39,7 @@
             <div v-else>{{ $t('bedrock-core.emailtemplate.edit.exit_fullscreen') }}</div>
           </button>
           <info-icon
-            :content="$t('bedrock-core.emailtemplate.field.placeholders.info')"
+            :content-html="$t('bedrock-core.emailtemplate.field.placeholders.info')"
             :title="$t('bedrock-core.emailtemplate.field.placeholders.label')"
           >
           </info-icon>

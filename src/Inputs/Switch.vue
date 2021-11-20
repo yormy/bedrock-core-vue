@@ -13,7 +13,7 @@
           ></v-switch>
       </div>
       <info-icon
-        :content="description"
+        :content-html="description"
         :show="infoDialog"
         :title="label"
       >
