@@ -2,7 +2,8 @@
   <div v-if="content">
     <span class="fal fa-info-circle" @click="infoDialog= !infoDialog"></span>
     <info-modal
-      :content="content"
+      :content-html="contentHtml"
+      :content-text="contentText"
       :show="infoDialog"
       :title="title"
     >
@@ -23,7 +24,11 @@ export default {
       type: String,
     },
 
-    content: {
+    contentHtml: {
+      type: String,
+    },
+
+    contentText: {
       type: String,
     },
   },

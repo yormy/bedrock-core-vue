@@ -5,7 +5,8 @@
         <v-card-title class="text-h5 grey lighten-2"> {{ title }}</v-card-title>
 
         <v-card-text>
-          <div v-html="content"></div>
+          <div v-if="contentHtml" v-html="contentHtml"></div>
+          <div v-if="contentText">{{ contentText }}</div>
         </v-card-text>
 
         <v-divider></v-divider>
@@ -29,7 +30,11 @@ export default {
       type: String,
     },
 
-    content: {
+    contentHtml: {
+      type: String,
+    },
+
+    contentText: {
       type: String,
     },
   },
