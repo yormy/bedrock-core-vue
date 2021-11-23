@@ -157,7 +157,7 @@ axiosApi.interceptors.request.use((config) => {
   //   // delete authorizedConfig.data.xid;
   // }
 
-  authorizedConfig.headers.Authorization = `Bearer ${accessToken}`;
+  // authorizedConfig.headers.Authorization = `Bearer ${accessToken}`; // this overwrites basic auth settings
   return authorizedConfig;
 });
 
