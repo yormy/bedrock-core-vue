@@ -235,7 +235,7 @@ export default {
       return this.routes;
     },
 
-    destroyItemRouteParameters() {
+    destroyItemRouteParameters(item) {
       return item.xid; // override in child to pass additional parameters
     },
 
@@ -244,7 +244,7 @@ export default {
       this.form.state.isSubmitting = true;
 
       this.$http
-        .delete(this.route(this.getRoutes().delete, this.destroyItemRouteParameters()))
+        .delete(this.route(this.getRoutes().delete, this.destroyItemRouteParameters(item)))
         .then(response => {
           this.form.messages.success = response.data.message;
         })
