@@ -116,7 +116,7 @@ function createChecksum(encryption, postedData) {
 
 axiosApi.interceptors.request.use((config) => {
   const accessToken = getAccessToken(config);
-  axiosApi.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+  //axiosApi.defaults.headers.common.Authorization = `Bearer ${accessToken}`; // this overwrites basic auth settings
 
   const authorizedConfig = {...config};
 
