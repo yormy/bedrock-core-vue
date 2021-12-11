@@ -1,24 +1,42 @@
 <template>
   <span>
     <div class="d-flex justify-content-between">
-      <div>{{ label }}</div>
+      <div class="d-flex">
+        <div>
+          {{ label }}
+        </div>
+        <div class="self-align-start pl-1">
           <info-icon
             :content-html="description"
             :show="infoDialog"
             :title="label"
           >
-        </info-icon>
+          </info-icon>
+        </div>
+      </div>
     </div>
     <small>{{ hint }}</small>
+
     <div class="d-flex justify-content-between">
       <span v-for="(option,key) in options" :key="key">
-        <v-switch
-          v-model="switchValue"
-          v-bind="$attrs"
-          v-on="$listeners"
-          :label="option"
-          :value="key"
-        ></v-switch>
+        <div class="d-flex">
+          <v-switch
+            v-model="switchValue"
+            :hint="option.hint"
+            :label="option.label"
+            :persistent-hint="true"
+            :value="option.key"
+            class="mt-0 pr-1"
+            v-bind="$attrs"
+            v-on="$listeners"
+          ></v-switch>
+          <info-icon
+            :content-html="option.description"
+            :show="infoDialog"
+            :title="option.label"
+          >
+          </info-icon>
+        </div>
       </span>
     </div>
   </span>
@@ -40,7 +58,7 @@ export default {
     },
 
     options: {
-      type: Object,
+      type: Array,
       required: true,
     },
 

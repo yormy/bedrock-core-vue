@@ -1,6 +1,6 @@
 <template>
   <div v-if="contentHtml || contentText">
-    <span class="fal fa-info-circle" @click="infoDialog= !infoDialog"></span>
+    <span :class="size" class="fal fa-info-circle" @click="infoDialog= !infoDialog"></span>
     <info-modal
       :content-html="contentHtml"
       :content-text="contentText"
@@ -31,6 +31,11 @@ export default {
     contentText: {
       type: String,
     },
+
+    size: {
+      type: String,
+      default: 'fa-xs'
+    }
   },
 
   data() {
