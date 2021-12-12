@@ -96,7 +96,15 @@ function redirectIfNeeded(error) {
     let redirectUrl = error.response.data.redirect_to;
 
     if (error.response.data.redirect_from) {
-      redirectUrl += `?intendedUrl=${error.response.data.redirect_from}`;
+
+      const hasQueryParams = redirectUrl.includes("?");
+
+      if (hasQueryParams) {
+        redirectUrl += '&';
+      } else {
+        redirectUrl += '?';
+      }
+      redirectUrl += `intendedUrl=${error.response.data.redirect_from}`;
     }
 
     window.location.href = redirectUrl;
