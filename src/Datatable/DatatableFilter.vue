@@ -5,7 +5,7 @@
       :clear-icon="'fal fa-xs fa-times'"
       :items="options"
       :label="$t('bedrock-core.action.select')"
-      clearable
+      :clearable="clearable"
       item-text="name"
       item-value="key"
       persistent-hint
@@ -26,6 +26,10 @@ export default {
     show: {
       type: Boolean,
       default: false,
+    },
+    clearable: {
+      type: Boolean,
+      default: true,
     }
   },
 
