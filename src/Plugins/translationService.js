@@ -4,7 +4,7 @@ function getCookieContextKey() {
 
 const CONTEXT_ENABLED = 'translationcaptain';
 
-export default function activateMissingTranslations() {
+export default function translationService() {
   Vue.prototype.$tOriginal = Vue.prototype.$t;
   var translateWithCheck = function (...args) {
 

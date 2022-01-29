@@ -104,10 +104,10 @@ import {getFirstValidationError} from "./Helpers/formhelper.js";
 
 //@ts-ignore
 import translations from '../lang/translations';
-import activateMissingTranslations from './Plugins/translator';
+import translationService from './Plugins/translationService';
 
 export {
-  activateMissingTranslations,
+  translationService,
   //BaseList,
   //ListSearchComponent,
   //RbacLink,
