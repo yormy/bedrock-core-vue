@@ -12,6 +12,7 @@ import BDropdown from "./Inputs/Dropdown.vue";
 import BSelectMultipleChips from "./Inputs/SelectMultipleChips.vue";
 import BSwitch from "./Inputs/Switch.vue";
 import BSwitchMultiple from "./Inputs/SwitchMultiple.vue";
+import BRadioGroup from "./Inputs/RadioGroup.vue";
 import BTextArea from "./Inputs/TextArea.vue";
 import BTextField from "./Inputs/TextField.vue";
 import BaseSettings from "./Misc/Settings/BaseSettings.vue";
@@ -103,8 +104,10 @@ import {getFirstValidationError} from "./Helpers/formhelper.js";
 
 //@ts-ignore
 import translations from '../lang/translations';
+import activateMissingTranslations from './Plugins/translator';
 
 export {
+  activateMissingTranslations,
   //BaseList,
   //ListSearchComponent,
   //RbacLink,
@@ -118,6 +121,7 @@ export {
   BSelectMultipleChips,
   BSwitch,
   BSwitchMultiple,
+  BRadioGroup,
   BTextArea,
   BTextField,
   BaseSettings,
