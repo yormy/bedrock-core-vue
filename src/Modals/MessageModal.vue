@@ -50,6 +50,11 @@ export default {
       type: String,
       default: 'auto',
     },
+
+    reShowModal: {
+      type: Boolean,
+      default: false,
+    }
   },
 
   data() {
@@ -68,6 +73,11 @@ export default {
     show() {
       return this.showModal = this.show;
     },
+
+    reShowModal() {
+      console.log('reshow');
+      this.showModal = true;
+    }
   },
 
   methods: {

@@ -4,6 +4,7 @@
       :show="confirmModal"
       :type="type"
       :max-width="290"
+      :re-show-modal="reShowModal"
     >
       <template v-slot:title>
         <slot name="title">Confirm</slot>
@@ -72,6 +73,11 @@ export default {
     type: {
       type: String,
       default: 'success'
+    },
+
+    reShowModal: {
+      type: Boolean,
+      default: false,
     }
   },
 
