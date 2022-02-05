@@ -5,6 +5,7 @@
       :type="type"
       :max-width="290"
       :re-show-modal="reShowModal"
+      @closed="doCancelled"
     >
       <template v-slot:title>
         <slot name="title">Confirm</slot>
@@ -81,6 +82,12 @@ export default {
     }
   },
 
+  watch: {
+    reShowModal() {
+      this.confirmModal = true;
+    }
+  },
+
   data() {
     return {
       confirmModal: false,
@@ -102,6 +109,7 @@ export default {
       this.confirmModal = false;
       this.$emit('confirmedItem', this.item, this.note);
     },
+
   },
 };
 </script>

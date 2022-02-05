@@ -3,7 +3,8 @@
     v-model="showModal"
     :max-width="maxWidth"
     :width="widthSpaced"
-    @click:outside="close()"
+    @click:outside="doCancelled"
+    @keydown.esc="doCancelled"
   >
     <div class="card">
       <v-card-title :class="'modal-header header-'+ type">
@@ -71,21 +72,19 @@ export default {
     },
 
     show() {
-      return this.showModal = this.show;
+      this.showModal = this.show;
     },
 
     reShowModal() {
-      console.log('reshow');
       this.showModal = true;
     }
   },
 
   methods: {
-    close() {
-      console.log('close-event');
+    doCancelled() {
+      this.showModal = false;
       this.$emit('closed');
-    }
+    },
   }
-
 };
 </script>
